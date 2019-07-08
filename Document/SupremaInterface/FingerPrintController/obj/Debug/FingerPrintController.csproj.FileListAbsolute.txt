@@ -1,0 +1,59 @@
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.SqlCommands.resources
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.csproj.GenerateResource.cache
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.csproj.CoreCompileInputs.cache
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\controller_config.json
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\FingerPrintController.dll.config
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\FingerPrintController.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\FingerPrintController.pdb
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\MySql.Data.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.csproj.CopyComplete
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.pdb
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\SupremaInterface.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\SFM_SDK_NET.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\SupremaInterface.pdb
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\SFM_SDK_NET.xml
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\obj\Debug\FingerPrintController.csprojAssemblyReference.cache
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\DLL\SFM_SDK.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\DLL\SFM_SDK_NET.dll
+C:\Users\Ojvar\Documents\Visual Studio 2017\Projects\SupremaApiCheck\FingerPrintController\bin\Debug\DLL\SFM_SDK_NET.XML
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\DLL\SFM_SDK.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\DLL\SFM_SDK_NET.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\DLL\SFM_SDK_NET.XML
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\controller_config.json
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\FingerPrintController.dll.config
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\FingerPrintController.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\FingerPrintController.pdb
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\MySql.Data.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\Newtonsoft.Json.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\SFM_SDK_NET.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\SupremaInterface.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\SupremaInterface.pdb
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\Newtonsoft.Json.xml
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\bin\Debug\SFM_SDK_NET.xml
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.csprojResolveAssemblyReference.cache
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.SqlCommands.resources
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.csproj.GenerateResource.Cache
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.pdb
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\DLL\SFM_SDK.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\DLL\SFM_SDK_NET.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\DLL\SFM_SDK_NET.XML
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\controller_config.json
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\FingerPrintController.dll.config
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\FingerPrintController.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\FingerPrintController.pdb
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\MySql.Data.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\Newtonsoft.Json.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\SFM_SDK_NET.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\SupremaInterface.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\SupremaInterface.pdb
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\Newtonsoft.Json.xml
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\bin\Debug\SFM_SDK_NET.xml
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.csprojResolveAssemblyReference.cache
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.SqlCommands.resources
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.csproj.GenerateResource.Cache
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.dll
+D:\2.Utility\WebSites\arghavan\Document\SupremaInterface\FingerPrintController\obj\Debug\FingerPrintController.pdb

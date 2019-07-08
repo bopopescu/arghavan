@@ -1,0 +1,43 @@
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.csprojResolveAssemblyReference.cache
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.Forms.LoginForm.resources
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.Properties.Resources.resources
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.csproj.GenerateResource.Cache
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\SuprimaApp.exe.config
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\SuprimaApp.exe
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\SuprimaApp.pdb
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Common.dll
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Newtonsoft.Json.dll
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Common.pdb
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Common.dll.config
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Newtonsoft.Json.pdb
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Newtonsoft.Json.xml
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.exe
+E:\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.pdb
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\SuprimaApp.exe.config
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\SuprimaApp.exe
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\SuprimaApp.pdb
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Common.dll
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Newtonsoft.Json.dll
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Common.pdb
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Common.dll.config
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Newtonsoft.Json.pdb
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\bin\Debug\Newtonsoft.Json.xml
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.csprojResolveAssemblyReference.cache
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.Forms.LoginForm.resources
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.Forms.PrimaryForm.resources
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.Properties.Resources.resources
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.csproj.GenerateResource.Cache
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.exe
+E:\2.Utility\New Utility\2.Utility\Project\WindowsApplication\Applications\ReaderRestFulProgram\NFCSharp_Active\SuprimaApp\obj\Debug\SuprimaApp.pdb
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\bin\Debug\SuprimaApp.exe.config
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\bin\Debug\SuprimaApp.exe
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\bin\Debug\SuprimaApp.pdb
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\bin\Debug\Newtonsoft.Json.dll
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\bin\Debug\Newtonsoft.Json.pdb
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\bin\Debug\Newtonsoft.Json.xml
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\obj\Debug\SuprimaApp.Forms.LoginForm.resources
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\obj\Debug\SuprimaApp.Forms.PrimaryForm.resources
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\obj\Debug\SuprimaApp.Properties.Resources.resources
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\obj\Debug\SuprimaApp.csproj.GenerateResource.Cache
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\obj\Debug\SuprimaApp.exe
+D:\Data\WebSites\soft_iauahvaz\arghavan\Document\Fingerprint\SupremaInterface\SuprimaApp\obj\Debug\SuprimaApp.pdb
