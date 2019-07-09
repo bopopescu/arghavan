@@ -67,7 +67,7 @@
                                                         class="btn btn-round btn-just-icon pull-left"
                                                         data-toggle="modal"
                                                         data-target="#removeRecordModal‌BuildingType"
-                                                        @click.prevent="readyToDelete(record)">
+                                                        @click.prevent="readyToDelete(record, BuildingType)">
                                                         <i class="material-icons">delete</i>
                                                         <div class="ripple-container"></div>
                                                     </a>
@@ -125,7 +125,7 @@
                                                 class="close"
                                                 data-dismiss="modal"
                                                 aria-hidden="true">
-                                                <i class="material-icons">clear</i>
+                                                <i class="material-icons">delete</i>
                                         </button>
                                     </div>
 
@@ -135,12 +135,12 @@
 
                                     <div class="modal-footer text-center">
                                         <button type="button"
-                                                class="btn btn-simple"
+                                                class="btn btn-label"
                                                 data-dismiss="modal">خیر
                                         </button>
 
                                         <button type="button"
-                                                class="btn btn-success btn-simple"
+                                                class="btn btn-rose"
                                                 data-dismiss="modal"
                                                 @click.prevent="deleteRecord('buildingTypes')">بله
                                         </button>

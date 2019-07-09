@@ -18,7 +18,6 @@
                                  اطلاعات پایه
                             </span>
                         </a>
-
                     </li>
                 @endcan
 
@@ -51,7 +50,7 @@
                 <!-- /Base Dormitory  -->
 
                 <!-- Base Parking  -->
-                @can('menu_parking')
+
                     <li>
                         <a href= "{{ route('base.parking') }}">
                             <span class="sidebar-normal">
@@ -59,7 +58,7 @@
                             </span>
                         </a>
                     </li>
-                @endcan
+
                 <!-- /Base Parking  -->
             </ul>
         </div>

@@ -323,3 +323,4 @@ Route::get('accesscontrol/{code}/{ip}/{command}', 'RaspberryController@routin_ch
 // Route::get('accesscontrol/{code}/{ip}', 'RaspberryController@webService');
 // Route::get('gateresponse/{code}/{ip}', 'RaspberryController@sendResponseWebService');
 Route::get('sendresponse/{code}/{ip}', 'RaspberryController@sendResponseWebService');
+Route::get('getDataFromAmoeba', 'AmoebaController@getDataAmoeba');

@@ -9,186 +9,186 @@
         <div class="col-md-12 col-sm-12">
 
           <div class="row">
-              <div class="col-md-12 ml-auto mr-auto">
+            <div class="col-md-12 ml-auto mr-auto">
 
-                <div class="page-categories">
-                  <h3 class="title text-center">اطلاعات پایه ساختار سازمانی </h3>
-                  <br/>
-                  <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center"
-                      role="tablist">
-                    @isRoot
-                      @can('menu_base_group')
-                        <li class="nav-item tabStyle active">
-                          <a class="nav-link" data-toggle="tab" href="#group" role="tablist">
-                            <i class="material-icons">group</i> تعریف گروه بندی
-                          </a>
-                        </li>
-                      @endcan
-
-                      @can('menu_base_cardtype')
-                        <li class="nav-item tabStyle">
-                          <a class="nav-link" data-toggle="tab" href="#cardtype" role="tablist">
-                            <i class="material-icons">card_membership</i> تعریف انواع کارت
-                          </a>
-                        </li>
-                      @endcan
-
-                    @endisRoot
-
-                    @can('menu_base_contractor')
-                      <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#contractor" role="tablist">
-                          <i class="fas fa-user-tie"></i>تعریف پیمانکار
+              <div class="page-categories">
+                <h3 class="title text-center">اطلاعات پایه ساختار سازمانی </h3>
+                <br/>
+                <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center"
+                    role="tablist">
+                  @isRoot
+                    @can('menu_base_group')
+                      <li class="nav-item tabStyle active">
+                        <a class="nav-link" data-toggle="tab" href="#group" role="tablist">
+                          <i class="material-icons">group</i> تعریف گروه بندی
                         </a>
                       </li>
                     @endcan
 
-                    @can('menu_base_contract')
+                    @can('menu_base_cardtype')
                       <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#contract" role="tablist">
-                          <i class="fa fa-handshake fa-2x"></i>تعریف انواع قرارداد
+                        <a class="nav-link" data-toggle="tab" href="#cardtype" role="tablist">
+                          <i class="material-icons">card_membership</i> تعریف انواع کارت
                         </a>
                       </li>
                     @endcan
 
-                    @can('menu_base_block')
-                      <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#block" role="tablist">
-                          <i class="fas fa-home fa-2x"></i>  تعریف بلوک
+                  @endisRoot
+
+                  @can('menu_base_contractor')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#contractor" role="tablist">
+                        <i class="fas fa-user-tie"></i>تعریف پیمانکار
+                      </a>
+                    </li>
+                  @endcan
+
+                  @can('menu_base_contract')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#contract" role="tablist">
+                        <i class="fa fa-handshake fa-2x"></i>تعریف انواع قرارداد
+                      </a>
+                    </li>
+                  @endcan
+
+                  @can('menu_base_block')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#block" role="tablist">
+                        <i class="fas fa-home fa-2x"></i>  تعریف بلوک
+                      </a>
+                    </li>
+                  @endcan
+
+                  @can('menu_base_building_type')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#building_type" role="tablist">
+                        <i class="fas fa-warehouse fa-2x"></i>تعریف انواع ساختمان
+                      </a>
+                    </li>
+                  @endcan
+
+                  @can('menu_base_building')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#building" role="tablist">
+                        <i class="fas fa-building fa-2x"></i>تعریف ساختمان
+                      </a>
+                    </li>
+                  @endcan
+
+                   {{--  <li class="nav-item tabStyle">
+                        <a class="nav-link" data-toggle="tab" href="#department" role="tablist">
+                            <i class="fas fa-building fa-2x"></i>تعریف ساختمان
                         </a>
-                      </li>
-                    @endcan
-
-                    @can('menu_base_building_type')
-                      <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#building_type" role="tablist">
-                          <i class="fas fa-warehouse fa-2x"></i>تعریف انواع ساختمان
+                    </li> --}}
+                  @can('menu_base_kintype')
+                    <li class="nav-item tabStyle">
+                        <a class="nav-link" data-toggle="tab" href="#kin_type" role="tablist">
+                            <i class="material-icons">people_outline</i> تعریف نسبت افراد
                         </a>
-                      </li>
-                    @endcan
+                    </li>
+                  @endcan
 
-                    @can('menu_base_building')
-                      <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#building" role="tablist">
-                          <i class="fas fa-building fa-2x"></i>تعریف ساختمان
-                        </a>
-                      </li>
-                    @endcan
+                  @can('menu_base_melliat')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#melliat" role="tablist">
+                        <i class="fas fa-globe-asia"></i> تعریف ملیت
+                      </a>
+                    </li>
+                  @endcan
 
-                     {{--  <li class="nav-item tabStyle">
-                          <a class="nav-link" data-toggle="tab" href="#department" role="tablist">
-                              <i class="fas fa-building fa-2x"></i>تعریف ساختمان
-                          </a>
-                      </li> --}}
-                    @can('menu_base_kintype')
-                      <li class="nav-item tabStyle">
-                          <a class="nav-link" data-toggle="tab" href="#kin_type" role="tablist">
-                              <i class="material-icons">people_outline</i> تعریف نسبت افراد
-                          </a>
-                      </li>
-                    @endcan
+                  @can('menu_base_province')
+                    <li class="nav-item tabStyle ">
+                      <a class="nav-link" data-toggle="tab" href="#province" role="tablist">
+                        <i class="material-icons">location_city</i>تعریف استان
+                      </a>
+                    </li>
+                  @endcan
 
-                    @can('menu_base_melliat')
-                      <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#melliat" role="tablist">
-                          <i class="fas fa-globe-asia"></i> تعریف ملیت
-                        </a>
-                      </li>
-                    @endcan
+                  @can('menu_base_city')
+                    <li class="nav-item tabStyle">
+                      <a class="nav-link" data-toggle="tab" href="#city" role="tablist">
+                        <i class="material-icons">my_location</i> تعریف شهرستان
+                      </a>
+                    </li>
+                  @endcan
 
-                    @can('menu_base_province')
-                      <li class="nav-item tabStyle ">
-                        <a class="nav-link" data-toggle="tab" href="#province" role="tablist">
-                          <i class="material-icons">location_city</i>تعریف استان
-                        </a>
-                      </li>
-                    @endcan
-
-                    @can('menu_base_city')
-                      <li class="nav-item tabStyle">
-                        <a class="nav-link" data-toggle="tab" href="#city" role="tablist">
-                          <i class="material-icons">my_location</i> تعریف شهرستان
-                        </a>
-                      </li>
-                    @endcan
-
-                  </ul>
+                </ul>
 
 
-                  <div class="tab-content tab-space tab-subcategories">
-                    @isRoot
-                      @can('menu_base_group')
-                        <div class="tab-pane active" id="group">
-                          @include('base-structure.groups.index')
-                        </div>
-                      @endcan
-
-                      @can('menu_base_cardtype')
-                        <div class="tab-pane" id="cardtype">
-                          @include('base-structure.card_types.index')
-                        </div>
-                      @endcan
-                    @endisRoot
-
-                    @can('menu_base_contractor')
-                      <div class='tab-pane'  id="contractor">
-                        @include('base-structure.contractors.index')
+                <div class="tab-content tab-space tab-subcategories">
+                  @isRoot
+                    @can('menu_base_group')
+                      <div class="tab-pane active" id="group">
+                        @include('base-structure.groups.index')
                       </div>
                     @endcan
 
-                    @can('menu_base_contract')
-                      <div class="tab-pane" id="contract">
-                        @include('base-structure.contracts.index')
+                    @can('menu_base_cardtype')
+                      <div class="tab-pane" id="cardtype">
+                        @include('base-structure.card_types.index')
                       </div>
                     @endcan
+                  @endisRoot
 
-                    @can('menu_base_block')
-                      <div class="tab-pane" id="block">
-                        @include('base-structure.blocks.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_contractor')
+                    <div class='tab-pane'  id="contractor">
+                      @include('base-structure.contractors.index')
+                    </div>
+                  @endcan
 
-                    @can('menu_base_building_type')
-                      <div class="tab-pane" id="building_type">
-                        @include('base-structure.building_types.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_contract')
+                    <div class="tab-pane" id="contract">
+                      @include('base-structure.contracts.index')
+                    </div>
+                  @endcan
 
-                    @can('menu_base_building')
-                      <div class="tab-pane" id="building">
-                        @include('base-structure.buildings.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_block')
+                    <div class="tab-pane" id="block">
+                      @include('base-structure.blocks.index')
+                    </div>
+                  @endcan
 
-                    @can('menu_base_kintype')
-                      <div class="tab-pane" id="kin_type">
-                        @include('base-structure.kin_types.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_building_type')
+                    <div class="tab-pane" id="building_type">
+                      @include('base-structure.building_types.index')
+                    </div>
+                  @endcan
 
-                    @can('menu_base_melliat')
-                      <div class="tab-pane" id="melliat">
-                        @include('base-structure.melliats.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_building')
+                    <div class="tab-pane" id="building">
+                      @include('base-structure.buildings.index')
+                    </div>
+                  @endcan
 
-                    @can('menu_base_province')
-                      <div class="tab-pane" id="province">
-                        @include('base-structure.provinces.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_kintype')
+                    <div class="tab-pane" id="kin_type">
+                      @include('base-structure.kin_types.index')
+                    </div>
+                  @endcan
 
-                    @can('menu_base_city')
-                      <div class="tab-pane" id="city">
-                          @include('base-structure.cities.index')
-                      </div>
-                    @endcan
+                  @can('menu_base_melliat')
+                    <div class="tab-pane" id="melliat">
+                      @include('base-structure.melliats.index')
+                    </div>
+                  @endcan
 
-                  </div>
+                  @can('menu_base_province')
+                    <div class="tab-pane" id="province">
+                      @include('base-structure.provinces.index')
+                    </div>
+                  @endcan
+
+                  @can('menu_base_city')
+                    <div class="tab-pane" id="city">
+                        @include('base-structure.cities.index')
+                    </div>
+                  @endcan
+
                 </div>
               </div>
-
             </div>
+
+          </div>
         </div>
       </div>
     </div>

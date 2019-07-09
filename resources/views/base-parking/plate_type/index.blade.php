@@ -67,10 +67,10 @@
                                         <a href="#"
                                             class="btn btn-round btn-just-icon pull-center"
                                             data-toggle="modal"
-                                            data-target="#removeRecordModal_plate"
-                                            @click.prevent="readyToDelete(record)">
+                                            data-target="#removeRecordModalPlate"
+                                            @click.prevent="readyToDelete(record, Plate)">
 
-                                            <i class="material-icons">clear</i>
+                                            <i class="material-icons">delete</i>
                                             <div class="ripple-container"></div>
                                         </a>
                                     @endcan
@@ -99,7 +99,7 @@
 
             <!-- small modal -->
             <div class="modal fade"
-                id="removeRecordModal_plate"
+                id="removeRecordModalPlate"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="myModalLabel"
@@ -122,11 +122,11 @@
 
                         <div class="modal-footer text-center">
                             <button type="button"
-                                    class="btn btn-simple"
+                                    class="btn btn-label"
                                     data-dismiss="modal">خیر
                             </button>
                             <button type="button"
-                                    class="btn btn-success btn-simple"
+                                    class="btn btn-rose"
                                     data-dismiss="modal"
                                     @click.prevent="deleteRecord('carPlateTypes')">بله
                             </button>

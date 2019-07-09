@@ -580,8 +580,9 @@ window.v = new Vue({
         /**
          * Prepare to delete
          */
-        readyToDelete(record){
+        readyToDelete(record, type){
             this.tempRecord = record;
+            $(`#removeRecordModal${type}`).show();
         },
         /**
          * Preapre to delete for site car
@@ -590,7 +591,7 @@ window.v = new Vue({
          */
         readyToDeleteSiteCar(record){
             this.tempRecord = record;
-            $('#removeRecordModal_site').modal('show');
+            $('#removeRecordModalSiteCar').modal('show');
         },
         /**
          * Delete a record

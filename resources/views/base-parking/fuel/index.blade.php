@@ -66,8 +66,8 @@
                                         <a href="#"
                                             class="btn btn-round btn-just-icon pull-center"
                                             data-toggle="modal"
-                                            data-target="#removeRecordModal_fuel"
-                                            @click.prevent="readyToDelete(record)">
+                                            data-target="#removeRecordModalFuel"
+                                            @click.prevent="readyToDelete(record, Fuel)">
                                             <i class="material-icons">delete</i>
                                             <div class="ripple-container"></div>
                                         </a>
@@ -97,7 +97,7 @@
 
            <!-- small modal -->
             <div class="modal fade"
-                id="removeRecordModal_fuel"
+                id="removeRecordModalFuel"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="myModalLabel"
@@ -110,7 +110,7 @@
                                     class="close"
                                     data-dismiss="modal"
                                     aria-hidden="true">
-                                    <i class="material-icons">clear</i>
+                                    <i class="material-icons">delete</i>
                             </button>
                         </div>
 
@@ -120,11 +120,11 @@
 
                         <div class="modal-footer text-center">
                             <button type="button"
-                                    class="btn btn-simple"
+                                    class="btn btn-label"
                                     data-dismiss="modal">خیر
                             </button>
                             <button type="button"
-                                    class="btn btn-success btn-simple"
+                                    class="btn btn-rose"
                                     data-dismiss="modal"
                                     @click.prevent="deleteRecord('carFuels')">بله
                             </button>

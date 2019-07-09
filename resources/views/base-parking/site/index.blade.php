@@ -1,4 +1,4 @@
- <div class="card">
+<div class="card">
     <div class="card-content">
 
         <h3 class="card-title">
@@ -44,65 +44,62 @@
                              v-for="record in car_sites"
                              :site-data="record"
                              v-on:edit-data="editRecord"
-                             v-on:delete-data="readyToDeleteSiteCar(record)" >
+                             v-on:delete-data="readyToDeleteSiteCar(record, CarSite)">
                 </site-widget>
-
-                <div class="text-center">
-                    <pagination :data="car_sites_paginate"
-                                v-on:pagination-change-page="loadCarSites"
-                                :limit="{{ \App\Http\Controllers\Controller::C_PAGINATION_LIMIT }}"
-                                :show-disable= "true">
-                    </pagination>
-                </div>
+                <pagination :data="car_sites_paginate"
+                            v-on:pagination-change-page="loadCarSites"
+                            :limit="{{ \App\Http\Controllers\Controller::C_PAGINATION_LIMIT }}"
+                            :show-disable= "true">
+                </pagination>
             </div>
-            {{-- /Data List --}}
+        </div>
+        {{-- /Data List --}}
 
-            {{-- Register Form --}}
-            <div v-if="isRegisterMode">
-                @include('base-parking.site.create')
-            </div>
-            {{-- /Register Form --}}
+        {{-- Register Form --}}
+        <div v-if="isRegisterMode">
+            @include('base-parking.site.create')
+        </div>
+        {{-- /Register Form --}}
 
-            <!-- small modal -->
-            <div class="modal fade"
-                id="removeRecordModal_site"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="myModalLabel"
-                aria-hidden="true">
+        <!-- small modal -->
+        <div class="modal fade"
+            id="removeRecordModalSiteCar"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+            aria-hidden="true">
 
-                <div class="modal-dialog modal-small ">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-hidden="true">
-                                    <i class="material-icons">clear</i>
-                            </button>
-                        </div>
+            <div class="modal-dialog modal-small ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true">
+                                <i class="material-icons">delete</i>
+                        </button>
+                    </div>
 
-                        <div class="modal-body text-center">
-                            <h5>برای حذف اطمینان دارید؟ </h5>
-                        </div>
+                    <div class="modal-body text-center">
+                        <h5>برای حذف اطمینان دارید؟ </h5>
+                    </div>
 
-                        <div class="modal-footer text-center">
-                            <button type="button"
-                                    class="btn btn-simple"
-                                    data-dismiss="modal">خیر
-                            </button>
+                    <div class="modal-footer text-center">
+                        <button type="button"
+                                class="btn btn-label"
+                                data-dismiss="modal">خیر
+                        </button>
 
-                            <button type="button"
-                                    class="btn btn-success btn-simple"
-                                    data-dismiss="modal"
-                                    @click.prevent="deleteRecord('carSites')">بله
-                            </button>
-                        </div>
+                        <button type="button"
+                                class="btn btn-rose"
+                                data-dismiss="modal"
+                                @click.prevent="deleteRecord('carSites')">بله
+                        </button>
                     </div>
                 </div>
             </div>
-            <!--    end small modal -->
         </div>
+        <!--    end small modal -->
     </div>
 </div>
 

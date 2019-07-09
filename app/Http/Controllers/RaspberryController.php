@@ -7,8 +7,6 @@ use App\Enums\MessageGate;
 use DateTime;
 use Image;
 
-
-
 class RaspberryController extends Controller
 {
     public $successStatus = 200;

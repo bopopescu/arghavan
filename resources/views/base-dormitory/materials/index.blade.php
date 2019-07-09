@@ -130,7 +130,7 @@
                                             class="close"
                                             data-dismiss="modal"
                                             aria-hidden="true">
-                                            <i class="material-icons">clear</i>
+                                            <i class="material-icons">delete</i>
                                     </button>
                                 </div>
 

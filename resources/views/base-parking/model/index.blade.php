@@ -65,8 +65,8 @@
                                         <a href="#"
                                             class="btn btn-round btn-just-icon pull-center"
                                             data-toggle="modal"
-                                            data-target="#removeRecordModal_model"
-                                            @click.prevent="readyToDelete(record)">
+                                            data-target="#removeRecordModalModel"
+                                            @click.prevent="readyToDelete(record, Model)">
 
                                             <i class="material-icons">delete</i>
                                             <div class="ripple-container"></div>
@@ -97,7 +97,7 @@
 
             <!-- small modal -->
             <div class="modal fade"
-                id="removeRecordModal_model"
+                id="removeRecordModalModel"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="myModalLabel"
@@ -110,7 +110,7 @@
                                     class="close"
                                     data-dismiss="modal"
                                     aria-hidden="true">
-                                    <i class="material-icons">clear</i>
+                                    <i class="material-icons">delete</i>
                             </button>
                         </div>
                         <div class="modal-body text-center">
@@ -118,12 +118,12 @@
                         </div>
                         <div class="modal-footer text-center">
                             <button type="button"
-                                    class="btn btn-simple"
+                                    class="btn btn-label"
                                     data-dismiss="modal">خیر
                             </button>
 
                             <button type="button"
-                                    class="btn btn-success btn-simple"
+                                    class="btn btn-rose"
                                     data-dismiss="modal"
                                     @click.prevent="deleteRecord('carModels')">بله
                             </button>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class AmoebaController extends Controller
 {
+
     public function __construct ()
     {
     }
@@ -180,5 +181,22 @@ class AmoebaController extends Controller
     public function destroy(Amoeba $amoeba)
     {
         //
+    }
+
+    public function getDataAmoeba()
+    {
+        $root = 'root';
+        $result = \DB::connection('mysqlRaspberryOneConnection')
+                    ->select('select * from traffic_histories where sync_status = 0');
+
+        if (!isset($result) || empty($result))
+        {
+            return;
+        }
+        foreach ($result as $value) {
+            dd($value);
+        }
+
+
     }
 }

@@ -66,8 +66,8 @@
                                         <a href="#"
                                             class="btn btn-round btn-just-icon pull-center"
                                             data-toggle="modal"
-                                            data-target="#removeRecordModal_level"
-                                            @click.prevent="readyToDelete(record)">
+                                            data-target="#removeRecordModalLevel"
+                                            @click.prevent="readyToDelete(record, Level)">
                                             <i class="material-icons">delete</i>
                                             <div class="ripple-container"></div>
                                         </a>
@@ -97,7 +97,7 @@
 
             <!-- small modal -->
             <div class="modal fade"
-                id="removeRecordModal_level"
+                id="removeRecordModalLevel"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="myModalLabel"
@@ -110,7 +110,7 @@
                                     class="close"
                                     data-dismiss="modal"
                                     aria-hidden="true">
-                                    <i class="material-icons">clear</i>
+                                    <i class="material-icons">delete</i>
                             </button>
                         </div>
                         <div class="modal-body text-center">
@@ -118,7 +118,7 @@
                         </div>
                         <div class="modal-footer text-center">
                             <button type="button"
-                                    class="btn btn-simple"
+                                    class="btn btn-label"
                                     data-dismiss="modal">خیر
                             </button>
 
