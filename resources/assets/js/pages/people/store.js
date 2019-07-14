@@ -105,6 +105,8 @@ const mutations =
 	 */
 	setData: (state, data) => {
 		state._data = data;
+		console.log('data', data);
+		console.log('state', state);
 	},
 
 	/**
@@ -142,7 +144,6 @@ const mutations =
 	 * Update an existing Parent record
 	 */
 	updateParentRecord: (state, payload) => {
-
 		let getters = payload.getters;
 		let record  = payload.record;
 
@@ -545,6 +546,7 @@ const actions = {
 				.then(res => {
 					// Add "selected" property to items
 					let allData = res.data;
+					console.log('allData', allData);
 					// let rowData = allData.data;
 
 					// rowData = rowData.map(x => {

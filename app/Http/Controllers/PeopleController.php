@@ -35,7 +35,8 @@ class PeopleController extends Controller
             'teacher',
             'grouppermits',
             'gategroups',
-            'terms'
+            'terms',
+            // 'fingerprints',
         ];
 
     /**
@@ -417,6 +418,15 @@ class PeopleController extends Controller
                     'name',
                 ]);
             },
+
+            'fingerprints' => function($query){
+                $query->select([
+                    'id',
+                    'user_id',
+                    'fingerprint_user_id',
+                    'image_quality'
+                ]);
+            },
         ];
         $res = \App\User::where('group_id', $group_id)
                     ->whereHas('people' , function($q) use($search) {
@@ -439,7 +449,14 @@ class PeopleController extends Controller
 
         return $res;
     }
-
+    /**
+     * Loads a parent.
+     *
+     * @param      \Illuminate\Http\Request  $request  The request
+     * @param      \App\People               $people   The people
+     *
+     * @return     array                     ( description_of_the_return_value )
+     */
     public function loadParent(Request $request, People $people)
     {
         if ($request->ajax())       ///TODO: Remove true criteria ! just for test

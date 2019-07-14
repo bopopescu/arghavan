@@ -186,6 +186,14 @@ class User extends Authenticatable
         return $this->belongsTo(\App\Level::class);
     }
 
+     /**
+     * List of related level
+     */
+    public function fingerprints()
+    {
+        return $this->hasMany(\App\Fingerprint::class);
+    }
+
     /**
      * Create new user
      *     but before create check conflicts

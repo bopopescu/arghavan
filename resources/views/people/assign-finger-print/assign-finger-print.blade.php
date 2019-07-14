@@ -2,27 +2,28 @@
       id="fingerPrintForm">
   <div class="card">
     <div class="card-header card-header-icon" data-background-color="rose">
-      ثبت اثر انگشت
+      ثبت و بررسی اثر انگشت
             {{-- @{{ tempRecord.user.code }} --}}
     </div>
 
     {{-- Card Content --}}
     <div class="card-content f-BYekan">
-      <h3 class="card-title f-BYekan">
-        <span class="pull-left">
-          <input type="button"
-                  value="انصراف"
-                  class="btn btn-fill btn-default"
-                  @click.prevent="registerCancel">
-          </span>
-      </h3>
 
       <form class="pd-top-35em pd-bottom-2em" data-vv-scope ="FingerPrintScope">
-        <div class="col-sm-12 col-md-8 col-lg-offset-2 col-12 mr-auto ml-auto">
+        <div class="col-sm-12 col-md-12  col-12 mr-auto ml-auto">
           <div class="card-body">
             <div class="row justify-content-center">
 
-              <div class="col-sm-10">
+              <div class="col-sm-4">
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                  <div class="fileinput-new thumbnail">
+                    <img :src="tempRecord.people.pictureUrl" alt="...">
+                  </div>
+                  <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
                 <!-- Code field -->
                 <div class="row">
                   <div class="input-group">
@@ -55,6 +56,24 @@
                               type="text"
                               class="form-control"
                               v-model="tempRecordPeopleFullName">
+                    </div>
+                  </div>
+                </div>
+                {{-- / Name and Lastname Field --}}
+
+                 <!-- Quality field -->
+                <div class="row">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="material-icons">face</i>
+                    </span>
+                    <div class="form-group label-floating">
+                      <label class="control-label">کیفیت اثرانگشت</label>
+                      <input name="code"
+                              disabled
+                              type="text"
+                              class="form-control"
+                              v-model="tempRecord.fingerPrint.imageQuality">
                     </div>
                   </div>
                 </div>
@@ -113,22 +132,18 @@
                     value="ثبت اثرانگشت"
                     class="btn btn-fill btn-rose"
                     @click.prevent="enroll()">
-                    <input type="button"
-                            value="شناسایی اثرانگشت"
-                            class="btn btn-fill btn-rose"
-                            @click.prevent="identify()">
+
+                  <input type="button"
+                          value="شناسایی اثرانگشت"
+                          class="btn btn-fill btn-rose"
+                          @click.prevent="identify()">
+
+                  <input type="button"
+                          value="انصراف"
+                          class="btn btn-fill btn-default"
+                          @click.prevent="registerCancel">
                 </div>
               </div>
-
-              <div class="col-sm-2">
-                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                    <div class="fileinput-new thumbnail">
-                        <img :src="tempRecord.people.pictureUrl" alt="...">
-                    </div>
-                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                </div>
-              </div>
-
             </div>
           </div>
         </div>

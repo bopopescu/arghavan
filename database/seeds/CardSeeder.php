@@ -22,7 +22,7 @@ class CardSeeder extends Seeder
             	]);
 
        $rootCard =  \App\Card::create([
-            'cdn' => 'B7D7D673',
+            'cdn' => 'B697AF1F',
             'startDate' => '2018-01-01',
             'endDate' => '2022-01-01',
             'state' => '1',

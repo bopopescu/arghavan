@@ -2,11 +2,17 @@
 // use Illuminate\Support\Facades\DB;
 
 Route::view('ipass', 'referrals.test');
+Route::get('who',function () {
+    
+        \App\Jobs\GetTrafficRemoteRaspberry::dispatch();
+        return "success";
+});
+
 // Route::get('upload', 'PeopleController@upload');
 //Route::get('test', 'AmoebaController@listAllowTraffic');
 // Route::get('get-fingerprint-user', 'API\PassportController@getFingerprintUser');
 Route::get('test', function () {
-     $group_id = 3;
+     $group_id = 1;
         $search = '';
           $fun = [
             'group' => function($q) {
@@ -148,6 +154,15 @@ Route::get('test', function () {
                 $query->select([
                     'id',
                     'name',
+                ]);
+            },
+
+            'fingerprints' => function($query){
+                $query->select([
+                    'id',
+                    'user_id',
+                    'fingerprint_user_id',
+                    'image_quality'
                 ]);
             },
         ];

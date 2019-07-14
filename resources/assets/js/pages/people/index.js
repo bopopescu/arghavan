@@ -84,6 +84,7 @@ window.v = new Vue({
         this.tempRecord.staff = this.emptyRecord.staff;
         this.tempRecord.card = this.emptyRecord.card;
         this.tempRecord.parent = this.emptyRecord.parent;
+        this.tempRecord.fingerPrint = this.emptyRecord.fingerPrint;
 
         this.prepare();
     },
@@ -166,7 +167,7 @@ window.v = new Vue({
         hasRow: state => (0 < state.records.length),
 
         emptyRecord: () => { return {
-                                     id: 0,
+                                    id: 0,
                                     user: {
                                         id: 0,
                                         code: '',
@@ -182,7 +183,6 @@ window.v = new Vue({
                                         level:{
                                             id :0
                                         },
-
                                     },
                                     people: {
                                         id: 0,
@@ -283,6 +283,16 @@ window.v = new Vue({
                                             id: 0,
                                         },
                                     },
+
+                                    fingerPrint: {
+                                        id: 0,
+                                        user: {
+                                            id: 0,
+                                        },
+                                        code: 0,
+                                        imageQuality: 0,
+                                        file: null,
+                                    },
                                 }
                         },
     },
@@ -354,6 +364,12 @@ window.v = new Vue({
             this.tempRecord.parent.address = '';
             this.tempRecord.parent.kintype.id = 0;
             this.tempRecord.parent.people.id = 0;
+
+            this.tempRecord.fingerPrint.id = 0;
+            this.tempRecord.fingerPrint.user.id = 0;
+            this.tempRecord.fingerPrint.code = 0;
+            this.tempRecord.fingerPrint.file = null;
+            this.tempRecord.fingerPrint.imageQuality = 0;
         },
 
         selectFinger(finger) {
@@ -366,10 +382,10 @@ window.v = new Vue({
         existsNationalId() {
             if (null == this.tempRecord.people.nationalId) {
                 return;
-            }
+        }
 
             // this.tempRecord.people.mobile = '09120472018';
-            this.existsNationalUser(this.tempRecord.people.nationalId)
+        this.existsNationalUser(this.tempRecord.people.nationalId)
                 .then (res => {})
                 .catch(err => $("#reloadRecordModal").modal());
         },
@@ -512,8 +528,6 @@ window.v = new Vue({
                 .catch(err => {
 
                 })
-
-
         },
         /**
          * Prepare
@@ -682,7 +696,7 @@ window.v = new Vue({
         },
         /**
          * Load Records list
-         */
+        */
         loadRecords(page, id, searchWord) {
             this.isLoading = true;
 

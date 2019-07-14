@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,14 +54,29 @@ return [
             'engine' => null,
         ],
 
-        'mysqlRaspberryOneConnection' => [
+            'mysqlRaspberryOneConnection' => [
+                'driver' => 'mysql',
+                'host' => env('DB_HOST1', '192.168.10.101'),
+                'port' => env('DB_PORT1', '3306'),
+                'database' => env('DB_DATABASE1', 'tempDB'),
+                'username' => env('DB_USERNAME1', 'user'),
+                'password' => env('DB_PASSWORD1', 'user'),
+                'unix_socket' => env('DB_SOCKET1', ''),
+                'charset' => 'utf8mb4',
+                'collation' => 'utf8mb4_unicode_ci',
+                'prefix' => '',
+                'strict' => false,
+                'engine' => null,
+            ],
+
+         'mysqlRaspberryTwoConnection' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST1', '127.0.0.1'),
-            'port' => env('DB_PORT1', '3306'),
-            'database' => env('DB_DATABASE1', 'tempdb'),
-            'username' => env('DB_USERNAME1', 'root'),
-            'password' => env('DB_PASSWORD1', '123'),
-            'unix_socket' => env('DB_SOCKET1', ''),
+            'host' => env('DB_HOST2', '192.168.10.100'),
+            'port' => env('DB_PORT2', '3306'),
+            'database' => env('DB_DATABASE2', 'tempDB'),
+            'username' => env('DB_USERNAME2', 'user'),
+            'password' => env('DB_PASSWORD2', 'user'),
+            'unix_socket' => env('DB_SOCKET2', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
