@@ -21,7 +21,7 @@ window.v = new Vue({
         parent: false,
         term: false,
         gateGroup: false,
-        fingerPrint: false,
+        fingerprint: false,
         modalMode: Enums.FormMode.normalModal,
 
         formMode: Enums.FormMode.normal,
@@ -56,6 +56,7 @@ window.v = new Vue({
             staff: {},
             card: {},
             parent: {},
+            fingerprint: {},
         },
 
         lastTimerId: -1,
@@ -84,7 +85,7 @@ window.v = new Vue({
         this.tempRecord.staff = this.emptyRecord.staff;
         this.tempRecord.card = this.emptyRecord.card;
         this.tempRecord.parent = this.emptyRecord.parent;
-        this.tempRecord.fingerPrint = this.emptyRecord.fingerPrint;
+        this.tempRecord.fingerprint = this.emptyRecord.fingerprint;
 
         this.prepare();
     },
@@ -131,7 +132,7 @@ window.v = new Vue({
         isShowParent() { return this.parent; },
         isShowTerm() { return this.term; },
         isShowGateGroup() { return this.gateGroup; },
-        isShowFingerPrint() { return this.fingerPrint; },
+        isShowFingerPrint() { return this.fingerprint; },
         /*
         User Info
         */
@@ -284,14 +285,14 @@ window.v = new Vue({
                                         },
                                     },
 
-                                    fingerPrint: {
+                                    fingerprint: {
                                         id: 0,
                                         user: {
                                             id: 0,
                                         },
                                         code: 0,
                                         imageQuality: 0,
-                                        file: null,
+                                        image: null,
                                     },
                                 }
                         },
@@ -365,11 +366,11 @@ window.v = new Vue({
             this.tempRecord.parent.kintype.id = 0;
             this.tempRecord.parent.people.id = 0;
 
-            this.tempRecord.fingerPrint.id = 0;
-            this.tempRecord.fingerPrint.user.id = 0;
-            this.tempRecord.fingerPrint.code = 0;
-            this.tempRecord.fingerPrint.file = null;
-            this.tempRecord.fingerPrint.imageQuality = 0;
+            this.tempRecord.fingerprint.id = 0;
+            this.tempRecord.fingerprint.user.id = 0;
+            this.tempRecord.fingerprint.code = 0;
+            this.tempRecord.fingerprint.image = null;
+            this.tempRecord.fingerprint.imageQuality = 0;
         },
 
         selectFinger(finger) {
@@ -579,7 +580,7 @@ window.v = new Vue({
          * @return {[type]}    [description]
          */
         filterUsers(groupId) {
-            this.fingerPrint = true;
+            this.fingerprint = true;
             if (groupId == document.pageData.people.group_students) {
                 this.parent = true;
                 this.term = true;
@@ -1514,6 +1515,8 @@ window.v = new Vue({
          * Sets the finger print.
          */
         setFingerPrint(record) {
+            this.loadPicFingerprint(3);
+            this.finger_index = 2;
             this.formMode = Enums.FormMode.assignFingerPrint;
 
             this.errors.clear();
@@ -1554,6 +1557,48 @@ window.v = new Vue({
                     },
                 };
             }
+
+            if(null != record.fingerprint)
+            {
+                console.log('load pic finger');
+                //this.loadPicFingerprint(record.fingerprint.user_id);
+                this.tempRecord.fingerprint = {
+                    id: record.fingerprint.id,
+                    code: record.fingerprint.fingerprint_user_id,
+                    imageQuality: record.fingerprint.image_quality,
+                    image: null,
+                   };
+                this.finger_index = record.fingerprint.type_fingerprint;
+            }
+        },
+
+        /**
+         * Loads a picture fingerprint.
+         *
+         * @param      {<type>}  userId  The user identifier
+         */
+        loadPicFingerprint(userId)
+        {
+            console.log('loadPicFingerprint -> userId', userId);
+             let url = document.pageData.people.load_pic_fingerprint;
+
+            let data = {
+                url: url,
+                userId: userId
+            };
+
+            console.log('loadPicFingerprint -> index -> data', data);
+
+            this.$store.dispatch('loadPicFingerprint', data)
+                .then(res => {
+                    // let myData = res.data;
+                    console.log('loadPicFingerprint -> res', res);
+                    this.tempRecord.fingerprint.image = res;
+
+                })
+                .catch(err => {
+
+                })
         },
 
         /**

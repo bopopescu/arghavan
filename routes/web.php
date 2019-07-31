@@ -15,12 +15,15 @@ Route::get('/materialType/allMaterialType', 'MaterialTypeController@allMaterialT
             ->name('materialTypes.allMaterialType');
 Route::get('/contactType/allContactlType', 'ContactTypeController@allContactType')
             ->name('contactTypes.allContactType');
-Route::get('/people/loadByNationalCode', 'PeopleController@loadPeopleByNationalCode')
+Route::post('/people/loadByNationalCode', 'PeopleController@loadPeopleByNationalCode')
             ->name('people.load_by_national_code');
 Route::get('/user/checkUser', 'UserController@checkExsit')
             ->name('user.check.exist');
 Route::get('/people/checkNationalPeople', 'PeopleController@checkNationaExsit')
             ->name('people.check.exist.national');
+
+Route::get('/people/getPicFingerprint', 'PeopleController@getPicFingerprint')
+                            ->name('people.fingerprint');
 Route::resources ([
     // Base data
     '/melliats'             => 'MelliatController',
@@ -324,3 +327,9 @@ Route::get('accesscontrol/{code}/{ip}/{command}', 'RaspberryController@routin_ch
 // Route::get('gateresponse/{code}/{ip}', 'RaspberryController@sendResponseWebService');
 Route::get('sendresponse/{code}/{ip}', 'RaspberryController@sendResponseWebService');
 Route::get('getDataFromAmoeba', 'AmoebaController@getDataAmoeba');
+Route::get('listDataFingerprint', 'FingerprintController@listDataFingerprint');
+
+
+
+
+

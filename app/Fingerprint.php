@@ -12,7 +12,13 @@ class Fingerprint extends Model
     protected $guarded = [
         'id'
     ];
-
+     /**
+     * @return Get user
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 
 
 }

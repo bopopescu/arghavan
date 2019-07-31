@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class AmoebaController extends Controller
 {
-
     public function __construct ()
     {
     }
@@ -184,17 +183,17 @@ class AmoebaController extends Controller
     }
 
     /**
-     * insert log traffic from raspberry 
+     * insert log traffic from raspberry
      */
     public static function getDataAmoeba()
     {
        $list=['mysqlRaspberryOneConnection', 'mysqlRaspberryTwoConnection'];
-      
-        try 
+
+        try
         {
-       
-            for ($i=0; $i < 2; $i++) 
-            { 
+
+            for ($i=0; $i < 2; $i++)
+            {
                 // if(\DB::connection($list[$i])->getPdo())
                 // {
                 //     return "not connect";
@@ -202,14 +201,14 @@ class AmoebaController extends Controller
 
                 $result = \DB::connection($list[$i])
                             ->select('select * from traffic_histories where sync_status = 0');
-              
-              
+
+
                 if (!isset($result) || empty($result))
                 {
                     return;
                 }
 
-                foreach ($result as $value) 
+                foreach ($result as $value)
                 {
 
                     $fnc = [ 'users' => function($q){
@@ -243,15 +242,15 @@ class AmoebaController extends Controller
                             'gatedate' => $value->traffic_date,
                             'gatedevice_id' => $res_gatedevice->id ,
                             'gatepass_id' => 1, //Pass by Card
-                            'gatedirect_id' => $value->direct_id, 
+                            'gatedirect_id' => $value->direct_id,
                             'gatemessage_id' => $value->message_id,
                             'gateoperator_id' => 1
                         ]);
                     }
                 }
-               
+
             }
-        } 
+        }
         catch (Exception $e) {
             die("Could not connect to the database.  Please check your configuration. error:" );
         }

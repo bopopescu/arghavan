@@ -6,7 +6,9 @@
     <div class="container-fluid">
 
         <div class="col-md-12">
-            <span class="panel-heading">اختصاص کارت</span>
+            <h4>
+                <span class="panel-heading my-dashboard">اختصاص کارت</span>
+            </h4>
              <div class="card">
                 <div class="card-header card-header-tabs card-header-rose" v-show="isNormalMode">
 
@@ -36,10 +38,10 @@
                                 <!--  /Tab Staff  -->
 
                                 <!-- Tab Teacher -->
-                               <li class="nav-item" 
+                               <li class="nav-item"
                                     :class="{'active':lastGroupId == {{ \App\People::$GROUP_TEACHERS }}}">
-                                    <a class="nav-link" 
-                                        href="#" 
+                                    <a class="nav-link"
+                                        href="#"
                                         @click="filterUsers({{ \App\People::$GROUP_TEACHERS }})">
                                         <i class="fa fa-book fa-2x"></i>
                                         <strong> اساتید</strong>

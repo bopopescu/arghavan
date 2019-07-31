@@ -16,6 +16,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 	Route::post('get-fingerprint-user', 'API\PassportController@getFingerprintUser');
     Route::post('store-fingerprint-user', 'API\PassportController@storeFingerprintUser');
 	Route::post('update-image-fingerprint', 'API\PassportController@updateImageFingerprint');
-
-
+	Route::post('get-data-fingerprint', 'API\PassportController@listDataFingerprint');
+	Route::post('get-identify', 'API\PassportController@getIdentify');
 });

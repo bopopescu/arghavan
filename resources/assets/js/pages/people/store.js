@@ -105,8 +105,6 @@ const mutations =
 	 */
 	setData: (state, data) => {
 		state._data = data;
-		console.log('data', data);
-		console.log('state', state);
 	},
 
 	/**
@@ -437,96 +435,6 @@ const actions = {
 	},
 
 	/**
-	 * Load all degrees
-	 */
-	// loadDegrees(context) {
-	// 	return new Promise((resolve, reject) =>	{
-	// 		axios.get('/degrees')
-	// 			.then(res => {
-	// 				context.commit('setDegrees', res.data.data);
-
-	// 				resolve(res);
-	// 			})
-	// 			.catch(res => reject(res));
-	// 	});
-	// },
-
-	/**
-	 * Load all universities
-	 */
-	// loadUniversities(context) {
-	// 	return new Promise((resolve, reject) =>	{
-	// 		axios.get('/universities')
-	// 			.then(res => {
-	// 				context.commit('setUniversities', res.data.data);
-
-	// 				resolve(res);
-	// 			})
-	// 			.catch(res => reject(res));
-	// 	});
-	// },
-
-	/**
-	 * Load all parts
-	 */
-	// loadParts(context) {
-	// 	return new Promise((resolve, reject) =>	{
-	// 		axios.get('/parts')
-	// 			.then(res => {
-	// 				context.commit('setParts', res.data.data);
-
-	// 				resolve(res);
-	// 			})
-	// 			.catch(res => reject(res));
-	// 	});
-	// },
-
-	/**
-	 * Load all contract
-	 */
-	// loadContracts(context) {
-	// 	return new Promise((resolve, reject) =>	{
-	// 		axios.get('/contracts')
-	// 			.then(res => {
-	// 				context.commit('setContracts', res.data.data);
-
-	// 				resolve(res);
-	// 			})
-	// 			.catch(res => reject(res));
-	// 	});
-	// },
-
-	/**
-	 * Load all departments
-	 */
-	// loadDepartments(context) {
-	// 	return new Promise((resolve, reject) =>	{
-	// 		axios.get('/departments')
-	// 			.then(res => {
-	// 				context.commit('setDepartments', res.data.data);
-
-	// 				resolve(res);
-	// 			})
-	// 			.catch(res => reject(res));
-	// 	});
-	// },
-
-	/**
-	 * Load all departments
-	 */
-	// loadCardtypes(context) {
-	// 	return new Promise((resolve, reject) =>	{
-	// 		axios.get('/cardtypes')
-	// 			.then(res => {
-	// 				context.commit('setCardtypes', res.data.data);
-
-	// 				resolve(res);
-	// 			})
-	// 			.catch(res => reject(res));
-	// 	});
-	// },
-
-	/**
 	 * Load records data
 	 */
 	loadRecords(context, data) {
@@ -789,6 +697,23 @@ const actions = {
 				.catch(err => {
 					reject(err);
 				});
+		});
+	},
+
+	/**
+	 * Load Data by national code
+	 */
+	loadPicFingerprint(context, data) {
+		return new Promise((resolve, reject) =>	{
+			//let url = data.url;
+			 let url = data.url + '?userId=' + data.userId;
+			console.log('store -> data.userId', data);
+			axios.get(url)
+				.then(res => {
+					console.log('store -> loadPicFingerprint -> res', res);
+					resolve(res);
+				})
+				.catch(res => reject(res));
 		});
 	},
 

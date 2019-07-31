@@ -6,7 +6,9 @@
     <div class="container-fluid">
 
         <div class="col-lg-12 col-md-12">
-            <span class="panel-heading">کاربران</span>
+            <h4>
+                <span class="panel-heading my-dashboard">کاربران</span>
+            </h4>
 
             <div class="card">
                 <div class="card-header card-header-tabs card-header-rose" v-show="isNormalMode">
@@ -99,6 +101,9 @@
         group_students: {{ \App\People::$GROUP_STUDENTS }},
         group_staffs: {{ \App\People::$GROUP_STAFFS }},
         group_teachers: {{ \App\People::$GROUP_TEACHERS }},
+
+        load_pic_fingerprint: '{{ route('people.fingerprint') }}',
+
 
     };
 </script>

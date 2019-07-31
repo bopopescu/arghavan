@@ -236,6 +236,28 @@ class PivotTable extends Migration
             $table->primary(['amoeba_id', 'gatedevice_id']);
         });
 
+         /**
+         * Migrate Fingerprint device and  gate device
+         */
+        Schema::create('fp_device_gatedevice', function (Blueprint $table) {
+            $table->unsignedInteger('fp_device_id');
+            $table->unsignedInteger('gatedevice_id');
+
+            $table->foreign('fp_device_id')
+                    ->references('id')
+                    ->on('fpDevices')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+            $table->foreign('gatedevice_id')
+                    ->references('id')
+                    ->on('gatedevices')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+            $table->primary(['fp_device_id', 'gatedevice_id']);
+        });
+
     }
     /**
      * Reverse the migrations.
@@ -255,6 +277,7 @@ class PivotTable extends Migration
         Schema::dropIfExists('dormitory_manager');
         Schema::dropIfExists('amoeba_gatedevice');
         Schema::dropIfExists('card_gatedevice');
+        Schema::dropIfExists('fp_device_gatedevice');
 
     }
 }

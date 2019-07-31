@@ -32,10 +32,10 @@ class GateDeviceSeeder extends Seeder
             'timeserver' => '5'
         ]);
 
-        \App\Gatedevice::create([
+        $gate_device_one = \App\Gatedevice::create([
         	'name' => 'دستگاه شماره یک',
             'number' => '1',
-    		'ip' => '127.0.0.1',
+    		'ip' => '192.168.1.10',
             'type' => '0',
     		'state' => '1',
             'device_type_id' => '1', // gate or antenna
@@ -48,10 +48,10 @@ class GateDeviceSeeder extends Seeder
     		'timeserver' => '5'
         ]);
 
-        \App\Gatedevice::create([
+        $gate_device_two = \App\Gatedevice::create([
         	'name' => 'دستگاه شماره دو',
             'number' => '2',
-    		'ip' => '192.168.0.2',
+    		'ip' => '192.168.1.20',
             'type' => '0',
             'state' => '1',
             'device_type_id' => '1', // gate or antenna
@@ -63,5 +63,9 @@ class GateDeviceSeeder extends Seeder
     		'timepass' => '5',
     		'timeserver' => '5'
         ]);
+
+        $gate_device_one->fingerprintDevices()->attach([1]);
+
+
     }
 }

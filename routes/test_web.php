@@ -3,189 +3,25 @@
 
 Route::view('ipass', 'referrals.test');
 Route::get('who',function () {
-    
+
         \App\Jobs\GetTrafficRemoteRaspberry::dispatch();
         return "success";
 });
 
 // Route::get('upload', 'PeopleController@upload');
-//Route::get('test', 'AmoebaController@listAllowTraffic');
-// Route::get('get-fingerprint-user', 'API\PassportController@getFingerprintUser');
+Route::get('get-identify', 'API\PassportController@getIdentify');
 Route::get('test', function () {
-     $group_id = 1;
-        $search = '';
-          $fun = [
-            'group' => function($q) {
-                $q->select([
-                    'id',
-                    'name'
-                ]);
-            },
+    $res = \App\Fingerprint::where('user_id', 3)
+                            ->get();
 
-            'people' => function($q) {
-                $q->select([
-                    'id',
-                    'name',
-                    'lastname',
-                    'nationalId',
-                    'birthdate',
-                    'mobile',
-                    'phone',
-                    'address',
-                    'gender_id',
-                    'city_id',
-                    'melliat_id',
-                    'picture'
-                ]);
-            },
-            'people.gender' => function($query){
-                $query->select([
-                    'id',
-                    'gender'
-                ]);
-            },
-            'people.melliat' => function($query){
-                $query->select([
-                    'id',
-                    'name'
-                ]);
-            },
-            'people.city' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                    'province_id'
-                ]);
-            },
-            'people.city.province' => function($query){
-                $query->select([
-                    'id',
-                    'name'
-                ]);
-            },
-            // 'terms' => function ($query){
-            //     $query->select([
-            //         'id',
-            //         'year',
-            //         'semester_id'
-            //     ]);
-            // },
-            'terms.semester' => function ($query){
-                $query->select([
-                    'id',
-                    'name'
-                ]);
-            },
-            'student' => function($query){
-                $query->select([
-                    'id',
-                    'user_id',
-                    'degree_id',
-                    'field_id',
-                    'part_id',
-                    'situation_id'
-                ]);
-            },
-            'student.degree' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'student.field' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                    'university_id'
-                ]);
-            },
-            'student.field.university' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'student.part' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'student.situation' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'teacher' => function($query){
-                $query->select([
-                    'id',
-                    'user_id',
-                    'semat'
-                ]);
-            },
-            'staff' => function($query){
-                $query->select([
-                    'id',
-                    'user_id',
-                    'department_id',
-                    'contract_id'
-                ]);
-            },
-            'staff.department' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'staff.contract' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'grouppermits' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
-            'gategroups' => function($query){
-                $query->select([
-                    'id',
-                    'name',
-                ]);
-            },
+    $pic = Image::make($res[0]->image)->resize(320, 240);
+    $response = Response::make($pic->encode('jpeg'));
 
-            'fingerprints' => function($query){
-                $query->select([
-                    'id',
-                    'user_id',
-                    'fingerprint_user_id',
-                    'image_quality'
-                ]);
-            },
-        ];
-        $res = \App\User::where('group_id', $group_id)
-                    ->whereHas('people' , function($q) use($search) {
-                        if (! is_null($search)){
-                            $q->where('users.code', 'like', "%$search%");
-                            $q->orwhere ('people.name', 'like' , "%$search%");
-                            $q->orwhere ('people.lastname', 'like' , "%$search%");
-                            $q->orwhere ('people.nationalId', 'like' , "%$search%");
-                        }
-                    })
-                    // ->orWhereHas('terms')
-                    // ->orWhereHas('grouppermits')
-                    // ->orWhereHas('gategroups')
-                    ->leftjoin('students', 'students.user_id', 'users.id')
-                    ->leftjoin('teachers', 'teachers.user_id', 'users.id')
-                    ->leftjoin('staff', 'staff.user_id', 'users.id')
-                    ->with($fun)
-                    ->select(['users.id', 'code', 'email', 'state', 'level_id', 'people_id', 'group_id'])
-                    ->get();
+    //setting content-type
+    $response->header('Content-Type', 'image/jpeg');
 
-        return $res;
+    return $response;
+
 });
 
 /* TEST */

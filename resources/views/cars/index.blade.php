@@ -8,7 +8,9 @@
 
         <div class="row">
             <div class="col-md-12">
-                <span class="panel-heading">مدیریت خودرو</span>
+                <h4>
+                    <span class="panel-heading my-dashboard">مدیریت خودرو</span>
+                </h4>
                 <div class="card-content">
                     <div class="card-header card-header-tabs card-header-rose" v-show="isNormalMode">
 

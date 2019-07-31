@@ -17,67 +17,89 @@
               <div class="col-sm-4">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
-                    <img :src="tempRecord.people.pictureUrl" alt="...">
+                    <img :src="tempRecord.fingerprint.image" alt="...">
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                 </div>
               </div>
 
               <div class="col-sm-8">
-                <!-- Code field -->
                 <div class="row">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="material-icons">account_box</i>
-                    </span>
+                  <div class="col-md-6">
 
-                    <div class="form-group label-floating">
-                      <label class="control-label">شماره کاربری</label>
-                      <input name="code"
-                              disabled
-                              type="text"
-                              class="form-control"
-                              v-model="tempRecord.user.code">
+                    <!-- Code field -->
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">account_box</i>
+                      </span>
+
+                      <div class="form-group label-floating">
+                        <label class="control-label">شماره کاربری</label>
+                        <input name="code"
+                                disabled
+                                type="text"
+                                class="form-control"
+                                v-model="tempRecord.user.code">
+                      </div>
+                    </div>
+                    <!--  /Code Field  -->
+                  </div>
+
+                  <!-- Name and Lastname field -->
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">face</i>
+                      </span>
+                      <div class="form-group label-floating">
+                        <label class="control-label">نام و نام خانوادگی</label>
+                        <input name="code"
+                                disabled
+                                type="text"
+                                class="form-control"
+                                v-model="tempRecordPeopleFullName">
+                      </div>
+                    </div>
+                  </div>
+                  <!--  / Name and Lastname Field  -->
+                </div>
+
+
+
+                <!-- Quality field -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">fingerprint</i>
+                      </span>
+                      <div class="form-group label-floating">
+                        <label class="control-label">کد اثرانگشت شما</label>
+                        <input name="code"
+                                disabled
+                                type="text"
+                                class="form-control"
+                                v-model="tempRecord.fingerprint.code">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="material-icons">face</i>
+                      </span>
+                      <div class="form-group label-floating">
+                        <label class="control-label">کیفیت اثرانگشت ثبت شده</label>
+                        <input name="code"
+                                disabled
+                                type="text"
+                                class="form-control"
+                                v-model="tempRecord.fingerprint.imageQuality">
+                      </div>
                     </div>
                   </div>
                 </div>
-                {{-- /Code Field --}}
-
-                <!-- Name and Lastname field -->
-                <div class="row">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="material-icons">face</i>
-                    </span>
-                    <div class="form-group label-floating">
-                      <label class="control-label">نام و نام خانوادگی</label>
-                      <input name="code"
-                              disabled
-                              type="text"
-                              class="form-control"
-                              v-model="tempRecordPeopleFullName">
-                    </div>
-                  </div>
-                </div>
-                {{-- / Name and Lastname Field --}}
-
-                 <!-- Quality field -->
-                <div class="row">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="material-icons">face</i>
-                    </span>
-                    <div class="form-group label-floating">
-                      <label class="control-label">کیفیت اثرانگشت</label>
-                      <input name="code"
-                              disabled
-                              type="text"
-                              class="form-control"
-                              v-model="tempRecord.fingerPrint.imageQuality">
-                    </div>
-                  </div>
-                </div>
-                {{-- / Name and Lastname Field --}}
 
                 {{-- Finger Right --}}
                 <div class="row text-center">
@@ -126,6 +148,7 @@
                   </div>
                 </div>
                 <hr>
+              </div>
 
                 <div class="row text-center">
                   <input type="submit"

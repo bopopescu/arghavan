@@ -111,7 +111,7 @@ class User extends Authenticatable
 
     public function fingerprint()
     {
-        return $this->belongsTo(\App\Fingerprint::class);
+        return $this->hasOne(\App\Fingerprint::class);
     }
 
     /**

@@ -11,12 +11,13 @@ class FingerprintDeviceSeeder extends Seeder
      */
     public function run()
     {
-        \App\FingerprintDevice::create([
+        \App\FpDevice::create([
         	'ip' => '192.168.1.1',
         	'port' => '1470',
             'name' => 'سنسور اثرانگشت شماره یک',
             'net_state' => 0,
             'enabled' => 1,
+            'gate_direct_id' => 1
         ]);
 
     }

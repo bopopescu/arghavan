@@ -9,6 +9,7 @@ use App\Http\Resources\PeopleCollection;
 use Image;
 use App\People;
 use App\User;
+use Response;
 
 class PeopleController extends Controller
 {
@@ -276,7 +277,7 @@ class PeopleController extends Controller
     {
         $group_id = $groupType;
         $search = $request->search;
-          $fun = [
+        $fun = [
             'group' => function($q) {
                 $q->select([
                     'id',
@@ -419,12 +420,13 @@ class PeopleController extends Controller
                 ]);
             },
 
-            'fingerprints' => function($query){
+            'fingerprint' => function($query){
                 $query->select([
                     'id',
                     'user_id',
                     'fingerprint_user_id',
-                    'image_quality'
+                    'image_quality',
+                    'type_fingerprint',
                 ]);
             },
         ];
@@ -727,6 +729,21 @@ class PeopleController extends Controller
                 'data' => []
             ];
         }
+    }
+
+    public function getPicFingerprint(Request $request)
+    {
+        $user_id = $request->userId;
+        $res = \App\Fingerprint::where('user_id', $user_id)
+                            ->get();
+
+        $pic = Image::make($res[0]->image)->resize(320, 240);
+        $response = Response::make($pic->encode('jpeg'));
+
+        //setting content-type
+        $response->header('Content-Type', 'image/jpeg');
+
+        return $response;
     }
 
 }

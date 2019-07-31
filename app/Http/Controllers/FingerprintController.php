@@ -7,6 +7,35 @@ use Illuminate\Http\Request;
 
 class FingerprintController extends Controller
 {
+
+    public function listDataFingerprint()
+    {
+        $fun = [
+            'people' => function($q) {
+                $q->select([
+                    'id',
+                    'name',
+                    'lastname',
+                    'nationalId',
+                ]);
+            },
+
+            'fingerprint' => function($query){
+                $query->select([
+                    'id',
+                    'user_id',
+                    'fingerprint_user_id',
+                    'image_quality',
+                    'type_fingerprint',
+                ]);
+            },
+        ];
+        $res = \App\User::with($fun)
+                    ->select(['users.id', 'code', 'email', 'state', 'level_id', 'people_id', 'group_id'])
+                    ->get();
+
+        return $res;
+    }
     /**
      * Display a listing of the resource.
      *

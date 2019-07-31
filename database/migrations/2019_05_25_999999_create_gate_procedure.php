@@ -332,11 +332,147 @@ class CreateGateProcedure extends Migration
 
             END";
 
+               $sp_update_traffic_fingerprint = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_traffic_fingerprint`(IN `USER_ID`  INT, IN `GATEMESSAGE_ID` INT, IN `GATEDIRECT_ID` INT)
+            BEGIN
+                SET @user_id = USER_ID;
+                SET @gatemessage_id = GATEMESSAGE_ID;
+                SET @direct = GATEDIRECT_ID;
 
+                UPDATE
+                    gatetraffics
+                SET
+                    gatetraffics.gatemessage_id = @gatemessage_id
+                WHERE
+                    gatetraffics.gatemessage_id = 3 AND
+                    gatetraffics.gatedirect_id = @direct AND
+                    TIMESTAMPDIFF(
+                        SECOND,
+                        gatetraffics.gatedate,
+                        NOW()) < 15 AND gatetraffics.user_id = @user_id
+                ORDER BY
+                    gatetraffics.gatedate
+                DESC
+                LIMIT 1;
+            END";
+
+
+            $sp_get_fp_attach_gatedevice = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_fp_attach_gatedevice`()
+            BEGIN
+                SELECT
+                    fp_devices.ip as fp_ip,
+                    fp_devices.gate_direct_id as fp_direct_id,
+                    gatedevices.id AS gate_id,
+                    gatedevices.ip as gate_ip,
+                    gatedevices.state as gate_state,
+                    gatedevices.name as gate_name,
+                    gateoptions.startDate AS gate_option_start,
+                    gateoptions.endDate AS gate_option_end,
+                    gateoptions.genzonew_id AS genZoneWoman,
+                    gateoptions.genzonem_id AS genZoneMan,
+                    gatedirects.id AS gate_direct_id,
+                    gategenders.id AS gender_id,
+                    gatepasses.id AS gate_pass_id,
+                    zones.id AS zone_id
+
+
+
+
+                FROM gatedevices
+
+                INNER JOIN fp_device_gatedevice on fp_device_gatedevice.gatedevice_id = gatedevices.id
+                INNER JOIN fp_devices on fp_devices.id = fp_device_gatedevice.fp_device_id
+                INNER JOIN gatedevice_gateoption ON gatedevice_gateoption.gatedevice_id = gatedevices.id
+                INNER JOIN gateoptions ON gateoptions.id = gatedevice_gateoption.gateoption_id
+                INNER JOIN gatepasses ON gatepasses.id = gatedevices.gatepass_id
+                INNER JOIN gatedirects ON gatedirects.id = gatedevices.gatedirect_id
+                INNER JOIN gatedirects as gate_direct ON gate_direct.id =  fp_devices.gate_direct_id
+                INNER JOIN gategenders ON gategenders.id = gatedevices.gategender_id
+                INNER JOIN zones ON zones.id = gatedevices.zone_id
+                INNER JOIN gatezones  AS gatezone_woman ON gatezone_woman.id = gateoptions.genzonew_id
+                INNER JOIN gatezones AS gatezone_man ON gatezone_man.id = gateoptions.genzonem_id;
+            END";
+
+            $sp_load_gate_device = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_gate_device`()
+                BEGIN
+                    SELECT
+                                gatedevices.id AS gatedevice_id,
+                                gatedevices.ip,
+                                gatedevices.state AS gate_state,
+                                gateoptions.startDate AS gate_option_start,
+                                gateoptions.endDate AS gate_option_end,
+                                gateoptions.genzonew_id AS genZoneWoman,
+                                gateoptions.genzonem_id AS genZoneMan,
+                                gatedirects.id AS gatedirect_id,
+                                gategenders.id AS gender_id,
+                                gatepasses.id AS gatepass_id,
+                                zones.id AS zone_id
+
+                            FROM gatedevices
+                            INNER JOIN gatedevice_gateoption ON gatedevice_gateoption.gatedevice_id = gatedevices.id
+                            INNER JOIN gateoptions ON gateoptions.id = gatedevice_gateoption.gateoption_id
+                            INNER JOIN gatepasses ON gatepasses.id = gatedevices.gatepass_id
+                            INNER JOIN gatedirects ON gatedirects.id = gatedevices.gatedirect_id
+                            INNER JOIN gategenders ON gategenders.id = gatedevices.gategender_id
+                            INNER JOIN zones ON zones.id = gatedevices.zone_id
+                            INNER JOIN gatezones  AS gatezone_woman ON gatezone_woman.id = gateoptions.genzonew_id
+                            INNER JOIN gatezones AS gatezone_man ON gatezone_man.id = gateoptions.genzonem_id;
+            END";
+
+            $sp_load_fingerprint_device = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_fingerprint_device`()
+            BEGIN
+                SELECT id,
+                        ip,
+                        name,
+                        port,
+                        enabled,
+                        gate_direct_id
+
+                 FROM
+                    fp_devices;
+            END";
+
+            $sp_load_user_by_fingerprint = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_user_by_fingerprint`(IN `FINGER_CODE` INT)
+            BEGIN
+                SET @finger_user_id = FINGER_CODE;
+
+                    SELECT   users.id AS user_id
+                            ,users.code
+                            ,users.state as user_state
+                            ,people.name
+                            ,people.lastname
+                            ,genders.id as gender_id
+                            ,gatedirects.id as direct_id
+                            ,gatedirects.name as direct
+                            ,gatemessages.id as message_id
+                            ,gatetraffics.gatedate
+                    FROM fingerprints
+                            inner join users on users.id = fingerprints.user_id
+
+                            inner join people on people.id = users.people_id
+                            inner join genders on genders.id = people.gender_id
+                            left  join gatetraffics on gatetraffics.user_id = users.id
+                            left join gatedevices on gatedevices.id = gatetraffics.gatedevice_id
+                            left join gatepasses on gatepasses.id = gatetraffics.gatepass_id
+                            left join gatedirects on gatedirects.id = gatetraffics.gatedirect_id
+                            left join gatemessages on gatemessages.id = gatetraffics.gatemessage_id
+                            left join gategenders on gategenders.id = gatedevices.gategender_id
+                            left join zones on zones.id = gatedevices.zone_id
+                            left join gatedevice_gateoption on gatedevice_gateoption.gatedevice_id = gatedevices.id
+                            left join gateoptions on gateoptions.id = gatedevice_gateoption.gateoption_id
+
+                    WHERE (fingerprints.fingerprint_user_id = @finger_user_id
+                            AND
+                           (gatetraffics.gatemessage_id != 16 OR gatetraffics.gatemessage_id IS NULL))
+
+                    order by gatetraffics.gatedate desc LIMIT 1;
+
+            END";
 
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_register_traffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_ip');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic_fingerprint');
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateStatusGateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS spDisconnectGateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGetUserGate');
@@ -347,6 +483,10 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS spLoadGateDeviceById');
         DB::unprepared('DROP PROCEDURE IF EXISTS spPresentReport');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGateActiveReport');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_get_fp_attach_gatedevice');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_fingerprint_device');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_fingerprint');
+
 
         DB::unprepared($spUpdateStatusGateDevice);
         DB::unprepared($spDisconnectGateDevice);
@@ -361,7 +501,10 @@ class CreateGateProcedure extends Migration
         DB::unprepared($spPresentReport);
         DB::unprepared($spGateActiveReport);
         DB::unprepared($sp_update_traffic);
-
+        DB::unprepared($sp_update_traffic_fingerprint);
+        DB::unprepared($sp_get_fp_attach_gatedevice);
+        DB::unprepared($sp_load_fingerprint_device);
+        DB::unprepared($sp_load_user_by_fingerprint);
     }
 
     /**
@@ -374,6 +517,7 @@ class CreateGateProcedure extends Migration
          //DB::unprepared('DROP PROCEDURE IF EXISTS spLogTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_register_traffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_ip');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device');
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateStatusGateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS spDisconnectGateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGetUserGate');
@@ -385,5 +529,8 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS spPresentReport');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGateActiveReport');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_get_fp_attach_gatedevice');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_fingerprint_device');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_fingerprint');
     }
 }

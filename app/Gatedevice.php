@@ -92,6 +92,11 @@ class Gatedevice extends Model
         return $this->belongsTo(\App\DeviceType::class);
     }
 
+     public function fingerprintDevices()
+    {
+        return $this->belongsToMany(\App\FpDevice::class);
+    }
+
      /**
      * Get Gate Tarffic
      */
@@ -188,5 +193,10 @@ class Gatedevice extends Model
         // Active Network status
         $query->where('netState', '=', \App\Gatedevice::$DEVICE_ACTIVE)
               ->where('type', '=', \App\Gatedevice::$DEVICE_TYPE);
+    }
+
+     public function giveFingerprintDeviceTo($fingerprintdevice)
+    {
+        $this->fingerprintDevices()->sync($fingerprintdevice);
     }
 }

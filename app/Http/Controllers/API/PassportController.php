@@ -10,6 +10,8 @@ use App\User;
 use App\Cardtype;
 use App\Group;
 use Carbon\Carbon;
+use App\Http\Resources\FingerprintDataResource;
+use App\Http\Resources\ListDataFingerprintResource;
 
 class PassportController extends Controller
 {
@@ -310,7 +312,7 @@ class PassportController extends Controller
      */
     public function getFingerprintUser(Request $request)
     {
-       $code = $request->code;
+        $code = $request->code;
         $fun = [
             'people' => function($query){
                  $query->select([
@@ -338,10 +340,11 @@ class PassportController extends Controller
                             'fingerprints.fingerprint_user_id as fingerprint_user_id',
                             'fingerprints.image as fingerprint_image',
                             'fingerprints.template as fingerprint_template',
+                            'fingerprints.image_quality as fingerprint_image_quality',
                         ])
                 ->get();
 
-                $resultUser = \App\Http\Resources\FingerprintDataResource::collection ($items);
+                $resultUser = FingerprintDataResource::collection($items);
                 $fields = ['success' => $resultUser];
 
                 $result = response()->json($fields,
@@ -378,7 +381,7 @@ class PassportController extends Controller
         $fingerprint = \App\Fingerprint::where('user_id', $request->user_id)
                                     ->first();
 
-         // Card Exists
+
         if (! is_null ($fingerprint))
         {
             $fingerprint->update([
@@ -395,43 +398,85 @@ class PassportController extends Controller
     }
 
 
-    public function getIdentifyFingerprint(Request $request)
+    public function getIdentify(Request $request)
     {
-
-       $code = $request->fp_user_id;
+         $code = $request->fp_user_id;
         $fun = [
             'people' => function($query){
                  $query->select([
-                    'id',
-                    'name',
-                    'lastname',
-                    'nationalId'
+                        'id',
+                        'name',
+                        'lastname',
+                        'nationalId'
                     ]);
                 },
             ];
 
         $items = \App\User::wherehas('people')
-                ->leftJoin('fingerprints', 'fingerprints.user_id', 'users.id', function($query) use ($code){
-                    $query->Where('fingerprints.fingerprint_user_id', $code);
-                })
-                ->with($fun)
-                ->select(['users.id as user_id',
-                            'users.code as user_code',
-                            'groups.name as group_name',
-                            'people_id as people_id',
-                            'fingerprints.id as fingerprint_id',
-                            'fingerprints.fingerprint_user_id as fingerprint_user_id',
-                            'fingerprints.image as fingerprint_image',
-                            'fingerprints.template as fingerprint_template',
-                        ])
-                ->get();
+                            ->join('fingerprints', 'fingerprints.user_id', 'users.id')
+                                            // function($query) use ($code){
+                                            //         $query->Where('fingerprints.fingerprint_user_id', $code);
+                                            //     })
+                            ->with($fun)
+                            ->Where('fingerprints.fingerprint_user_id', $code)
+                            ->select(['users.id as user_id',
+                                        'users.code as user_code',
+                                        'people_id as people_id',
+                                        'fingerprints.id as fingerprint_id',
+                                        'fingerprints.fingerprint_user_id as fingerprint_user_id',
+                                        'fingerprints.image_quality as fingerprint_image_quality',
+                                        'fingerprints.image as fingerprint_image',
+                                        'fingerprints.template as fingerprint_template',
+                                    ])
+                            ->get();
 
-                $resultUser = \App\Http\Resources\FingerprintDataResource::collection ($items);
+                $resultUser = FingerprintDataResource::collection ($items);
                 $fields = ['success' => $resultUser];
 
                 $result = response()->json($fields,
                                    $this->successStatus);
                 // ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE
+        return $result;
+    }
+
+    /**
+     * List Fingerprint for windowForm for Transffer Data to Fingerprint Device
+     *
+     * @return     <type>  ( description_of_the_return_value )
+     */
+    public function listDataFingerprint()
+    {
+        $fun = [
+            'people' => function($q) {
+                $q->select([
+                    'id',
+                    'name',
+                    'lastname',
+                    'nationalId',
+                ]);
+            },
+
+            'fingerprint' => function($query){
+                $query->select([
+                    'id',
+                    'user_id',
+                    'fingerprint_user_id',
+                    'image_quality',
+                    'type_fingerprint',
+                    'template',
+                ]);
+            },
+        ];
+        $res = \App\User::with($fun)
+                    ->select(['users.id' ,'code', 'people_id'])
+                    ->get();
+
+        $res = $res->where('fingerprint', '<>', null);
+        $resultUser = ListDataFingerprintResource::collection ($res);
+        $fields = ['success' => $resultUser];
+
+        $result = response()->json($fields,
+                                    $this->successStatus);
         return $result;
     }
 

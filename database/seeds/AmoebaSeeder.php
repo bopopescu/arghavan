@@ -12,13 +12,13 @@ class AmoebaSeeder extends Seeder
     public function run()
     {
       $amoeba_one =  \App\Amoeba::create([
-            'ip' => '192.168.1.10',
+            'ip' => '192.168.10.100',
             'name' => 'سوئیچ شماره یک',
             'enabled' => 1,
         ]);
 
         \App\Amoeba::create([
-            'ip' => '192.168.1.11',
+            'ip' => '192.168.10.101',
             'name' => 'سوئیچ شماره  دو',
             'enabled' => 1,
         ]);
