@@ -35,7 +35,7 @@ class GateDeviceSeeder extends Seeder
         $gate_device_one = \App\Gatedevice::create([
         	'name' => 'دستگاه شماره یک',
             'number' => '1',
-    		'ip' => '192.168.1.10',
+    		'ip' => '192.168.10.10',
             'type' => '0',
     		'state' => '1',
             'device_type_id' => '1', // gate or antenna
@@ -51,7 +51,7 @@ class GateDeviceSeeder extends Seeder
         $gate_device_two = \App\Gatedevice::create([
         	'name' => 'دستگاه شماره دو',
             'number' => '2',
-    		'ip' => '192.168.1.20',
+    		'ip' => '192.168.10.20',
             'type' => '0',
             'state' => '1',
             'device_type_id' => '1', // gate or antenna

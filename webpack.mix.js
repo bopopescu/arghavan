@@ -32,7 +32,7 @@ mix
    .js('resources/assets/js/theme.js', 'public/js')
    .js('resources/assets/js/chartist.js', 'public/js')
    .js('resources/assets/js/pages/login.js', 'public/js/pages')
-   .js('resources/assets/js/reset-email.js', 'public/js')
+   .js('resources/assets/js/pages/reset-email.js', 'public/js/pages')
    .js('resources/assets/js/pages/cards/index.js', 'public/js/pages/cards')
    .js('resources/assets/js/pages/relatives/index.js', 'public/js/pages/relatives')
    .js('resources/assets/js/pages/resources/index.js', 'public/js/pages/resources')

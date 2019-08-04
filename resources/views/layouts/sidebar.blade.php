@@ -73,7 +73,7 @@
                     </p>
                 </a>
             </li>
-            @endisRoot
+        @endisRoot
 
 		<!-- Menu Base -->
 		@include('layouts.managementStrcture.sidebar-menu-base')
@@ -82,12 +82,10 @@
         <!-- Menu User -->
         @include('layouts.managementUser.sidebar-menu-user')
         <!--  /Menu User -->
-
+        
         <!-- Gate Management Menu  -->
         @include('layouts.managementGate.sidebar-menu-gate')
         <!--  /Gate Management Menu  -->
-
-
 
         <!-- Menu Setting -->
         @include('layouts.managementSetting.sidebar-menu-setting')
@@ -96,6 +94,10 @@
 		<!-- Report Menu  -->
         @include('layouts.managementReport.sidebar-menu-report')
         <!--  /Report Menu  -->
+
+        <!-- Referral Menu -->
+        @include('layouts.managementReferral.sidebar-menu-referral')
+        <!-- /Referral Menu -->
 
         <!-- Dormitory Management Menu  -->
         @include('layouts.managementDormitory.sidebar-menu-dormitory')
@@ -108,14 +110,11 @@
         <!-- SMS Menu -->
         @include('layouts.managementSMS.sidebar-menu-sms')
         <!-- /SMS Menu -->
-
-        <!-- Referral Menu -->
-        @include('layouts.managementReferral.sidebar-menu-referral')
-        <!-- /Referral Menu -->
-
+      
         <!-- Parking Menu -->
         @include('layouts.managementParking.sidebar-menu-parking')
         <!-- /Parking Menu -->
+       
     </ul>
 </div>
 

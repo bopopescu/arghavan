@@ -190,7 +190,7 @@ class GatedeviceController extends Controller
         try {
             $count = \App\Gatedevice::where(function($query){
                                            $query->where('netState', 1);
-                                           $query->where('gate',  1);
+                                           $query->where('type',  0);
                                         })
                                     ->count();
         }
@@ -208,9 +208,10 @@ class GatedeviceController extends Controller
     public function CountActiveAntenna()
     {
         try {
-            $count = \App\Gatedevice::where(function($query){
+                $count = \App\Gatedevice::where(function($query){
                                            $query->where('netState', 1);
-                                           $query->where('gate',  0);
+                                           $query->where('type',  0);
+                                           //TODO: type = antena
                                         })
                                     ->count();
         }

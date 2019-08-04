@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             GateMessageSeeder::class,
             GatePassSeeder::class,
             GateZoonSeeder::class,
+            FingerprintDeviceSeeder::class,
+
             GateDeviceSeeder::class,
             GateOptionSeeder::class,
             GateOperatorSeeder::class,
@@ -63,20 +65,7 @@ class DatabaseSeeder extends Seeder
             GateGroupSeeder::class,
 
             AmoebaSeeder::class,
-            FingerprintDeviceSeeder::class,
 
-    ]);
-
-
-        \App\People::create([
-            'name'       => 'طراح',
-            'lastname'   => 'سیستم',
-            'nationalId' => '9999999999',
-            'birthdate' => '2018-01-01',
-            'gender_id'  => '1',
-            'city_id'    => '1',
-            'melliat_id' => '1',
-            'picture' => 'j2bgJrrWLJffJ7QphDZGgs9vVo2uiJmu7ZDaMVIp.png'
         ]);
 
     }

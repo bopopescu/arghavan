@@ -47,7 +47,7 @@
                                 <td class="text-left" width="160">
                                     @can('command_delete')
                                         <a href="#"
-                                            class="btn btn-round btn-danger btn-just-icon pull-left"
+                                            class="btn btn-round btn-just-icon pull-left"
                                             data-toggle="modal"
                                             data-target="#removeRecordModal"
                                             title= "حذف رکورد"

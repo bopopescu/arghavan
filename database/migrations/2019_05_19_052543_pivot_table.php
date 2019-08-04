@@ -245,7 +245,7 @@ class PivotTable extends Migration
 
             $table->foreign('fp_device_id')
                     ->references('id')
-                    ->on('fpDevices')
+                    ->on('fp_devices')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 

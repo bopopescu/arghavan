@@ -1,14 +1,15 @@
 /**
  * Ready function
  */
-$().ready(() =>
-{
-	demo.checkFullPageBackgroundImage();
-
-	setTimeout(() =>
+$()
+	.ready(() =>
 	{
-		$('.card').removeClass('card-hidden');
-	}, 250);
+		demo.checkFullPageBackgroundImage();
+
+		setTimeout(() =>
+		{
+			$('.card').removeClass('card-hidden');
+		}, 250);
 });
 
 window.v = new Vue(

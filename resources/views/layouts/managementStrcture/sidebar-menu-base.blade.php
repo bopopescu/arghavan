@@ -50,6 +50,7 @@
                 <!-- /Base Dormitory  -->
 
                 <!-- Base Parking  -->
+                @can('menu_parking')
 
                     <li>
                         <a href= "{{ route('base.parking') }}">
@@ -58,6 +59,7 @@
                             </span>
                         </a>
                     </li>
+                @endcan
 
                 <!-- /Base Parking  -->
             </ul>

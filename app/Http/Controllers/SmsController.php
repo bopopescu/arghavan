@@ -113,7 +113,8 @@ class SmsController extends Controller
      */
     public function CountPostedSMS()
     {
-        try {
+        try 
+        {
             $count = \App\Sms::status()
                             ->count();
         }

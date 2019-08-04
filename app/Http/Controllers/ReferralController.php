@@ -142,7 +142,8 @@ class ReferralController extends Controller
     public function countReferral()
     {
         try {
-            $count = \App\Referral::count();
+            $count = 0;
+           // $count = \App\Referral::count();
         }
         catch (\Exception $e) {
             $count = 0;

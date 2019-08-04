@@ -5,7 +5,7 @@
 		{{ csrf_field() }}
 		<div class="card card-login card-hidden">
 			<div class="card-header text-center" data-background-color="rose">
-				<img class="image--cover"  src="{{ asset("theme/img/logo/logo-farhangi.jpg") }}" />
+				<img class="image--cover"  src="{{ asset("theme/img/logo/logo.jpg") }}" />
 			</div>
 
 			<div class="card-content">
