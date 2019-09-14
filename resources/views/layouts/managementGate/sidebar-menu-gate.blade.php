@@ -11,7 +11,7 @@
             <ul class="nav">
 
                   <!-- Gate plan -->
-                <!-- @can('menu_gate_zoon') -->
+                @can('gate_plan')
                     <li>
                         <a href="{{ url('/gatePlans') }}">
                             <span class="sidebar-normal">
@@ -19,11 +19,11 @@
                             </span>
                         </a>
                     </li>
-                <!-- @endcan -->
+                @endcan
                 <!-- /Gate plan -->
 
                 <!-- Zoon -->
-                @can('menu_gate_zoon')
+                @can('gate_zone')
                     <li>
                         <a href="{{ url('/zones') }}">
                             <span class="sidebar-normal">
@@ -35,7 +35,7 @@
                 <!-- /Zoon -->
 
                 <!-- gate pass -->
-                @can('menu_gate_gatepass')
+                @can('gate_gatepass')
                     <li>
                         <a href="{{ url('/gatepasses') }}">
                             <span class="sidebar-normal">
@@ -47,7 +47,7 @@
                 <!-- /gate pass -->
 
                 <!-- Gate Device -->
-                @can('menu_gate_gate')
+                @can('gate_gate')
                     <li>
                         <a href="{{ url('/gatedevices') }}">
                             <span class="sidebar-normal">

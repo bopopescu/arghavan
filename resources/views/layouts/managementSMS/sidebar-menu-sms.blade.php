@@ -12,7 +12,7 @@
                     <ul class="nav">
 
                         {{-- SMS IR --}}
-                        @can('menu_sms_manager')
+                        @can('sms_manager')
                             <li>
                                 <a href="{{ url('/sms') }}">
                                     <span class="sidebar-normal">
@@ -22,7 +22,7 @@
                             </li>
                         @endcan
 
-                        @can('menu_sms_send')
+                        @can('sms_send')
                             <li>
                               <a href="{{ url('/sms') . '?send_sms=1' }}">
                                     <span class="sidebar-normal">

@@ -1,5 +1,5 @@
 
-@can('dashboard_number_chart')
+@can('chart_number')
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
         <simple-counter background-color="blue"
@@ -53,7 +53,7 @@
 </div>
 @endcan
 
-@can('dashboard_gate')
+@can('gate_device')
     <h3>
         <div class="panel-heading my-dashboard">گیت های کنترل تردد</div>
     </h3>
@@ -74,7 +74,7 @@
     </div>
 @endcan
 
-@can('dashboard_chart')
+@can('chart_traffic')
     <h3>
         <div class="panel-heading my-dashboard">گزارشات آماری</div>
     </h3>

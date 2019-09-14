@@ -12,7 +12,7 @@
                 <ul class="nav">
 
                     {{-- People --}}
-                    @can('menu_user_user')
+                    @can('user_user')
                         <li>
                             <a href="{{ url('/people') }}">
                                 <span class="sidebar-normal">
@@ -24,7 +24,7 @@
                     {{-- /People --}}
 
                     {{-- Card --}}
-                    @can('menu_user_card')
+                    @can('user_card')
                         <li>
                             <a href="{{ url('/cards') }}">
                                 <span class="sidebar-normal">
@@ -36,7 +36,7 @@
                     <!--  /Card  -->
                     <!-- Upload Image -->
                     @isRoot
-                        @can('menu_user_uploadImage')
+                        @can('user_uploadImage')
                             <li>
                                 <a href="{{ url('/uploadImage') }}">
                                     <span class="sidebar-normal">

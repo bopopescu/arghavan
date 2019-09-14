@@ -88,10 +88,12 @@ window.v = new Vue({
                 });
         },
         /**
-         * Loads a data staff chart.
+         * Loads a data staff pie chart.
          */
         loadStaffChart(){
-            let url = document.pageData.report.count_staff_all_url;
+            let url = document.pageData.report.count_card_user_all_url + '/' + 
+                      document.pageData.report.group_staffs + '/' +
+                      document.pageData.report.cardtype_staffs;
 
              axios.get(url)
                     .then(res => {
@@ -129,9 +131,9 @@ window.v = new Vue({
                   datasets: [{
                         fill: true,
                         backgroundColor: [
-                            "#60992d",
+                            "#9dc978",
                             "#82b749",
-                            "#9dc978"
+                            "#60992d"
                             ],
                         data: this.chartData.series,
                         // Notice the borderColor
@@ -154,6 +156,7 @@ window.v = new Vue({
                     // animateRotate: true,
                     // animateScale: true,
                     // cutoutPercentage: 70,
+                   'onClick' : this.graphClickEvent,
             };
 
 
@@ -163,12 +166,22 @@ window.v = new Vue({
                 options: options
             });
         },
+        
+        graphClickEvent(evt, item) {
+            console.log ('legend onClick', evt);
+            console.log('legd item',   item[0]._index);
+        },
+        
 
         /**
          * Loads a student chart.
          */
         loadStudentChart(){
-            let url = document.pageData.report.count_student_all_url;
+          //  let url = document.pageData.report.count_student_all_url;
+
+            let url = document.pageData.report.count_card_user_all_url + '/' + 
+                      document.pageData.report.group_students + '/' +
+                      document.pageData.report.cardtype_students;
 
              axios.get(url)
                     .then(res => {
@@ -203,10 +216,10 @@ window.v = new Vue({
                   datasets: [{
                         fill: true,
                         backgroundColor: [
-                            "#576191",
+                            "#8e9acc",
                             "#7887c9",
-                            "#8e9acc"
-                            ],
+                            "#576191"
+                        ],
                         data: this.chartData.series,
                         // Notice the borderColor
                         borderColor:  ['black', 'black', 'black'],
@@ -237,7 +250,9 @@ window.v = new Vue({
          * Loads a student chart.
          */
         loadTeacherChart(){
-            let url = document.pageData.report.count_teacher_all_url;
+          let url = document.pageData.report.count_card_user_all_url + '/' + 
+                    document.pageData.report.group_teachers + '/' +
+                  document.pageData.report.cardtype_teachers;
 
              axios.get(url)
                     .then(res => {
@@ -272,9 +287,9 @@ window.v = new Vue({
                   datasets: [{
                         fill: true,
                         backgroundColor: [
-                            "#146570",
+                            "#66d8e8",
                             "#1c8e9e",
-                            "#66d8e8"
+                            "#146570"
                             ],
                         data: this.chartData.series,
                         // Notice the borderColor

@@ -14,6 +14,8 @@
     <meta name="O-BASE-URL" content="{{ url('/') }}" />
     <link rel="icon" type="image/png" href="{{ asset("theme/img/favicon.png") }}">
     <!-- Bootstrap core CSS     -->
+    {{-- <link href="{{ asset("theme/css/jquery-ui.css") }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset("theme/css/jquery-ui.min.css") }}" rel="stylesheet"> --}}
     <link href="{{ asset("theme/css/bootstrap.min.css") }}" rel="stylesheet">
     <link href="{{ asset("theme/css/bootstrap-rtl.css") }}" rel="stylesheet">
     <link href="{{ asset("theme/css/material-dashboard.css") }}" rel="stylesheet">
@@ -21,6 +23,8 @@
     <link href="{{ asset("theme/css/demo.css") }}" rel="stylesheet">
     <link href="{{ asset("theme/css/datatables.css") }}" rel="stylesheet">
     <link href="{{ asset("theme/css/datatables.min.css") }}" rel="stylesheet">
+    {{-- <link href="{{ asset("theme/css/vue-range-slider.min.css") }}" rel="stylesheet"> --}}
+
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/chart.css') }}">
     <link rel="stylesheet" href="{{ mix("css/fonts.css") }}">
@@ -113,7 +117,7 @@
                             <div class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav navbar-right">
 
-                                    @can('dashboard_notification')
+                                    @can('button_notification')
                                         <li>
                                             <a href="{{ route('vacation_managment') }}" >
                                                 <i class="material-icons vacation-count">notifications</i>
@@ -122,7 +126,7 @@
                                         </li>
                                     @endcan
 
-                                    {{-- @can('dashboard_notification') --}}
+                                    @can('button_alarm_sms')
                                         <li>
                                             <a href="#" >
                                                 <i class="fas fa-envelope-open fa-2x"></i>
@@ -130,9 +134,9 @@
                                                 <span class="notification vacation-count"> 0 </span>
                                             </a>
                                         </li>
-                                    {{-- @endcan --}}
+                                    @endcan
 
-                                    @can('dashboard_dashboard')
+                                    @can('button_dashboard')
                                       <!--   <li>
                                             <a href="{{ route('home') }}">
                                                 <i class="material-icons"> dashboard</i> داشبورد من
@@ -140,7 +144,7 @@
                                         </li> -->
                                     @endcan
 
-                                    @can('dashboard_monitor')
+                                    @can('button_monitor')
                                         <li>
                                             <a href="{{ route('report_monitor_traffic') }}" >
                                                  <i class="material-icons"> tv</i> مانیتورینگ تردد
@@ -148,7 +152,7 @@
                                         </li>
                                     @endcan
 
-                                    @can('dashboard_report')
+                                    @can('button_report')
                                         <li>
                                             <a href="{{ route('report_traffic') }}">
                                                <i class="material-icons">insert_chart_outlined</i> گزارش ورود و خروج
@@ -157,7 +161,7 @@
                                     @endcan
 
 
-                                    @can('dashboard_sms')
+                                    @can('button_sms')
                                         @isRoot
                                             <li>
                                                 <a href="{{ url('sms') }}">
@@ -259,8 +263,11 @@
             </div>
 
             <!--   Core JS Files   -->
-            <script src="{{ asset ("theme/js/jquery-3.2.1.min.js") }}">
-            </script>
+            {{-- <script src="https://unpkg.com/vue-range-component@1.0.3/dist/vue-range-slider.min.js"></script> --}}
+
+            <script src="{{ asset ("theme/js/jquery-3.2.1.min.js") }}"></script>
+            {{-- <script src="{{ asset ("theme/js/jquery-ui.js") }}"></script> --}}
+            {{-- <script src="{{ asset ("theme/js/jquery-ui.min.js") }}"></script> --}}
             <script src="{{ asset ("theme/js/bootstrap.min.js") }}" type="text/javascript"></script>
             <script src="{{ asset ("theme/js/material.min.js") }}" type="text/javascript"></script>
             <script src="{{ asset ("theme/js/perfect-scrollbar.jquery.min.js") }}" type="text/javascript"></script>
@@ -290,8 +297,6 @@
             <script src="{{ asset ("theme/js/jquery.datatables.js") }}"></script>
             <script src="{{ asset ("theme/js/datatables.js") }}"></script>
             <script src="{{ asset ("theme/js/datatables.min.js") }}"></script>
-
-
             <!-- Sweet Alert 2 plugin, full documentation here: https://limonte.github.io/sweetalert2/ -->
             <script src="{{ asset ("theme/js/sweetalert2.js") }}"></script>
             <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -305,6 +310,7 @@
             <!-- Material Dashboard DEMO methods, don't include it in your project! -->
             <script src="{{ asset ("theme/js/demo.js") }}"></script>
             <script src="{{ asset ("theme/js/jquery.steps.js") }}"></script>
+            {{-- <script src="{{ asset ("theme/js/vue-range-slider.min.js") }}"></script> --}}
 
 
             <script type="text/javascript">

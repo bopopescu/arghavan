@@ -385,6 +385,52 @@ class CardController extends Controller
         }
     }
 
+    public function reportCardChart($groupId, $cardtypeId)
+    {
+        $labels = [];
+        $series = [];
+        
+        $groupId = $groupId;
+        $cardtypeId = $cardtypeId;
+
+        $res_all = \App\User::where('group_id', $groupId)
+                        ->whereHas('people')
+                        ->where('state', 1)
+                        ->count();
+
+      
+
+        $res_has_card = \App\User::where('group_id', $groupId)
+                                    ->whereHas('people')
+                                    ->whereHas('cards')
+                                    ->where('state', 1)
+                                    ->count();
+
+        
+
+        $res_Dont_have_card = \App\User::where('group_id', $groupId)
+                                        ->whereHas('people')
+                                        ->whereDoesntHave('cards')
+                                        ->where('state', 1)
+                                        ->count();
+
+    
+        $labels[] = "بدون کارت";
+        $series[] = $res_Dont_have_card;
+
+        $labels[] = "دارای کارت";
+        $series[] = $res_has_card;
+
+        $labels[] = "کل";
+        $series[] = $res_all;
+
+        $output = [
+            'labels' => $labels,
+            'series' => $series
+        ];
+        return $output;
+    }
+
 
 
 }

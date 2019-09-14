@@ -13,7 +13,7 @@
                                         {{-- Permission --}}
                                         @isRoot
                                            
-                                            @can('menu_auth_permission')
+                                            @can('auth_permission')
                                                 <li>
                                                     <a href="{{ url('/permissions') }}">
                                                         <span class="sidebar-normal">
@@ -27,7 +27,7 @@
                                         {{--/ Permission --}}
 
                                         {{-- Role --}}
-                                        @can('menu_auth_role')
+                                        @can('auth_role')
                                             <li>
                                                 <a href="{{ url('/roles') }}">
                                                     <span class="sidebar-normal">
@@ -39,7 +39,7 @@
                                         {{-- /Role --}}
 
                                         {{-- Group_Permit --}}
-                                        @can('menu_auth_group')
+                                        @can('auth_group')
                                             <li>
                                                 <a href="{{ url('/grouppermits') }}">
                                                     <span class="sidebar-normal">

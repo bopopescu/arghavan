@@ -12,6 +12,11 @@ class Card extends Model
     public static $C_STR_DEACTIVE = "غیر فعال";
     public static $C_STR_ACTIVE   = "فعال";
 
+     public static $CARD_TYPE_STAFF = 1;
+    public static $CARD_TYPE_STUDENT   = 2;
+    public static $CARD_TYPE_TEACHER  = 3;
+    public static $CARD_TYPE_CAR  = 4;
+
      /**
      * The attributes that should be mutated to dates.
      *

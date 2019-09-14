@@ -20,7 +20,7 @@
                             maxlength="50"
                             autofocus
                             required
-						    v-validate="{ required: true, is_not: 'null'"
+						    v-validate="{ required: true, is_not: 'null'}"
                             data-vv-delay="250"
                             data-vv-as="نام منطقه عبوری"
                             v-model="tempRecord.name"/>

@@ -10,7 +10,7 @@
                             <i class="material-icons md-48">group</i>
                             <span class="panel-heading">گروه بندی</span>
 
-                            @can('command_insert')
+                            @can('insert')
                                 <!-- Pc size -->
                                 <span class="pull-left pc" v-show="isNormalMode">
                                     <a class="btn btn-round btn-rose"
@@ -63,7 +63,7 @@
                                         <tr v-for="record in groups">
                                             <td>@{{ record.name }}</td>
                                             <td class="text-left" width="160">
-                                                @can('command_delete')
+                                                @can('delete')
                                                     <a href="#" class="btn btn-round btn-just-icon pull-left"
                                                         data-toggle="modal"
                                                         data-target="#removeRecordModalGroup"
@@ -72,7 +72,7 @@
                                                         <div class="ripple-container"></div>
                                                     </a>
                                                 @endcan
-                                                @can('command_edit')
+                                                @can('edit')
                                                     <a href="#"
                                                         class="btn btn-round btn-info btn-just-icon pull-left"
                                                         @click.prevent="editRecord(record)">

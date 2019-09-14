@@ -33,6 +33,75 @@ const getters =
 	 * Permissions
 	 */
 	permissions: state => state._permissions,
+
+	/**
+	 * Dashboards
+	 */
+	dashboards: state => state._dashboards,
+
+	/**
+	 * Menu Base
+	 */
+	menuBases: state => state._menuBases,
+	/**
+	 * Menu Structure
+	 */
+	menuStructures: state => state._menuStructures,
+
+	/**
+	 * Menu User
+	 */
+	menuUsers: state => state._menuUsers,
+
+	/**
+	 * Menu Gate
+	 */
+	menuGates: state => state._menuGates,
+
+	/**
+	 * Menu Setting Gate
+	 */
+	menuSettingGates: state => state._menuSettingGates,
+
+	/**
+	 * Menu Setting System
+	 */
+	menuSettingSystems: state => state._menuSettingSystems,
+
+	/**
+	 * Menu Report
+	 */
+	menuReports: state => state._menuReports,
+
+	/**
+	 * Menu Referral
+	 */
+	menuReferrals: state => state._menuReferrals,
+
+	/**
+	 * Menu Dormitories
+	 */
+	menuDormitories: state => state._menuDormitories,
+
+	/**
+	 * Menu Requests
+	 */
+	menuRequests: state => state._menuRequests,
+
+	/**
+	 * Menu SMS
+	 */
+	menuSMS: state => state._menuSMS,
+
+	/**
+	 * Menu Parking
+	 */
+	menuParking: state => state._menuParking,
+
+	/**
+	 * List Button
+	 */
+	listButtons: state => state._listButtons,
 };
 
 
@@ -43,6 +112,103 @@ const mutations =
 	 */
 	setPermissions: (state, data) => {
 		state._permissions = data;
+	},
+
+	/**
+	 * Set Dashboards
+	 */
+	setDashboards: (state, data) => {
+		state._dashboards = data;
+	},
+
+	/**
+	 * Set MenuBases
+	 */
+	setMenuBases: (state, data) => {
+		state._menuBases = data;
+	},
+
+	/**
+	 * Set Menu Structures
+	 */
+	setMenuStructures: (state, data) => {
+		state._menuStructures = data;
+	},
+
+	/**
+	 * Set Menu Users
+	 */
+	setMenuUsers: (state, data) => {
+		state._menuUsers = data;
+	},
+
+	/**
+	 * Set Menu Gates
+	 */
+	setMenuGates: (state, data) => {
+		state._menuGates = data;
+	},
+
+	/**
+	 * Set Menu Setting Gates
+	 */
+	setMenuSettingGates: (state, data) => {
+		state._menuSettingGates = data;
+	},
+
+	/**
+	 * Set Menu Setting Systems
+	 */
+	setMenuSettingSystems: (state, data) => {
+		state._menuSettingSystems = data;
+	},
+
+	/**
+	 * Set Menu Report
+	 */
+	setMenuReports: (state, data) => {
+		state._menuReports = data;
+	},
+
+	/**
+	 * Set Menu Referral
+	 */
+	setMenuReferrals: (state, data) => {
+		state._menuReferrals = data;
+	},
+
+	/**
+	 * Set Menu Dormitory
+	 */
+	setMenuDormitories: (state, data) => {
+		state._menuDormitories = data;
+	},
+
+	/**
+	 * Set Menu Request
+	 */
+	setMenuRequests: (state, data) => {
+		state._menuRequests = data;
+	},
+
+	/**
+	 * Set Menu SMS
+	 */
+	setMenuSMS: (state, data) => {
+		state._menuSMS = data;
+	},
+	/**
+	 * Set Menu Parking
+	 */
+	setMenuParking: (state, data) => {
+		state._menuParking = data;
+	},
+
+	/**
+	 * Set List Button
+	 */
+	setListButtons: (state, data) => {
+		state._listButtons = data;
 	},
 
 	/**
@@ -111,13 +277,58 @@ const actions = {
 			axios.get('/permissions/data/all')
 				.then(res => {
 
-					context.commit ('setPermissions', res.data);
-					console.log('loadPermissions -> res', res);
+					context.commit ('setPermissions', res.data.all);
+					context.commit ('setDashboards', res.data.dashboard);
+					context.commit ('setMenuStructures', res.data.menuStructure);
+					context.commit ('setMenuUsers', res.data.menuUser);
+					context.commit ('setMenuGates', res.data.menuGate);
+					context.commit ('setMenuSettingGates', res.data.menuSettingGate);
+					context.commit ('setMenuSettingSystems', res.data.menuSettingSystem);
+					context.commit ('setMenuReports', res.data.menuReport);
+					context.commit ('setMenuReferrals', res.data.menuReferral);
+					context.commit ('setMenuDormitories', res.data.menuDormitory);
+					context.commit ('setMenuRequests', res.data.menuRequest);
+					context.commit ('setMenuSMS', res.data.menuSMS);
+					context.commit ('setMenuParking', res.data.menuParking);
+					context.commit ('setListButtons', res.data.listButton);
 					resolve(res);
 				})
 				.catch(err => reject(err) );
 		});
 	},
+
+
+	/**
+	 * Load MenuUsers
+	 */
+	loadMenuUsers(context){
+		return new Promise((resolve, reject) => {
+			axios.get('/permissions/data/menuUser')
+				.then(res => {
+					context.commit ('setMenuUsers', res.data);
+					console.log('loadMenuUsers -> res', res);
+
+					resolve(res);
+				})
+				.catch(err => reject(err) );
+		});
+	},
+
+	/**
+	 * Load MenuUsers
+	 */
+	// loadMenuUsers(context){
+	// 	return new Promise((resolve, reject) => {
+	// 		axios.get('/permissions/data/menuUser')
+	// 			.then(res => {
+	// 				context.commit ('setMenuUsers', res.data);
+	// 				console.log('loadMenuUsers -> res', res);
+
+	// 				resolve(res);
+	// 			})
+	// 			.catch(err => reject(err) );
+	// 	});
+	// },
 
 	/**
 	 * Load records data

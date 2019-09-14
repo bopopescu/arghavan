@@ -14,16 +14,17 @@
           <div class="card-body">
             <div class="row justify-content-center">
 
-              <div class="col-sm-4">
+            <!--   <div class="col-sm-4">
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                   <div class="fileinput-new thumbnail">
                     <img :src="tempRecord.fingerprint.image" alt="...">
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                 </div>
-              </div>
-
-              <div class="col-sm-8">
+              </div> -->
+              <!-- If Show Image finger col-sm-8 active
+              <div class="col-sm-8">-->
+              <div class="col-sm-12">
                 <div class="row">
                   <div class="col-md-6">
 
@@ -63,8 +64,6 @@
                   </div>
                   <!--  / Name and Lastname Field  -->
                 </div>
-
-
 
                 <!-- Quality field -->
                 <div class="row">

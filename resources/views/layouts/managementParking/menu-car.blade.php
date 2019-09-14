@@ -1,4 +1,4 @@
-@can('menu_car_parking')
+@can('menu_parking')
     <!-- Base Info Menu -->
     <li>
         <a data-toggle="collapse" href="#carInfoMenu">
@@ -12,7 +12,7 @@
         <div class="collapse" id="carInfoMenu">
             <ul class="nav">
                  {{-- Capacity Parking --}}
-                @can('menu_car_capacity_parking')
+                @can('car_capacity_parking')
                     <li>
                         <a href="{{ url('/carSites') }}">
                             <span class="sidebar-normal">
@@ -25,7 +25,7 @@
 
 
                 {{-- Car management --}}
-                @can('menu_car_management_parking')
+                @can('car_management_parking')
                     <li>
                         <a href="{{ url('/cars') }}">
                             <span class="sidebar-normal">

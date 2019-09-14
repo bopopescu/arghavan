@@ -15,7 +15,7 @@
                             <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center"
                                 role="tablist">
 
-                                @can('menu_base_car_site')
+                                @can('car_site')
                                     <li class="nav-item tabStyle active">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -26,7 +26,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_color')
+                                @can('car_color')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -37,7 +37,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_fuel')
+                                @can('car_fuel')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -48,7 +48,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_level')
+                                @can('car_level')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -59,7 +59,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_model')
+                                @can('car_model')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -70,7 +70,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_system')
+                                @can('car_system')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -81,7 +81,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_type')
+                                @can('car_type')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -92,7 +92,7 @@
                                     </li>
                                 @endcan
 
-                                @can('menu_base_car_plate_type')
+                                @can('car_plate_type')
                                     <li class="nav-item tabStyle">
                                         <a class="nav-link"
                                             data-toggle="tab"
@@ -104,49 +104,49 @@
                                 @endcan
                             </ul>
                             <div class="tab-content tab-space tab-subcategories">
-                                @can('menu_base_car_site')
+                                @can('car_site')
                                     <div class="tab-pane active" id="carSite">
                                         @include('base-parking.site.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_color')
+                                @can('car_color')
                                     <div class="tab-pane" id="carColor">
                                         @include('base-parking.color.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_fuel')
+                                @can('car_fuel')
                                     <div class="tab-pane" id="carFuel">
                                         @include('base-parking.fuel.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_level')
+                                @can('car_level')
                                     <div class="tab-pane" id="carLevel">
                                         @include('base-parking.level.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_model')
+                                @can('car_model')
                                     <div class="tab-pane" id="carModel">
                                         @include('base-parking.model.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_system')
+                                @can('car_system')
                                     <div class="tab-pane" id="carSystem">
                                         @include('base-parking.system.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_type')
+                                @can('car_type')
                                     <div class="tab-pane" id="carType">
                                         @include('base-parking.type.index')
                                     </div>
                                 @endcan
 
-                                @can('menu_base_car_plate_type')
+                                @can('car_plate_type')
                                     <div class="tab-pane" id="carPlateType">
                                         @include('base-parking.plate_type.index')
                                     </div>

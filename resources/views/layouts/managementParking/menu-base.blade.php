@@ -12,7 +12,7 @@
         <div class="collapse" id="baseParkingInfoMenu">
             <ul class="nav">
                 {{-- Car Color --}}
-                @can('menu_base_car_color')
+                @can('car_color')
                     <li>
                         <a href="{{ url('/carColors') }}">
                             <span class="sidebar-normal">
@@ -24,7 +24,7 @@
                 {{-- /Car Color --}}
 
                 {{-- Car Fuel --}}
-                @can('menu_base_car_fuel')
+                @can('car_fuel')
                     <li>
                         <a href="{{ url('/carFuels') }}">
                             <span class="sidebar-normal">
@@ -36,7 +36,7 @@
                 {{-- /Car Fuel --}}
 
                 {{-- Car System --}}
-                @can('menu_base_car_system')
+                @can('car_system')
                     <li>
                         <a href="{{ url('/carSystems') }}">
                             <span class="sidebar-normal">
@@ -48,7 +48,7 @@
                 {{-- /Car System --}}
 
                 {{-- Car Model --}}
-                @can('menu_base_car_model')
+                @can('car_model')
                     <li>
                         <a href="{{ url('/carModels') }}">
                             <span class="sidebar-normal">
@@ -60,7 +60,7 @@
                 {{-- /Car Model --}}
 
                 {{-- Car Level --}}
-                @can('menu_base_car_level')
+                @can('car_level')
                     <li>
                         <a href="{{ url('/carLevels') }}">
                             <span class="sidebar-normal">
@@ -72,7 +72,7 @@
                 {{-- /Car Level --}}
 
                 {{-- Car Type --}}
-                @can('menu_base_car_type')
+                @can('car_type')
                     <li>
                         <a href="{{ url('/carTypes') }}">
                             <span class="sidebar-normal">
@@ -84,7 +84,7 @@
                 {{-- /Car Type --}}
 
                 {{-- Car Plate Type --}}
-                @can('menu_base_car_plate_type')
+                @can('car_plate_type')
                     <li>
                         <a href="{{ url('/carPlateTypes') }}">
                             <span class="sidebar-normal">

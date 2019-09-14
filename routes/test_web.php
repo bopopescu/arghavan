@@ -1,6 +1,7 @@
 <?php
 // use Illuminate\Support\Facades\DB;
 
+Route::view('clock', 'report-test');
 Route::view('ipass', 'referrals.test');
 Route::get('who',function () {
 
@@ -11,16 +12,52 @@ Route::get('who',function () {
 // Route::get('upload', 'PeopleController@upload');
 Route::get('get-identify', 'API\PassportController@getIdentify');
 Route::get('test', function () {
-    $res = \App\Fingerprint::where('user_id', 3)
-                            ->get();
+        $groupId = 3;
+        $cardtypeId = 2;
 
-    $pic = Image::make($res[0]->image)->resize(320, 240);
-    $response = Response::make($pic->encode('jpeg'));
+         $fun = [
+            'group' => function($q) {
+                $q->select([
+                    'id',
+                    'name'
+                ]);
+            },
 
-    //setting content-type
-    $response->header('Content-Type', 'image/jpeg');
+            'people' => function($q) {
+                $q->select([
+                    'id',
+                    'name',
+                    'lastname',
+                    'nationalId'
+                ]);
+            },
 
-    return $response;
+            'cards' => function($q) use($cardtypeId) {
+                $q->where('cardtype_id', $cardtypeId);
+                $q->select([
+                    'id',
+                    'cdn',
+                    'startDate',
+                    'state',
+                    'endDate',
+                    'cardtype_id',
+                ]);
+            },
+
+            'cards.cardtype' => function($q) {
+                $q->select([
+                    'id',
+                    'name'
+                ]);
+            },
+        ];
+        $res = \App\User::where('group_id', $groupId)
+                        ->whereHas('people')
+                        ->whereDoesntHave('cards')
+                        // ->with($fun)
+                        // ->select(['id', 'code', 'people_id', 'group_id'])
+                        ->get();
+        return $res;
 
 });
 

@@ -119,6 +119,9 @@ Route::get('/gatemessages/manual', 'GatemessageController@manualData');
 Route::get('/gatedevices/manual', 'GatedeviceController@manualData');
 Route::get('/gatedevices/data/all', 'GatedeviceController@allGatedevices');
 Route::get('/permissions/data/all', 'PermissionController@allPermissions');
+//Route::get('/permissions/data/dashboard', 'PermissionController@dashboardPermissions');
+// Route::get('/permissions/data/menuStructure', 'PermissionController@menuStructurePermissions');
+// Route::get('/permissions/data/menuUser', 'PermissionController@menuUserPermissions');
 Route::put('/roles/{role}/setPermission', 'RoleController@setPermission');
 Route::get('/roles/data/all', 'RoleController@allRoles');
 Route::put('/grouppermits/{grouppermit}/setRole', 'GroupPermitController@setRole');
@@ -289,18 +292,11 @@ Route::get('car-traffic-monthly', 'DashboardCarController@chartMonthCarTraffic')
 /**
  * Show  Pie Chart Staff in report Users
  */
-Route::get('staff-chart', 'StaffController@staffChart')
-        ->name('report.user.staff.count.all');
-/**
- * Show Pie Chart Student report Users
- */
-Route::get('student-chart', 'StudentController@studentChart')
-        ->name('report.user.student.count.all');
-/**
- * Show Pie Chart Teacher report Users
- */
-Route::get('teacher-chart', 'TeacherController@teacherChart')
-        ->name('report.user.teacher.count.all');
+
+Route::get('/pie-chart-report-user-card/{groupId}/{cardtypeId}',
+            'CardController@reportCardChart')
+            ->name('report.user.card.count.all');
+
 Route::put('/room/{room}/setMaterial', 'RoomController@setMaterial');
 Route::put('/cards/{card}/setGatedevice', 'CardController@setGatedevice');
 

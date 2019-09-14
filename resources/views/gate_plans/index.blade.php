@@ -4,12 +4,12 @@
 
 <div class="content f-BYekan hidden" id="app">
     <div class="container-fluid">
-
         <div class="row">
+
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-content">
-                         <!--  Title  -->
+                        <!--  Title  -->
                         <h5 class="card-title">
                             <div>
                                 <i class="fa fa-cogs fa-2x"></i>
@@ -87,8 +87,6 @@
                                                             <div class="ripple-container"></div>
                                                         </a>
                                                     @endcan
-
-
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -104,6 +102,7 @@
                                 </div>
                             </div>
                             {{-- /Data List --}}
+
 
                             {{-- Register Form --}}
                             <div v-if="isRegisterMode">
@@ -139,6 +138,7 @@
         </div>
     </div>
 </div>
-@endsection @section('scripts')
+@endsection
+@section('scripts')
 <script type="text/javascript" src="{{ mix('js/pages/gatePlans/index.js') }}"></script>
 @endsection

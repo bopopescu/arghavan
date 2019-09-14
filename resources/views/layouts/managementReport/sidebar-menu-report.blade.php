@@ -1,4 +1,3 @@
-
         @can('menu_report')
             <li>
                 <a data-toggle="collapse" href="#reportMenu">
@@ -12,7 +11,7 @@
                     <ul class="nav">
 
                         {{-- Report Traffic --}}
-                        @can('menu_report_traffic')
+                        @can('report_traffic')
                             <li>
                                 <a href="{{ route('report_traffic') }}">
                                     <span class="sidebar-normal">
@@ -24,7 +23,7 @@
                         {{-- /Report Traffic --}}
 
                         <!--  Monitor  -->
-                        @can('menu_monitor_chart')
+                        @can('report_monitor')
                             <li>
                                 <a href="{{ route('report_monitor_traffic') }}">
                                     <span class="sidebar-normal">
@@ -36,7 +35,7 @@
                         <!-- /Monitor -->
 
                         {{-- Report User --}}
-                        @can('menu_report_user')
+                        @can('report_user')
                             <li>
                                 <a href="{{ route('report_show_user') }}">
                                     {{-- <span class="sidebar-mini">

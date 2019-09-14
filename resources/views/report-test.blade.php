@@ -2,6 +2,7 @@
 
 @section('content')
 <div id="app">
+  <clock :time="time"></clock>
   <div class="btn-group"
     data-toggle="buttons">
 
@@ -39,9 +40,12 @@
 @section('scripts')
 
 <script>
+  import Clock from 'vue-clock2';
   new Vue({
     el: '#app',
+    components: { Clock },
     data: {
+      time: '10:40:00',
       fingers_right: [
         {index: 0, name: 'کوچک'},
         {index: 1, name: 'f 1'},

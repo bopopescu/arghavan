@@ -46,6 +46,9 @@ class GatePlanController extends Controller
         if ($request->ajax())
         {
             // Check for duplicate
+
+            $newTrafficDay = \App\TrafficDay::createIfNotExists($request);
+
             $newGatePlan = \App\GatePlan::createIfNotExists($request);
 
             return [

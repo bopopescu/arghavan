@@ -326,13 +326,7 @@ class PeopleController extends Controller
                     'name'
                 ]);
             },
-            // 'terms' => function ($query){
-            //     $query->select([
-            //         'id',
-            //         'year',
-            //         'semester_id'
-            //     ]);
-            // },
+           
             'terms.semester' => function ($query){
                 $query->select([
                     'id',
@@ -342,11 +336,21 @@ class PeopleController extends Controller
             'student' => function($query){
                 $query->select([
                     'id',
+                    'term_id',
                     'user_id',
                     'degree_id',
                     'field_id',
                     'part_id',
-                    'situation_id'
+                    'situation_id',
+                    'suit',
+                    'native'
+                ]);
+            },
+            'student.term' => function ($query){
+                $query->select([
+                    'id',
+                    'year',
+                    'semester_id'
                 ]);
             },
             'student.degree' => function($query){
@@ -611,10 +615,20 @@ class PeopleController extends Controller
                 $query->select([
                     'id',
                     'user_id',
+                    'term_id',
                     'degree_id',
                     'field_id',
                     'part_id',
-                    'situation_id'
+                    'situation_id',
+                    'suit',
+                    'native'
+                ]);
+            },
+            'student.term' => function ($query){
+                $query->select([
+                    'id',
+                    'year',
+                    'semester_id'
                 ]);
             },
             'student.degree' => function($query){

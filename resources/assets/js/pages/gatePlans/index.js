@@ -1,14 +1,16 @@
 import Store from './store';
+import VueClock from 'vue-clock2';
+import VueRangeSlider from 'vue-range-component'
 // import GateWidget from '../Components/GateWidget';
 
 window.v = new Vue({
     el: '#app',
-
     store: Store,
 
-    // components: {
-    //     GateWidget
-    // },
+    components: {
+        VueClock,
+        VueRangeSlider
+    },
 
     data: {
         formMode: Enums.FormMode.normal,
@@ -17,10 +19,28 @@ window.v = new Vue({
         insertMode: false,
         tempRecord: {},
         connectionStatus: true,
+        timeValue: [0,0],
+        time: 0,
+        weekdays: [
+            { index: 0, values: [390, 1020], name: 'شنبه' },
+            { index: 1, values: [390, 1020], name: 'یکشنبه' },
+            { index: 2, values: [390, 1020], name: 'دوشنبه' },
+            { index: 3, values: [390, 1020], name: 'سه شنبه' },
+            { index: 4, values: [390, 1020], name: 'چهارشنبه' },
+            { index: 5, values: [390, 1020], name: 'پنج شنبه' },
+            { index: 6, values: [390, 1020], name: 'جمعه' },
+        ],
     },
 
     created() {
         this.tempRecord = this.emptyRecord;
+
+        this.min = 0;
+        this.max = 1440;
+        this.enableCross = false;
+        this.step = 15;
+        this.tooltip = false;
+        // this.data = ['0', '24']
     },
 
     mounted() {
@@ -28,7 +48,6 @@ window.v = new Vue({
     },
 
     computed: {
-
         isNormalMode: state => state.formMode == Enums.FormMode.normal,
         isRegisterMode: state => state.formMode == Enums.FormMode.register,
 
@@ -48,10 +67,60 @@ window.v = new Vue({
     },
 
     methods: {
+
+        /**
+         * Change Value Vue Slider Time
+         *
+         * @param      {(number|string)}  values  The values
+         * @return     {Object}           { description_of_the_return_value }
+         */
+        changeValue(value)
+        {
+            var result = new Object();
+            var hours1 = Math.floor(value / 60);
+            var minutes1 = value - (hours1 * 60);
+
+            if (hours1.length == 1) {
+                hours1 = '0' + hours1;
+            }
+
+            if (minutes1.length == 1) {
+                minutes1 = '0' + minutes1;
+            }
+
+            if (minutes1 == 0) {
+                minutes1 = '00';
+            }
+
+            if (hours1 >= 12) {
+                if (hours1 == 12) {
+                    hours1 = hours1;
+                    // minutes1 = minutes1 + " بعدازظهر";
+                } else {
+                    hours1 = hours1 - 12;
+                    // minutes1 = minutes1 + " بعدازظهر";
+                }
+            } else {
+                hours1 = hours1;
+                // minutes1 = minutes1 + " صبح";
+            }
+
+            if (hours1 == 0) {
+                hours1 = 12;
+                minutes1 = minutes1;
+            }
+
+            result = hours1 + ":" + minutes1;
+            this.time = result;
+
+
+            return result;
+        },
+
         /**
          * Change form mode
          *
-         * @param      {<type>}  formMode  The form mode
+         * @parصبح      {<type>}  formMode  The form mode
          */
         changeFormMode(formMode) {
             this.formMode = formMode;
@@ -95,6 +164,7 @@ window.v = new Vue({
          * Load Records list
          */
         loadRecords(page) {
+
             this.page = page;
             this.isLoading = true;
 
@@ -116,6 +186,7 @@ window.v = new Vue({
             this.clearErrors();
             this.tempRecord = $.extend(true, {}, this.emptyRecord);
             this.changeFormMode(Enums.FormMode.register);
+           // this.setRangeSlider();
         },
 
         /**
@@ -158,15 +229,24 @@ window.v = new Vue({
          * Save record
          */
         saveRecord() {
-            this.$validator.validateAll()
-                .then(result => {
-                    if (result) {
+            // this.$validator.validateAll()
+            //     .then(result => {
+            //         if (result) {
                         // Prepare data
+                        console.log('this.weekdays', this.weekdays);
                         let data = {
                             id: this.tempRecord.id,
                             name: this.tempRecord.name,
+                            weekdays: [],
                         };
 
+                        data.weekdays = this.weekdays.filter(el => el.checked == true);
+                        data.weekdays.forEach(weekday => {
+                            weekday.begin = this.changeValue(weekday.values[0]);;
+                            weekday.end = this.changeValue(weekday.values[1]);;
+                        });
+
+                        console.log('data', data);
                         this.isLoading = true;
 
                         // Try to save
@@ -198,8 +278,10 @@ window.v = new Vue({
                    let err = Helper.generateErrorString();
 
                     demo.showNotification(err, 'warning');
-                });
+                // });
         },
     },
+
+
 
 })

@@ -31,6 +31,7 @@ mix
    .js('resources/assets/js/additional.js', 'public/js')
    .js('resources/assets/js/theme.js', 'public/js')
    .js('resources/assets/js/chartist.js', 'public/js')
+
    .js('resources/assets/js/pages/login.js', 'public/js/pages')
    .js('resources/assets/js/pages/reset-email.js', 'public/js/pages')
    .js('resources/assets/js/pages/cards/index.js', 'public/js/pages/cards')
@@ -76,6 +77,7 @@ mix
    .sass('resources/assets/sass/misc.scss', 'public/css')
    .sass('resources/assets/sass/wizard.scss', 'public/css')
    .sass('resources/assets/sass/login.scss', 'public/css')
+
    .sass('resources/assets/sass/pages/gate-device.scss', 'public/css/pages')
    .sass('resources/assets/sass/pages/people.scss', 'public/css/pages')
    .sass('resources/assets/sass/pages/report.scss', 'public/css/pages')
@@ -96,6 +98,8 @@ mix
    .copy('./node_modules/smartwizard/dist/css/smart_wizard.min.css', 'public/css/')
    .copy('./node_modules/smartwizard/dist/css/smart_wizard_theme_arrows.css', 'public/css/')
    .copy('./node_modules/smartwizard/dist/css/smart_wizard_theme_circles.min.css', 'public/css/')
+   // .copy('./node_modules/vue-range-component/dist/vue-range-slider.min.css', 'public/css/')
+
    // .copy('./node_modules/@fortawesome/fontawesome-free/css/all.css', 'public/css/')
 
 

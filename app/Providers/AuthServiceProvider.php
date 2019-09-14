@@ -34,9 +34,9 @@ class AuthServiceProvider extends ServiceProvider
         try
         {
             foreach ($this->getPermission() as $permission) {
-                $gate->define($permission->key,  function($user) use ($permission)
+                $gate->define($permission->subkey,  function($user) use ($permission)
                 {
-                    return $user->hasPermission($permission->key);
+                    return $user->hasPermission($permission->subkey);
                 });
             }
         }

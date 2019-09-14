@@ -3,7 +3,7 @@
 @section('content')
 <div class="row" id="app">
     <h3>
-        <div class="panel-heading"> گزارش کاربران</div>
+        <div class="panel-heading my-dashboard"> گزارش کاربران</div>
     </h3>
     <div class="row">
         <!-- Pie Chart Staff -->
@@ -66,9 +66,15 @@
 @section('scripts')
 <script>
     document.pageData.report = {
-        count_staff_all_url: '{{ route('report.user.staff.count.all') }}',
-        count_student_all_url: '{{ route('report.user.student.count.all') }}',
-        count_teacher_all_url: '{{ route('report.user.teacher.count.all') }}',
+        count_card_user_all_url: '{{ route('report.user.card.count.all',['','']) }}',
+
+        group_students: {{ \App\People::$GROUP_STUDENTS }},
+        group_staffs: {{ \App\People::$GROUP_STAFFS }},
+        group_teachers: {{ \App\People::$GROUP_TEACHERS }},
+
+        cardtype_students: {{ \App\Card::$CARD_TYPE_STUDENT }},
+        cardtype_staffs: {{ \App\Card::$CARD_TYPE_STAFF }},
+        cardtype_teachers: {{ \App\Card::$CARD_TYPE_TEACHER }}
     };
 </script>
 <script src="{{ mix('js/jsapi.js') }}"></script>

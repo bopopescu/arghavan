@@ -325,7 +325,7 @@ class User extends Authenticatable
         if (null != $dataPermissions)
         {
              foreach ($dataPermissions[0] as $data){
-                if ($data->key == $permission)
+                if ($data->subkey == $permission)
                 {
                     return true;
                 }

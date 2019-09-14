@@ -1,4 +1,4 @@
-@can('menu_strcture')
+@can('menu_structure')
     <li>
         <a data-toggle="collapse" href="#baseInformationMenu">
             <i class="material-icons">image</i>
@@ -10,7 +10,7 @@
 
         <div class="collapse" id="baseInformationMenu">
             <ul class="nav">
-                {{-- Base mnue --}}
+                {{-- Base menu --}}
                 @can('menu_base')
                     <li>
                         <a href="{{ route('base.structure') }}">
@@ -51,11 +51,10 @@
 
                 <!-- Base Parking  -->
                 @can('menu_parking')
-
                     <li>
                         <a href= "{{ route('base.parking') }}">
                             <span class="sidebar-normal">
-                                 اطلاعات پایه پارکینگ
+                                 اطلاعات پایه  خودور
                             </span>
                         </a>
                     </li>

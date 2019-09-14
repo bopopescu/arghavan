@@ -61,6 +61,5 @@
 </div>
 @endsection
 @section('scripts')
-
 <script type="text/javascript" src="{{ mix('js/test.js') }}"></script>
 @endsection

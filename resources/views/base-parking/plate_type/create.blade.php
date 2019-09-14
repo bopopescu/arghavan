@@ -10,7 +10,7 @@
         <!-- Card Content -->
         <div class="card-content f-BYekan">
             <form>
-                <h3 class="card-title f-BYekan">بت اطلاعات  </h3>
+                <h3 class="card-title f-BYekan">ثبت اطلاعات  </h3>
 
                 <!-- Name field -->
                 <div class="form-group label-floating mrg-top-2em"

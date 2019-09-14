@@ -92,39 +92,4 @@ class StudentController extends Controller
     {
         //
     }
-
-     public function studentChart()
-    {
-        $labels = [];
-        $series = [];
-        $group_id = \App\People::$GROUP_STUDENTS;
-        $res_all = \App\User::where('group_id', $group_id)
-                            ->whereHas('people')
-                            ->join('students', 'students.user_id', 'users.id')
-                            ->count();
-       $labels[] = "کل";
-       $series[] = $res_all;
-
-        $res_has_card = \App\User::where('group_id', $group_id)
-                                ->whereHas('people')
-                                ->whereHas('cards')
-                                ->join('students', 'students.user_id', 'users.id')
-                                ->count();
-        $labels[] = "دارای کارت";
-        $series[] = $res_has_card;
-
-       $res_Dont_have_card = \App\User::where('group_id', $group_id)
-                                        ->whereHas('people')
-                                        ->whereDoesntHave('cards')
-                                        ->join('students', 'students.user_id', 'users.id')
-                                        ->count();
-        $labels[] = "بدون کارت";
-        $series[] = $res_Dont_have_card;
-
-        $output = [
-            'labels' => $labels,
-            'series' => $series
-        ];
-        return $output;
-    }
 }

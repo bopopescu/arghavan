@@ -88,7 +88,7 @@ class PermissionController extends Controller
     {
         if ($request->ajax())
         {
-            $permission->update([ 
+            $permission->update([
                                 'key'  => $request->key,
                                 'name'  => $request->name,
                                 'description'  => $request->description,
@@ -124,9 +124,77 @@ class PermissionController extends Controller
      */
     public function allPermissions ()
     {
-        $list  = Permission::select('id', 'key', 'name', 'description')
+        $list_all  = Permission::select('id', 'key', 'subkey' ,'name', 'description')
                                 ->get();
 
-        return $list;
+        $list_dashboard  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'dashboard')
+                                        ->get();
+
+        $list_menuStructure  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                            ->where('key', 'menu_structure')
+                                            ->get();
+
+        $list_menuUser  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_user')
+                                        ->get();
+
+        $list_menuGate  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_gate')
+                                        ->get();
+        $list_menuSettingGate  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                                ->where('key', 'menu_setting')
+                                                ->get();
+
+        $list_menuSettingSystem  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                                ->where('key', 'menu_auth')
+                                                ->get();
+
+        $list_menuReport  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_report')
+                                        ->get();
+
+        $list_menuReferral  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_referral')
+                                        ->get();
+
+        $list_menuDormitory  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_management_dormitory')
+                                        ->get();
+
+        $list_menuRequest  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_request')
+                                        ->get();
+
+        $list_menuSMS  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_sms')
+                                        ->get();
+
+        $list_menuParking  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'menu_parking')
+                                        ->get();
+
+
+        $list_button  = Permission::select('id', 'key', 'subkey', 'name', 'description')
+                                        ->where('key', 'command')
+                                        ->get();
+
+        return [
+            'all' => $list_all,
+            'dashboard' => $list_dashboard,
+            'menuStructure' => $list_menuStructure,
+            'menuUser' => $list_menuUser,
+            'menuGate' => $list_menuGate,
+            'menuSettingGate' => $list_menuSettingGate,
+            'menuSettingSystem' => $list_menuSettingSystem,
+            'menuReport' => $list_menuReport,
+            'menuReferral' => $list_menuReferral,
+            'menuDormitory' => $list_menuDormitory,
+            'menuRequest' => $list_menuRequest,
+            'menuSMS' => $list_menuSMS,
+            'menuParking' => $list_menuParking,
+            'listButton' => $list_button,
+        ];
     }
+
 }

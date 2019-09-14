@@ -20,7 +20,6 @@ class GatePlan extends Model
     protected $dates = [
         'deleted_at'
     ];
-
     /**
      * Creates if not exists.
      */
@@ -34,7 +33,8 @@ class GatePlan extends Model
         {
             $newGatePlan = GatePlan::create([
                     'name' => $request->name,
-                ]);
+                    'traffic_day_id' => $request->traffic_day_id,
+            ]);
 
             return $newGatePlan;
         }

@@ -12,7 +12,7 @@
                     <div class="collapse" id="requestMenu">
                         <ul class="nav">
                             <!-- Comment Send Vaction -->
-                            @can('menu_requestـvacation')
+                            @can('request_vacation')
                                 <li>
                                     <a href="{{ url('/vacationRequests') }}">
                                         <span class="sidebar-normal">
@@ -24,7 +24,7 @@
                             <!-- Comment Send Vacation -->
 
                             <!-- Comment Check Vacation -->
-                            @can('menu_requestـcheck_vacation')
+                            @can('request_check_vacation')
                                 <li>
                                     <a href="{{ route('vacation_managment') }}">
                                         <span class="sidebar-normal">

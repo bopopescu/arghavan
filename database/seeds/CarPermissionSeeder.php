@@ -11,76 +11,88 @@ class CarPermissionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Permission::create([
-            'key' => 'menu_parking',
-            'name' => 'منوی اطلاعات پایه خودرو',
-            'description' => 'فعال یا غیرفعال کردن منوی اطلاعات پایه خودرو'
-        ]);
-
          \App\Permission::create([
-              'key' => 'menu_base_parking',
-              'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم اطلاعات پایه',
+              'key' => 'menu_structure',
+              'subkey' => 'menu_base_parking',
+              'name' => 'منوی اطلاعات پایه خودرو',
               'description' => 'فعال یا غیرفعال کردن آیتم اطلاعات پایه در منوی اطلاعات پایه خودرو'
             ]);
 
             \App\Permission::create([
-                'key' => 'menu_base_car_site',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم تعریف پارکینگ',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_site',
+                'name' => 'آیتم تعریف پارکینگ',
                 'description' => 'فعال یا غیرفعال کردن آیتم تعریف پارکینگ در منوی اطلاعات پایه خودرو'
               ]);
 
               \App\Permission::create([
-                'key' => 'menu_base_car_color',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم رنگ خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_color',
+                'name' => 'آیتم رنگ خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم رنگ خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
               \App\Permission::create([
-                'key' => 'menu_base_car_fuel',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم سوخت خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_fuel',
+                'name' => 'آیتم سوخت خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم سوخت خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
                \App\Permission::create([
-                'key' => 'menu_base_car_level',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم تیپ خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_level',
+                'name' => 'آیتم تیپ خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم تیپ خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
                 \App\Permission::create([
-                'key' => 'menu_base_car_model',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم مدل خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_model',
+                'name' => 'آیتم مدل خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم مدل خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
               \App\Permission::create([
-                'key' => 'menu_base_car_system',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم سیستم خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_system',
+                'name' => 'آیتم سیستم خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم سیستم خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
               \App\Permission::create([
-                'key' => 'menu_base_car_type',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم نوع خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_type',
+                'name' => 'آیتم نوع خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم نوع خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
               \App\Permission::create([
-                'key' => 'menu_base_car_plate_type',
-                'name' => 'منوی اطلاعات پایه خودرو ـ فعال سازی آیتم نوع پلاک خودرو',
+                'key' => 'menu_base_parking',
+                'subkey' => 'car_plate_type',
+                'name' => 'آیتم نوع پلاک خودرو',
                 'description' => 'فعال یا غیرفعال کردن آیتم نوع پلاک خودرو در منوی اطلاعات پایه خودرو'
               ]);
 
+            \App\Permission::create([
+                'key' => 'menu_parking',
+                'subkey' => 'menu_parking',
+                'name' => 'منوی مدیریت پارکینگ',
+                'description' => 'فعال یا غیرفعال کردن منوی اطلاعات مدیریت پارکینگ'
+            ]);
+
               \App\Permission::create([
-                'key' => 'menu_car_management_parking',
-                'name' => 'منوی مدیریت خودرو ـ فعال سازی آیتم ثبت خودرو',
-                'description' => 'فعال یا غیرفعال کردن آیتم ثبت خودرو در منوی مدیریت خودرو'
+                'key' => 'menu_parking',
+                'subkey' => 'car_management_parking',
+                'name' => 'آیتم ثبت خودرو',
+                'description' => 'فعال یا غیرفعال کردن آیتم ثبت خودرو در منوی مدیریت پارکینگ'
               ]);
 
               \App\Permission::create([
-                'key' => 'menu_car_capacity_parking',
-                'name' => 'منوی مدیریت خودرو ـ فعال سازی آیتم ثبت ظرفیت پارکینگ',
-                'description' => 'فعال یا غیرفعال کردن آیتم ثبت ظرفبت پارکینگ در منوی مدیریت خودرو'
+                'key' => 'menu_parking',
+                'subkey' => 'car_capacity_parking',
+                'name' => 'ثبت ظرفیت پارکینگ',
+                'description' => 'فعال یا غیرفعال کردن آیتم ثبت ظرفبت پارکینگ در منوی مدیریت پارکینگ'
               ]);
     }
 }

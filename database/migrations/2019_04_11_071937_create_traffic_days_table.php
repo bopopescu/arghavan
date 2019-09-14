@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGateProgramsTable extends Migration
+class CreateTrafficDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateGateProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('gate_programs', function (Blueprint $table) {
+        Schema::create('traffic_days', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('index');
+            $table->string('name');
+            $table->time("begin_time");
+            $table->integer("begin_number");
+            $table->time("end_time");
+            $table->integer("end_number");
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateGateProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gate_programs');
+        Schema::dropIfExists('traffic_days');
     }
 }

@@ -1125,9 +1125,9 @@ window.v = new Vue({
          * Save record
          */
         saveRecord() {
-            this.$validator.validateAll()
-                .then(result => {
-                    if (result) {
+            // this.$validator.validateAll()
+            //     .then(result => {
+            //         if (result) {
                         // Prepare data
                         let data = {
                             lastGroupId: this.lastGroupId,
@@ -1204,30 +1204,30 @@ window.v = new Vue({
                                 this.isLoading = false;
 
                                 if (0 == res.status) {
-                                    demo.showNotification('ﺪﺷ ﻡﺎﺠﻧا ﺕیﻖﻓﻮﻣ ﺎﺑ ﺕﺎﻋﻼﻃا ﺖﺒﺛ', 'success');
+                                    demo.showNotification('ثبت اطلاعات با موفقیت انجام شد', 'success');
 
                                     this.registerCancel();
                                 } else {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'warning');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'warning');
                                 }
                             })
                             .catch(err => {
                                 this.isLoading = false;
 
                                 if (err.response.status) {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'danger');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'danger');
                                 } else {
                                     demo.showNotification(err.message, 'danger');
                                 }
                             });
 
                         return;
-                    }
+                    // }
 
-                    let err = Helper.generateErrorString();
+                //     let err = Helper.generateErrorString();
 
-                    demo.showNotification(err, 'warning');
-                });
+                //     demo.showNotification(err, 'warning');
+                // });
         },
 
         /**
@@ -1560,7 +1560,7 @@ window.v = new Vue({
 
             if(null != record.fingerprint)
             {
-                console.log('load pic finger');
+              //  console.log('load pic finger');
                 //this.loadPicFingerprint(record.fingerprint.user_id);
                 this.tempRecord.fingerprint = {
                     id: record.fingerprint.id,
@@ -1579,7 +1579,7 @@ window.v = new Vue({
          */
         loadPicFingerprint(userId)
         {
-            console.log('loadPicFingerprint -> userId', userId);
+           // console.log('loadPicFingerprint -> userId', userId);
              let url = document.pageData.people.load_pic_fingerprint;
 
             let data = {
@@ -1587,12 +1587,12 @@ window.v = new Vue({
                 userId: userId
             };
 
-            console.log('loadPicFingerprint -> index -> data', data);
+           // console.log('loadPicFingerprint -> index -> data', data);
 
             this.$store.dispatch('loadPicFingerprint', data)
                 .then(res => {
                     // let myData = res.data;
-                    console.log('loadPicFingerprint -> res', res);
+                   // console.log('loadPicFingerprint -> res', res);
                     this.tempRecord.fingerprint.image = res;
 
                 })
@@ -1816,10 +1816,10 @@ window.v = new Vue({
                 this.$validator.validate('gender_id'),
                 this.$validator.validate('birthdate'),
                 this.$validator.validate('melliat_id'),
-                this.$validator.validate('mobile'),
+                //this.$validator.validate('phone'),
                 this.$validator.validate('city_id'),
                 this.$validator.validate('province_id'),
-                this.$validator.validate('mobile'),
+                //this.$validator.validate('mobile'),
                 this.$validator.validate('address')
 
             ]).then((resolve, reject) => {

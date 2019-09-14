@@ -707,10 +707,10 @@ const actions = {
 		return new Promise((resolve, reject) =>	{
 			//let url = data.url;
 			 let url = data.url + '?userId=' + data.userId;
-			console.log('store -> data.userId', data);
+			//console.log('store -> data.userId', data);
 			axios.get(url)
 				.then(res => {
-					console.log('store -> loadPicFingerprint -> res', res);
+					//console.log('store -> loadPicFingerprint -> res', res);
 					resolve(res);
 				})
 				.catch(res => reject(res));

@@ -3,7 +3,6 @@
 @section('content')
 <div class="content f-BYekan hidden" id="app">
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-md-12">
 
