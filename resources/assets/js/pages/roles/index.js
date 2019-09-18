@@ -498,8 +498,7 @@ window.v = new Vue({
 					                                    	 list_button);
 
 						this.isLoading = true;
-						 console.log('savePermissionRecord -> dashboard', dashboard);
-						 console.log('savePermissionRecord -> data', data);
+
 						// Try to save
 						this.$store.dispatch('savePermissionRecord', data)
 							.then(res => {

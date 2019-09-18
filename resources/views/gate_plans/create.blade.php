@@ -38,7 +38,7 @@
                         <div v-for = "(weekday, index) in weekdays"
                             :key="index"
                            class="form-check col-md-6 col-sm-12">
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <label class="form-check-label"
                                     :for="'chkBox' + weekday.index"
                                     class="upper-case">
@@ -54,35 +54,51 @@
                                 </label>
                             </div>
 
-                            <div class="col-md-10">
+                            <div class="col-md-8">
                                 <div class="col-md-6 col-sm-12" >
-                                    <vue-clock :time="changeValue(weekday.values[1])"
+                                    <vue-clock :time="changeValue(weekday.start_value)"
                                                 border="2px"
                                                 size="100px">
                                     </vue-clock>
                                 </div>
 
                                 <div class="col-md-6 col-sm-12" >
-                                    <vue-clock :time="changeValue(weekday.values[0])"
+                                    <vue-clock :time="changeValue(weekday.end_value)"
                                                 border="2px"
                                                 size="100px">
                                     </vue-clock>
                                 </div>
 
+                                <div class=" text-center col-md-6 col-sm-12">
+                                    <circle-slider
+                                        refs= weekday.name
+                                        v-model="weekday.start_value"
+                                        :side="100"
+                                        :min="start_min"
+                                        :max="start_max"
+                                        :step-size="step"
+                                        :circle-width-rel="20"
+                                        :progress-width-rel="10"
+                                        :knob-radius="10">
+                                    </circle-slider>
+                                    <p>  @{{ changeValue(weekday.start_value) }} صبح</p>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <circle-slider
+                                        refs= weekday.name
+                                        v-model="weekday.end_value"
+                                        :side="100"
+                                        :min="end_min"
+                                        :max="end_max"
+                                        :step-size="step"
+                                        :circle-width-rel="20"
+                                        :progress-width-rel="10"
+                                        :knob-radius="10">
+                                    </circle-slider>
+                                    <p>  @{{ changeValue(weekday.end_value) }} بعدازظهر</p>
 
-                                <div class="col-md-12 col-sm-12">
-                                    <vue-range-slider
-                                                refs= weekday.name
-                                                :tooltip="'hover'"
-                                                v-model="weekday.values"
-                                                :min="min"
-                                                :max="max"
-                                                :step="step"
-                                                :enable-cross="enableCross">
-                                    </vue-range-slider>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 

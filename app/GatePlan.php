@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class GatePlan extends Model
 {
     use SoftDeletes;
@@ -23,7 +22,7 @@ class GatePlan extends Model
     /**
      * Creates if not exists.
      */
-    public static function createIfNotExists($request)
+    public static function createIfNotExist($request)
     {
         $gatePlan = GatePlan::withTrashed()
                             ->where('name', $request->name)
@@ -33,7 +32,6 @@ class GatePlan extends Model
         {
             $newGatePlan = GatePlan::create([
                     'name' => $request->name,
-                    'traffic_day_id' => $request->traffic_day_id,
             ]);
 
             return $newGatePlan;
@@ -46,5 +44,28 @@ class GatePlan extends Model
         }
 
         return null;
+    }
+
+    /**
+     * Give Schedule
+     */
+    public function giveScheduleTo($schedule)
+    {
+        $this->schedules()->sync($schedule);
+    }
+
+    public function takeScheduleFrom($schedule)
+    {
+        $this->schedules()->detach($schedule);
+    }
+
+
+    /**
+     * Get assigned $schedule
+     * @return [type] [description]
+     */
+    public function schedules()
+    {
+        return $this->belongsToMany (\App\Schedule::class);
     }
 }

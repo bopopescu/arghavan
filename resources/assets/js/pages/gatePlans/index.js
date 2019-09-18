@@ -1,7 +1,6 @@
 import Store from './store';
 import VueClock from 'vue-clock2';
-import VueRangeSlider from 'vue-range-component'
-// import GateWidget from '../Components/GateWidget';
+import VueCircleSlider from 'vue-circle-slider';
 
 window.v = new Vue({
     el: '#app',
@@ -9,7 +8,7 @@ window.v = new Vue({
 
     components: {
         VueClock,
-        VueRangeSlider
+        VueCircleSlider,
     },
 
     data: {
@@ -19,28 +18,25 @@ window.v = new Vue({
         insertMode: false,
         tempRecord: {},
         connectionStatus: true,
-        timeValue: [0,0],
-        time: 0,
+        oldSchedule: [],
         weekdays: [
-            { index: 0, values: [390, 1020], name: 'شنبه' },
-            { index: 1, values: [390, 1020], name: 'یکشنبه' },
-            { index: 2, values: [390, 1020], name: 'دوشنبه' },
-            { index: 3, values: [390, 1020], name: 'سه شنبه' },
-            { index: 4, values: [390, 1020], name: 'چهارشنبه' },
-            { index: 5, values: [390, 1020], name: 'پنج شنبه' },
-            { index: 6, values: [390, 1020], name: 'جمعه' },
+            { index: 0, start_value: 390, end_value: 1020, name: 'شنبه' },
+            { index: 1, start_value: 380, end_value: 1020, name: 'یکشنبه' },
+            { index: 2, start_value: 390, end_value: 1020, name: 'دوشنبه' },
+            { index: 3, start_value: 390, end_value: 1020, name: 'سه شنبه' },
+            { index: 4, start_value: 390, end_value: 1020, name: 'چهارشنبه' },
+            { index: 5, start_value: 390, end_value: 1020, name: 'پنج شنبه' },
+            { index: 6, start_value: 390, end_value: 1020, name: 'جمعه' },
         ],
     },
 
     created() {
         this.tempRecord = this.emptyRecord;
-
-        this.min = 0;
-        this.max = 1440;
-        this.enableCross = false;
+        this.start_min = 0;
+        this.start_max = 720;
+        this.end_min = 720;
+        this.end_max = 1440;
         this.step = 15;
-        this.tooltip = false;
-        // this.data = ['0', '24']
     },
 
     mounted() {
@@ -150,7 +146,6 @@ window.v = new Vue({
                 });
         },
 
-
         /**
          * Hide insert/update modal
          */
@@ -158,6 +153,9 @@ window.v = new Vue({
             this.tempRecord = this.emptyRecord;
 
             this.changeFormMode(Enums.FormMode.normal);
+
+            Helper.scrollToApp ();
+
         },
 
         /**
@@ -167,6 +165,7 @@ window.v = new Vue({
 
             this.page = page;
             this.isLoading = true;
+            Helper.scrollToApp ();
 
             this.$store.dispatch('loadRecords', page)
                 .then(res => {
@@ -186,19 +185,36 @@ window.v = new Vue({
             this.clearErrors();
             this.tempRecord = $.extend(true, {}, this.emptyRecord);
             this.changeFormMode(Enums.FormMode.register);
-           // this.setRangeSlider();
         },
 
         /**
          * Edit a record
          */
         editRecord(record) {
+            console.log('edit -> record', record);
+            this.oldWeekdays = '';
+            this.oldSchedule = [];
             this.clearErrors();
-
             this.tempRecord = {
                 id: record.id,
                 name: record.name,
             };
+
+            // Update weekdays checked state
+            this.weekdays.forEach(weekday => {
+                weekday.checked = false;
+                let res = record.schedules.filter(weekdaySchedule => weekdaySchedule.index == weekday.index);
+
+                if (res.length > 0)
+                {
+                    this.oldSchedule.push(res[0]);
+                    weekday.id = res[0].id;
+                    weekday.start_value = res[0].begin_number;
+                    weekday.end_value = res[0].end_number;
+                    weekday.checked = (res.length > 0);
+                }
+            });
+            console.log('this.oldSchedule', this.oldSchedule);
             this.formMode = Enums.FormMode.register;
         },
 
@@ -229,26 +245,30 @@ window.v = new Vue({
          * Save record
          */
         saveRecord() {
-            // this.$validator.validateAll()
-            //     .then(result => {
-            //         if (result) {
+
+            console.log('index -> save record');
+            this.$validator.validateAll()
+                .then(result => {
+                    if (result) {
                         // Prepare data
                         console.log('this.weekdays', this.weekdays);
                         let data = {
                             id: this.tempRecord.id,
                             name: this.tempRecord.name,
                             weekdays: [],
+                            oldWeekdays: this.oldSchedule,
                         };
+                        console.log('index -> save record -> data', data);
 
                         data.weekdays = this.weekdays.filter(el => el.checked == true);
                         data.weekdays.forEach(weekday => {
-                            weekday.begin = this.changeValue(weekday.values[0]);;
-                            weekday.end = this.changeValue(weekday.values[1]);;
+                            weekday.begin = this.changeValue(weekday.start_value);
+                            weekday.end = this.changeValue(weekday.end_value);
+                            weekday.id = (weekday.id == undefined) ? 0 : weekday.id;
                         });
 
-                        console.log('data', data);
+                        console.log('index -> save record -> weekdays', data.weekdays);
                         this.isLoading = true;
-
                         // Try to save
                         this.$store.dispatch('saveRecord', data)
                             .then(res => {
@@ -272,13 +292,13 @@ window.v = new Vue({
                                     demo.showNotification(err.message, 'danger');
                                 }
                             });
-
                         return;
                     }
                    let err = Helper.generateErrorString();
 
                     demo.showNotification(err, 'warning');
-                // });
+                });
+                Helper.scrollToApp ();
         },
     },
 

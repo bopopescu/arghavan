@@ -258,6 +258,27 @@ class PivotTable extends Migration
             $table->primary(['fp_device_id', 'gatedevice_id']);
         });
 
+        /**
+         * Migrate gate plan and schdule
+         */
+        Schema::create('gate_plan_schedule', function (Blueprint $table) {
+            $table->unsignedInteger('gate_plan_id');
+            $table->unsignedInteger('schedule_id');
+
+            $table->foreign('gate_plan_id')
+                    ->references('id')
+                    ->on('gate_plans')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+            $table->foreign('schedule_id')
+                    ->references('id')
+                    ->on('schedules')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+            $table->primary(['gate_plan_id', 'schedule_id']);
+        });
     }
     /**
      * Reverse the migrations.
@@ -278,6 +299,8 @@ class PivotTable extends Migration
         Schema::dropIfExists('amoeba_gatedevice');
         Schema::dropIfExists('card_gatedevice');
         Schema::dropIfExists('fp_device_gatedevice');
+        Schema::dropIfExists('gate_plan_schedule');
+
 
     }
 }

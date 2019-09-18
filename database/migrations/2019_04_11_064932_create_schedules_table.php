@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrafficDaysTable extends Migration
+class CreateSchedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTrafficDaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('traffic_days', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('index');
             $table->string('name');
@@ -22,6 +22,7 @@ class CreateTrafficDaysTable extends Migration
             $table->time("end_time");
             $table->integer("end_number");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +33,6 @@ class CreateTrafficDaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('traffic_days');
+        Schema::dropIfExists('schedules');
     }
 }

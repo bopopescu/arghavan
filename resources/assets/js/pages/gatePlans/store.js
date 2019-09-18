@@ -48,6 +48,16 @@ const mutations = {
 	 */
 	updateRecord: (state, payload) => {
 		let getters = payload.getters;
+        let record  = payload.record;
+
+        let currentRecord   = getters.records.filter(el => el.id == record.id)[0];
+
+        if (null != currentRecord){
+			currentRecord.name     	= record.name;
+			currentRecord.schedules = record.schedules;
+        }
+
+		/*let getters = payload.getters;
 		let record  = payload.record;
 		let index   = getters.records
 			.map(el => el.id)
@@ -55,9 +65,9 @@ const mutations = {
 		 if (-1 == index){
             return;
         }
-
+        console.log('update -> record', record);
 		// Update record
-		state._data.data[index].name       = record.name;
+		state._data.data[index].name       = record.name;*/
 	},
 
 	/**
@@ -105,7 +115,11 @@ const actions = {
 	 * save gate_plan
 	 */
 	saveRecord: (context, record) => {
+		console.log ('store -> save record-> record', record);
+
 		return new Promise((resolve, reject) => {
+		// console.log ('store -> save record-> new record');
+
 			// New record
 			if (0 == record.id) {
 				axios.post('/gatePlans', record)
@@ -117,7 +131,6 @@ const actions = {
 						if (null != newRecord) {
 							context.commit('insertRecord', newRecord);
 						}
-
 						resolve(status);
 					})
 					.catch(err => reject(err));
@@ -125,11 +138,15 @@ const actions = {
 
 			// Update record
 			else {
+				console.log ('store -> save record-> update record');
+
 				axios.put('/gatePlans/' + record.id, record)
 					.then(res => {
+						console.log('res.data', res.data);
 						let status       = (0 == res.data.status);
 						let updatedRecord = res.data.gatePlan;
 
+						console.log('updatedRecord' , updatedRecord);
 						if (null != updatedRecord) {
 							context.commit('updateRecord',{
 									getters: context.getters,

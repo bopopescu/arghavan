@@ -90,6 +90,7 @@ Route::resources ([
      '/contactTypes'        =>'ContactTypeController',
      '/deviceTypes'         =>'DeviceTypeController',
 ]);
+
 Route::get('/auth/edit', 'HomeController@editProfile')
         ->name('profile_show');
 Route::get('/auth/lock', 'HomeController@lockPage')

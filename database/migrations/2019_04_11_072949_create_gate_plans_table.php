@@ -16,15 +16,8 @@ class CreateGatePlansTable extends Migration
         Schema::create('gate_plans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger("traffic_day_id");
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('traffic_day_id')
-                    ->references('id')
-                    ->on('traffic_days')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
         });
     }
 

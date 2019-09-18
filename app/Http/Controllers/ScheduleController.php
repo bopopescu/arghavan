@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\TrafficDay;
+use App\Schedule;
 use Illuminate\Http\Request;
 
-class TrafficDayController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax())
+        {
+            $schedules = Schedule::paginate(Controller::C_PAGINATE_SIZE);
+
+            return $schedules;
+        }
+
+        // return view ('schedules.index');
     }
 
     /**
@@ -41,10 +48,10 @@ class TrafficDayController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\TrafficDay  $trafficDay
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function show(TrafficDay $trafficDay)
+    public function show(Schedule $schedule)
     {
         //
     }
@@ -52,10 +59,10 @@ class TrafficDayController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TrafficDay  $trafficDay
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(TrafficDay $trafficDay)
+    public function edit(Schedule $schedule)
     {
         //
     }
@@ -64,10 +71,10 @@ class TrafficDayController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TrafficDay  $trafficDay
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TrafficDay $trafficDay)
+    public function update(Request $request, Schedule $schedule)
     {
         //
     }
@@ -75,10 +82,10 @@ class TrafficDayController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TrafficDay  $trafficDay
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TrafficDay $trafficDay)
+    public function destroy(Schedule $schedule)
     {
         //
     }
