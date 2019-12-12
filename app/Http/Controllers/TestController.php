@@ -9,10 +9,26 @@ use Orchestra\Parser\Xml\Facade as XmlParser;
 
 class TestController extends Controller
 {
+    public function __construct ()
+    {
+    }
+
+    public function testUploader(Request $request)
+    {
+        $code = $request->code;
+        $name = $request->name;
+
+     
+        $path = $request->file('image')
+            ->store('test-images');
+
+        return $path;
+    }
+
 
     public function readXML()
     {
-        $filename = 'xml_document_province.json';
+        $name = 'xml_document_province.json';
         if( file_exists( public_path() . "/XML_files/" . $filename )){
 
         }

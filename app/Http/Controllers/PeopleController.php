@@ -66,16 +66,16 @@ class PeopleController extends Controller
 
         if ($request->hasFile('image'))
         {
+            $IMAGE_SIZE = Config::get('core.personal_image_size');
+
             $image = $request->file('image');
-
             $ext = $image->getClientOriginalExtension();
-
             $fullSizeImageAddr = $image->store('');
 
             $th_name = str_replace(".$ext", "-t.$ext", $fullSizeImageAddr);
             $th_name = \Storage::path($th_name);
             $thumbnailImage = Image::make($image);
-            $thumbnailImage->fit(320, 320)
+            $thumbnailImage->fit($IMAGE_SIZE, $IMAGE_SIZE)
                            ->save($th_name);
 
             $data = [
@@ -85,7 +85,7 @@ class PeopleController extends Controller
 
             $update_people  = People::updateImage($data);
 
-            $th_name = str_replace('.jpeg', '-t.jpeg', $fullSizeImageAddr);
+            $th_name = str_replace('.jpeg', '-t.jpeg', $thumbnailImage);
             $pictureUrl = \Storage::url($fullSizeImageAddr);
             $pictureThumbUrl = \Storage::url($th_name);
 
@@ -541,6 +541,7 @@ class PeopleController extends Controller
 
         return [
             'status'   => 0
+            
         ];
     }
 

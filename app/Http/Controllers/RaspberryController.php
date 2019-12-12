@@ -216,7 +216,7 @@ class RaspberryController extends Controller
         $gender_gate_device = $gate_device->gender_id;
 
         if (!($gender_gate_device == $user_data->gender_id or
-            $gender_gate_device == 2 ))
+            $gender_gate_device == 1 ))
         {
             $list_traffic["gate_message_id"] = MessageGate::mismatch_gender;
             $this->register_traffic_DB($list_traffic);
@@ -304,6 +304,7 @@ class RaspberryController extends Controller
         $gatemessageId = $list["gate_message_id"];
         $gateoperatorId = $list["gate_operator_id"];
 
+        /* TODO: USE PARAMETRIC FORM  */
         $raw_base_gate = \DB::select ("CALL sp_register_traffic('$userId',
                                                                 '$gatedeviceId',
                                                                 '$gatepassId',

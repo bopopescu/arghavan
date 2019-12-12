@@ -12,6 +12,46 @@ Route::get('who',function () {
 // Route::get('upload', 'PeopleController@upload');
 Route::get('get-identify', 'API\PassportController@getIdentify');
 Route::get('test', function () {
+
+        $card = \App\Card::leftjoin('card_user', 'card_id', 'cards.id')
+                            ->where ('cdn', '1046343769')
+                            ->select([ 
+                                'card_user.card_id',
+                                'card_user.user_id',
+                                'cdn',
+                                'state',
+                                'startDate',
+                                'endDate',
+                                'cardtype_id'
+                            ])
+                            ->get ()
+                            ->first ();
+        return $card;
+
+
+        $res = \App\User::leftjoin('card_user', 'user_id', 'users.id')
+                        ->leftjoin('cards', 'card_id', 'cards.id')
+                        ->where('users.id', 3)
+                        ->select([
+                                    'users.id as userId', 
+                                    'card_user.user_id', 
+                                    'card_user.card_id' ,
+                                    'cards.cdn', 
+                                    'cards.state',
+                                    'cards.startDate',
+                                    'cards.endDate',
+                                    'cards.cardtype_id'
+                                ])
+                        ->get()
+                        ->first();
+
+      
+       
+        return $res;
+
+
+
+
         $groupId = 3;
         $cardtypeId = 2;
 
@@ -51,13 +91,7 @@ Route::get('test', function () {
                 ]);
             },
         ];
-        $res = \App\User::where('group_id', $groupId)
-                        ->whereHas('people')
-                        ->whereDoesntHave('cards')
-                        // ->with($fun)
-                        // ->select(['id', 'code', 'people_id', 'group_id'])
-                        ->get();
-        return $res;
+       
 
 });
 

@@ -93,12 +93,17 @@ Route::resources ([
 
 Route::get('/auth/edit', 'HomeController@editProfile')
         ->name('profile_show');
+
 Route::get('/auth/lock', 'HomeController@lockPage')
      ->name('lock_page');
+
 Route:: view('error', 'layouts.error-master');
+
 Route::get('/auth/error', 'HomeController@errorPage')
         ->name('error_page');
+
 Route::get('carLoad', 'CarController@loadCar');
+
 Route::view('carBase', 'base-car.index')
                 ->name('car_base');
 Route::view('base-structure', 'base-structure.index')
@@ -113,6 +118,7 @@ Route::get('/cars/load', 'CarController@loadCar')
         ->name('cars.filter');
 Route::get('/cards/filter/{groupType}', 'CardController@filterCard')
         ->name('cards.filter');
+
 Route::get('/gategroups/data/all', 'GategroupController@allGateGroup');
 Route::put('/gategroups/{gategroup}/setGatedevice', 'GategroupController@setGatedevice');
 Route::put('/gateoptions/{gateoption}/setGatedevice', 'GateoptionController@setGatedevice');
@@ -129,20 +135,23 @@ Route::put('/grouppermits/{grouppermit}/setRole', 'GroupPermitController@setRole
 Route::get('/grouppermits/data/all', 'GroupPermitController@allGroupPermit');
 Route::get('/vacationManagment', 'VacationRequestController@managment')
         ->name('vacation_managment');
+
 Route::get('/cars/loadCar', 'CarController@loadCar');
+
 Route::put(
         '/vacationRequests/{vacationRequest}/updateField',
         'VacationRequestController@updateField'
-)
-        ->name('update_field_readed');
+        )->name('update_field_readed');
+
 Route::put(
         '/vacationRequests/{vacationRequest}/updateRequest',
         'VacationRequestController@updateRequest'
-)
-        ->name('update_request');
+        )->name('update_request');
+
 Route::get('base/data/notification/unread_count',
            'VacationRequestController@unreadVacationRequest')
     ->name('notification.count_unreaded_vacation');
+
 //Find user for manual tarffic , reportStore
 // Route::post('/people/loaduser', 'PeopleController@loaduser');
 Route::put('/people/{user}/setGrouppermit', 'PeopleController@setGrouppermit');
@@ -153,8 +162,10 @@ Route::get('/people/{people}/loadParent', 'PeopleController@loadParent');
 Route::put('/people/{user}/setParent', 'PeopleController@setParent');
 Route::get('/people/filter/{groupType}', 'PeopleController@filterPeople')
         ->name('people.filter');
+
 Route::get('/uploadImage', 'PeopleController@upload')
         ->name('upload_images');
+
 // Upload images from folder
 Route::get('/uploadImageFromFolder', 'PeopleController@uploadImageFromFolder');
 Route::get('/grouppermit/{user}/loadGroupPermit', 'GroupPermitController@loadGroupPermit');
@@ -163,21 +174,28 @@ Route::resource('/sms', 'SmsController')
         ->parameters([
                 'sms' => 'sms'
         ]);
+
 Route::post('/car/search', 'CarController@search')
         ->name('search_car');
+
 /* search info search by data for card */
 Route::post('/card/search', 'CardController@indexSearch')
         ->name('search_card');
+
 Route::post('/card/loadCard', 'CardController@loadCard')
         ->name('load_card');
 /* search only card*/
 Route::post('/cards/searchCard', 'CardController@cardSearch')
         ->name('card_search');
+
 Route::get('/terms/data/all', 'TermController@allTerm');
+
 Route::get('/base/all_information', 'RegistrationController@baseInformation')
     ->name ('base.all_Information');
+
 Route::get('/dormitory/all_information', 'BuildingInformationController@dormitoryInformation')
     ->name ('dormitory.all_Information');
+
 Route::post('unlock', 'HomeController@checkAndUnlockUser')
      ->name ('unlock');
 /*
@@ -195,15 +213,12 @@ Route::post('/report/search/edit', 'ReportController@searchEditUser')
 /* report  traffic */
 Route::get('/report/traffic', 'ReportController@index')
         ->name('report_traffic');
-
 /* report show 50 log traffic */
 Route::get('/report/showTraffic', 'ReportController@showTraffic')
         ->name('report_show_traffic');
-
  /* report show 50 log traffic */
 Route::get('/report/monitorTraffic', 'ReportController@monitorTraffic')
         ->name('report_monitor_traffic');
-
 /* report search traffic */
 Route::post('/report/searchTraffic', 'ReportController@searchTraffic')
         ->name('report_search_tarffic');
@@ -218,6 +233,7 @@ Route::get('/report/InputOutput', 'InputOutputReportController@InputOutputPDF')
 // Route::post('/report/exportToExcel', 'GatetrafficController@exportToExcel');
 Route::post('/report/traffic/exportToExcel', 'GatetrafficController@trafficExportToExcel')
         ->name('export.report.traffic.excel');
+
 Route::post('/report/traffic/exportToPDF', 'GatetrafficController@trafficExportToPDF')
         ->name('export.report.traffic.pdf');
 /* Dashboard  home group */
@@ -226,20 +242,25 @@ Route::post('/report/traffic/exportToPDF', 'GatetrafficController@trafficExportT
  */
 Route::get('traffic-count-daily', 'DashboardChartController@chartCountDailyTraffic')
         ->name('report.count.traffic.daily');
+
 Route::get('report-traffic-daily', 'DashboardChartController@loadPresentReport')
         ->name('report.traffic.present');
+
 /**
  * Show Count Gate Device active
  */
 Route::get('gatedevice-count-active', 'GatedeviceController@chartCountActiveDevice')
         ->name('report.count.gatedevice.active');
+
 Route::get('report-gatedevice-active', 'DashboardChartController@loadGateDeviceActiveReport')
         ->name('report.gatedevice.active');
+
 /**
  * Show Count SMS
  */
 Route::get('posted-sms-count', 'SmsController@CountPostedSMS')
         ->name('report.count.posted.sms');
+
 Route::get('report-posted-sms', 'DashboardChartController@loadPostedSMSReport')
         ->name('report.posted.sms');
 /**
@@ -326,7 +347,6 @@ Route::get('sendresponse/{code}/{ip}', 'RaspberryController@sendResponseWebServi
 Route::get('getDataFromAmoeba', 'AmoebaController@getDataAmoeba');
 Route::get('listDataFingerprint', 'FingerprintController@listDataFingerprint');
 
-
-
-
-
+Route::get('publish', function () {
+    Redis::publish('test-channel', json_encode(['foo' => 'bar']));
+});

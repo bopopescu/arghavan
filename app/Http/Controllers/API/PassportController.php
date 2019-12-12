@@ -187,7 +187,9 @@ class PassportController extends Controller
         $code = $request->code;
         $items = User::join('people','people.id', '=', 'users.people_id')
                 ->join('groups', 'groups.id', '=', 'users.group_id')
-                ->leftJoin('cards', 'cards.user_id', '=', 'users.id')
+                ->leftjoin('card_user', 'user_id', 'users.id')
+                ->leftjoin('cards', 'card_id', 'cards.id')
+                //->leftJoin('cards', 'cards.user_id', '=', 'users.id')
                 ->orWhere('users.code', '=', $code)
                 ->orWhere('people.nationalId', '=', $code)
                 ->select([
@@ -203,11 +205,17 @@ class PassportController extends Controller
                     'cards.cdn as card_cdn',
                     'cards.cardtype_id as card_type_id',
                     'cards.state as card_state',
+                    //'cards.startDate as card_startDate',
                     'cards.endDate as card_endDate'
                 ])
                 ->get();
 
                 $resultUser = \App\Http\Resources\SearchUserResource::collection ($items);
+
+                //  $result = [
+                //     'status' => $this->successStatus,
+                //     'success' => $resultUser
+                // ];
 
                 $fields = ['success' => $resultUser];
 
@@ -222,72 +230,108 @@ class PassportController extends Controller
      */
     public function updateUser(Request $request)
     {
-        // Check CDN
-        $card = \App\Card::where ('cdn', $request->card_cdn)
-                         ->get ()
-                         ->first ();
+        // get cdn if assign to user
+        $card = \App\Card::leftjoin('card_user', 'card_id', 'cards.id')
+                            ->where ('cdn', $request->card_cdn)
+                            ->select([ 
+                                'card_user.card_id',
+                                'card_user.user_id',
+                                'cdn',
+                               
+                            ])
+                            ->get ()
+                            ->first ();
+
+
+        // get user if assign to my user
+        $res = \App\User::leftjoin('card_user', 'user_id', 'users.id')
+                        ->leftjoin('cards', 'card_id', 'cards.id')
+                        ->where('users.id', $request->user_id)
+                        ->select([
+                                    'users.id as userId', 
+                                    'card_user.user_id', 
+                                    'card_user.card_id',
+                                    'cards.cdn', 
+                                   
+                                ])
+                        ->get()
+                        ->first();
+
 
         // Card Exists
         if (! is_null ($card))
         {
+
             $user_id = $request->user_id;
+
             // Card is assigned to user
             if ($card->user_id == $user_id)
             {
-                 $card->update([
+                $card_exists = \App\Card::where ('cdn', $request->card_cdn)
+                                         ->get ()
+                                         ->first();
+
+                $card_exists->update([
                         'cdn'           => $request->card_cdn,
                         'state'         => $request->card_state,
                         'startDate'     => $request->card_startDate,
                         'endDate'       => $request->card_endDate,
-                        'group_id'      => $request->group_id,
+                        //'group_id'      => $request->group_id,
                         'cardtype_id'   => $request->card_type_id,
                     ]);
             }
             else
             {
-                $fieldsError = [
+                  // Setup result
+                $result = [
+                    'status' => $this->failedStatus,
                     'success' => ['code' => $request->user_id]
                 ];
 
+                return ($result);
 
-                return response()->json($fieldsError,
-                                    $this->failedStatus);
+                // return response()->json($fieldsError,
+                //                     $this->failedStatus);
             }
         }
         // Card not Exists
         else
         {
-             // Check User_id in Card table
-             $user_card = \App\Card::where ('user_id', $request->user_id)
-                             ->get ()
-                             ->first ();
 
-             // Update Card
-            if (! is_null($user_card))
+          
+            if (! is_null($res->user_id))
             {
+               $user_card = \App\Card::where ('id', $res->card_id)
+                             ->get ()
+                             ->first();
+
+                            
                 $user_card->update([
                         'cdn'           => $request->card_cdn,
                         'state'         => $request->card_state,
                         'startDate'     => $request->card_startDate,
                         'endDate'       => $request->card_endDate,
-                        'group_id'      => $request->group_id,
+                       // 'group_id'      => $request->group_id,
                         'cardtype_id'   => $request->card_type_id,
                     ]);
             }
             else
             {
+
                 $data = [
                             'cdn'         => $request->card_cdn,
-                            'user_id'     => $request->user_id,
+                           // 'user_id'     => $request->user_id,
                             'state'       => $request->card_state,
                             'startDate'   => $request->card_startDate,
                             'endDate'     => $request->card_endDate,
-                            'group_id'    => $request->group_id,
+                          //  'group_id'    => $request->group_id,
                             'cardtype_id' => $request->card_type_id
                         ];
 
                  // Insert Card
                 $card = \App\Card::create($data);
+
+                $card->users()->attach($res->userId);
             }
         }
 

@@ -1,6 +1,7 @@
 <?php
 
 // use Illuminate\Http\Request;
+Route::post('test-uploader', 'TestController@testUploader');
 
 Route::post('login', 'API\PassportController@login');
 Route::post('register', 'API\PassportController@register');
@@ -19,3 +20,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 	Route::post('get-data-fingerprint', 'API\PassportController@listDataFingerprint');
 	Route::post('get-identify', 'API\PassportController@getIdentify');
 });
+
+/*
+ * Upload from file .csv in MySql server
+*/
+Route::post('upload-data', 'API\UploaderController@UploadData');
