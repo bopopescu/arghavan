@@ -3,7 +3,7 @@
         <a data-toggle="collapse" href="#dormitoryMenu">
             <i class="fas fa-bed"></i>
             <p>
-                مدیریت خوابگاه
+                مدیریت  خوابگاه و مهمانسرا
                 <b class="caret"></b>
             </p>
         </a>

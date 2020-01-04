@@ -6,8 +6,7 @@ python_server_port = 20000;
 socket_server_ip = '127.0.0.1';
 socket_server_port = 10000;
 
-async def acceptClient(websocket,
-                path):
+async def acceptClient(websocket,path):
     name = await websocket.recv();
     print(f"< {name}");
 

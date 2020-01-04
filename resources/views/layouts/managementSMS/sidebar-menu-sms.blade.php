@@ -3,7 +3,7 @@
         <a data-toggle="collapse" href="#smsMenu">
                 <i class="material-icons">message</i>
                 <p>
-                    سامانه پیامک
+                    مدیریت  اطلاع رسانی
                     <b class="caret"></b>
                 </p>
             </a>

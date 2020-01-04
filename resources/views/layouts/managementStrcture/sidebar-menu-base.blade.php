@@ -54,7 +54,7 @@
                     <li>
                         <a href= "{{ route('base.parking') }}">
                             <span class="sidebar-normal">
-                                 اطلاعات پایه  خودور
+                                 اطلاعات پایه  خودرو
                             </span>
                         </a>
                     </li>

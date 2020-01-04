@@ -1,6 +1,6 @@
 @can('menu_parking')
 
-    <li>
+    <li class="active">
         <a data-toggle="collapse" href="#parkingInformationMenu">
             <i class="material-icons">directions_car</i>
             <p>

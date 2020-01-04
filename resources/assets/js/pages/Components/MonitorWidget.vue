@@ -9,10 +9,10 @@
 
             <div class="card-body">
                 <h6 class="card-category text-gray"> {{  gateData.user.code }}</h6>
-                <h4 class="card-title">
+                <h6 class="card-title">
                     {{ gateData.user.people.name }}
                     {{ gateData.user.people.lastname }}
-                </h4>
+                </h6>
                 <p class="card-description">
                     <div class="row">
                         <i v-if="gateMessageMode" class="fas fa-check-circle icon-background fa-2x"></i>

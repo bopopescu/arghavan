@@ -1,5 +1,4 @@
-
- @can('chart_number')
+@can('chart_number')
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
         <simple-counter background-color="blue"
@@ -46,10 +45,6 @@
                         @on-refresh="refreshChart('referral-data')">
         </simple-counter>
     </div>
-    <!--  <div class="col-md-3 col-sm-6 col-xs-12">
-        <simple-counter background-color="green" :value="cardCount" icon="assignment_ind" text="کارت های ثبت شده" ></simple-counter>
-    </div> -->
-
 </div>
 @endcan
 

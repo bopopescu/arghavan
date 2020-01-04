@@ -121,7 +121,6 @@ window.x = new Vue({
         hasSMSReportRow: state =>(0 < state.$store.getters.smsReports.length),
 
 
-
         loadingPostedSMS: state => (state.loadingStatus & LOADING_POSTED_SMS) == LOADING_POSTED_SMS,
         loadingReferralData: state => (state.loadingStatus & LOADING_REFERRAL_DATA) == LOADING_REFERRAL_DATA,
         loadingActiveGatedevice: state => (state.loadingStatus & LOADING_ACTIVE_GATEDEVICE) == LOADING_ACTIVE_GATEDEVICE,
@@ -252,7 +251,6 @@ window.x = new Vue({
          * @param      {<type>}  item    The item
          */
         unlockInput(item){
-            console.log(item.id);
             SocketClient.connect('192.168.0.173', 20000,
                                     (e) => {
                                         console.log (e);
