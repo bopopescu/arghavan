@@ -111,37 +111,43 @@ Route::get('traffic', function(){
             'gatemessage',
         ];
 
-   $items = \App\Gatetraffic::where(function($query) {
-                $query->where('gatetraffics.user_id', '2');
-                $query->orderBy('gatedate','DESC');
-                $query->take(2);
-            })
-            ->join('users', 'users.id', 'gatetraffics.user_id')
+   // $items = \App\Gatetraffic::where(function($query) {
+   //              $query->where('gatetraffics.user_id', '2');
+   //              $query->orderBy('gatedate','DESC');
+   //              $query->take(2);
+   //          })
+   //          ->join('users', 'users.id', 'gatetraffics.user_id')
 
-            // ->join('users', 'users.id', 'gatetraffics.user_id')
-            // ->join('people', 'users.people_id', 'people.id')
-            // ->join('gatedevices', 'gatedevices.id', 'gatetraffics.gatedevice_id')
-            // ->join('gatepasses', 'gatepasses.id', 'gatetraffics.gatepass_id')
-            // ->join('gatedirects', 'gatedirects.id', 'gatetraffics.gatedirect_id')
-            // ->join('gatemessages', 'gatemessages.id', 'gatetraffics.gatemessage_id')
-            ->orderBy('gatedate','DESC')
-            ->limit(1)
-             ->select('gatetraffics.id', 'gatedate', 'user_id')
-             ->get();
-            // ->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
+   //          // ->join('users', 'users.id', 'gatetraffics.user_id')
+   //          // ->join('people', 'users.people_id', 'people.id')
+   //          // ->join('gatedevices', 'gatedevices.id', 'gatetraffics.gatedevice_id')
+   //          // ->join('gatepasses', 'gatepasses.id', 'gatetraffics.gatepass_id')
+   //          // ->join('gatedirects', 'gatedirects.id', 'gatetraffics.gatedirect_id')
+   //          // ->join('gatemessages', 'gatemessages.id', 'gatetraffics.gatemessage_id')
+   //          ->orderBy('gatedate','DESC')
+   //          ->limit(1)
+   //           ->select('gatetraffics.id', 'gatedate', 'user_id')
+   //           ->get();
+   //          // ->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
 
-            return $items;
-           // return $items;
+   //          return $items;
+   //         // return $items;
 
 
 
 
         $traffic = \App\Gatetraffic::with($relation);
-        $traffic->where('user_id', '3')
+
+        $limit = 5;
+        $traffic->where('user_id', '1')
                 ->orderBy('gatedate','DESC')
-                ->limit(2)
+                ->limit($limit)
                 ->get();
-        return $traffic->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
+
+        // $t = new \Illuminate\Pagination\Paginator();
+        $traffic = new \Illuminate\Pagination\Paginator($traffic, $traffic->count(), $limit);
+        return $traffic;
+        // ->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
 
         if((\Auth::user()->level_id) == 1)
         {

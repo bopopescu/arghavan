@@ -19,7 +19,7 @@ class User extends Authenticatable
     public static $C_STR_DEACTIVE = "غیر فعال";
     public static $C_STR_ACTIVE   = "فعال";
     public const ROOT_USERNAME = 'root';
-
+    protected $rememberTokenName = false;
 
     /**
      * @var Defined State

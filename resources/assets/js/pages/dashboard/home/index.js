@@ -251,16 +251,15 @@ window.x = new Vue({
          * @param      {<type>}  item    The item
          */
         unlockInput(item){
-            SocketClient.connect('192.168.0.173', 20000,
-                                    (e) => {
-                                        console.log (e);
-                                    });
-
-            let data = item.id + '[53011]';
-
-            SocketClient.send (data);
-
-            SocketClient.disconnect()
+            SocketClient.socketOpened = () => {
+                let data = item.id + '[53011]';
+                SocketClient.send (data);
+                SocketClient.disconnect();
+            };
+            SocketClient.connect(document.pageData.webSocketServer, 20000,
+                                (e) => {
+                                    console.log (e);
+                                });
         },
 
         /**
@@ -269,12 +268,15 @@ window.x = new Vue({
          * @param      {<type>}  item    The item
          */
         unlockOutput(item){
-            SocketClient.connect('172.20.20.143', 20000,
-                                 (e) => {
+            SocketClient.socketOpened = () => {
+                    let data = item.id + '[54011]';
+                    SocketClient.send (data);
+                    SocketClient.disconnect();
+                };
+            SocketClient.connect(document.pageData.webSocketServer, 20000,
+                                (e) => {
                                     console.log (e);
-                                 });
-            SocketClient.send ( item.id,'[54011]');
-            SocketClient.disconnect()
+                                });
         },
 
         /**

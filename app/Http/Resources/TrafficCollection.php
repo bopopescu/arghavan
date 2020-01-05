@@ -24,7 +24,7 @@ class TrafficCollection extends ResourceCollection
                     'people' => [
                         'name' => $record->user_people_name,
                         'lastname' => $record->user_people_lastname,
-                        'pictureUrl' =>  \App\People::getPictureUrl($record->user_people_picture),
+                        // 'pictureUrl' =>  \App\People::getPictureUrl($record->user_people_picture),
                     ],
                 ],
                 'gatedirect' => [

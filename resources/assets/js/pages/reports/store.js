@@ -161,8 +161,15 @@ const actions = {
 						return x;
 					});
 
+					// Update data
+					let data = {
+						data : allData.data
+					};
+					data = Object.assign(data, allData.links);
+					data = Object.assign(data, allData.meta);
+
 					// Set data
-					context.commit('setData', allData);
+					context.commit('setData', data);
 
 					resolve(res);
 				})

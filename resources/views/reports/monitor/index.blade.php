@@ -58,7 +58,7 @@
                             <div class="text-center">
                                 <pagination :data="allData"
                                             v-on:pagination-change-page="loadRecords"
-                                            :limit= "{{ \App\Http\Controllers\Controller::C_PAGINATION_LIMIT }}"
+                                            :limit= "10"
                                             :show-disable= "true">
                                 </pagination>
                             </div>

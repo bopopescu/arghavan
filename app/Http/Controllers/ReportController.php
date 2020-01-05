@@ -60,9 +60,9 @@ class ReportController extends Controller
         // $items = \App\Gatetraffic::join('users', 'users.id', 'gatetraffics.user_id')
         //     ->orderBy('gatedate','DESC')
         //     ->limit(2)
-        //     ->paginate(Controller::C_PAGINATE_SIZE);
-        //     dd($traffic);
-        //  return $items;
+        //     ->get();
+        // $items = new \Illuminate\Pagination\Paginator($items, $items->count(), 2);
+         // return $items;
 
         if((\Auth::user()->level_id) == 1)
         {
@@ -78,10 +78,27 @@ class ReportController extends Controller
             $traffic->where('user_id', $id)
                     ->with($relation);
         }
-        $traffic->orderBy('gatedate','DESC')
-                ->limit(\App\Report::$LIMIT);
 
-         return $traffic->paginate(Controller::C_PAGINATE_SIZE);
+        $items = $traffic->orderBy('gatedate','DESC')
+                ->limit(20)
+                ->get();
+
+        $items = ReportController::paginate($items, 10);
+        // return $items;
+
+        // $items = $traffic->paginate(5);
+
+        //TODO:  CREATE A RESOURCE COLLECTION
+         return new TrafficCollection($items);
+
+        //return new SearchUserCollection($items);
+    }
+
+    public static function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (\Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof \Illuminate\Support\Collection ? $items : \Illuminate\Support\Collection::make($items);
+        return new \Illuminate\Pagination\LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
     /**

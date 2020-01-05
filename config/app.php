@@ -253,5 +253,4 @@ return [
         'Smsir' => phplusir\smsir\SmsirFacade::class,
         'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
     ],
-
 ];
