@@ -89,6 +89,7 @@ const mutations =
 			grouppermits: data.grouppermits,
 			terms: data.terms,
 			gategroups: data.gategroups,
+			gateplans: data.gateplans,
 			kintypes: data.kintypes,
 		};
 	},
@@ -655,6 +656,34 @@ const actions = {
 			let url = '/people/' + record.user_id + '/setGateGroup';
 			let data = {
 				gategroups: record.gategroups
+			};
+
+			axios.put(url, data)
+				.then(res => {
+
+					let status = (0 == res.data.status);
+					let record = res.data.user;
+
+					if (null != record) {
+						context.commit ('updateRecord', {
+									getters: context.getters,
+									record : record[0]
+								});
+					}
+					resolve(status);
+				})
+				.catch(err => reject(err));
+		});
+	},
+
+	/**
+	 * save Gate Plan
+	 */
+	saveGatePlanRecord: (context, record) => {
+		return new Promise((resolve, reject) =>	{
+			let url = '/people/' + record.user_id + '/setGatePlan';
+			let data = {
+				gateplans: record.gateplans
 			};
 
 			axios.put(url, data)

@@ -170,6 +170,14 @@ class User extends Authenticatable
         return $this->belongsToMany(\App\Gategroup::class);
     }
 
+      /**
+     * Get assigned Gate Plan
+     */
+    public function gateplans()
+    {
+        return $this->belongsToMany(\App\GatePlan::class);
+    }
+
     /**
      * Get assigned Gate Traffic
      */
@@ -288,6 +296,14 @@ class User extends Authenticatable
     public function giveGateGroupTo($gategroup)
     {
         $this->gategroups()->sync($gategroup);
+    }
+
+    /**
+     * Give Gate Plan
+     */
+    public function giveGatePlanTo($gateplan)
+    {
+        $this->gateplans()->sync($gateplan);
     }
 
     /**

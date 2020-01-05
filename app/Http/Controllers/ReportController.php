@@ -43,6 +43,11 @@ class ReportController extends Controller
      */
     public static function getTraffics (Request $request, $id = null)
     {
+        // $raw_traffic_last_user= \DB::raw ("CALL sp_get_50_lasted_traffic;");
+        // $res = \DB::select ($raw_traffic_last_user);
+        // return $res;
+
+        $traffic = null;
         $relation = [
             'user',
             'user.people',
@@ -52,6 +57,12 @@ class ReportController extends Controller
             'gatemessage',
         ];
 
+        // $items = \App\Gatetraffic::join('users', 'users.id', 'gatetraffics.user_id')
+        //     ->orderBy('gatedate','DESC')
+        //     ->limit(2)
+        //     ->paginate(Controller::C_PAGINATE_SIZE);
+        //     dd($traffic);
+        //  return $items;
 
         if((\Auth::user()->level_id) == 1)
         {
@@ -64,14 +75,13 @@ class ReportController extends Controller
 
         if (! is_null ($id))
         {
-            $traffic->where('id', $id)
+            $traffic->where('user_id', $id)
                     ->with($relation);
         }
-
         $traffic->orderBy('gatedate','DESC')
                 ->limit(\App\Report::$LIMIT);
 
-        return $traffic->paginate(Controller::C_PAGINATE_SIZE);
+         return $traffic->paginate(Controller::C_PAGINATE_SIZE);
     }
 
     /**
@@ -357,7 +367,6 @@ class ReportController extends Controller
                                 'gatemessages.message as gatemessage_message',
                                 'gatemessages.id as gatemessage_id',
                                 'gatetraffics.gatedate as gatedate'
-
                         ])
                         ->paginate(Controller::C_PAGINATE_SIZE);
 

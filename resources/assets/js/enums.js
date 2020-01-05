@@ -15,8 +15,9 @@ export default {
         assignGateGroup: 12,
         assignFingerPrint: 13,
         assignMaterial: 14,
-        normalModal: 15,
-        registerParent: 16,
+        assignGatePlan: 15,
+        normalModal: 16,
+        registerParent: 17,
 
         normal: 99
     }

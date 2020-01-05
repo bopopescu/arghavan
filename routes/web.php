@@ -156,6 +156,7 @@ Route::get('base/data/notification/unread_count',
 // Route::post('/people/loaduser', 'PeopleController@loaduser');
 Route::put('/people/{user}/setGrouppermit', 'PeopleController@setGrouppermit');
 Route::put('/people/{user}/setGateGroup', 'PeopleController@setGateGroup');
+Route::put('/people/{user}/setGatePlan', 'PeopleController@setGatePlan');
 Route::put('/people/{user}/setTerm', 'PeopleController@setTerm');
 Route::post('/people/uploadImage', 'PeopleController@uploadImage');
 Route::get('/people/{people}/loadParent', 'PeopleController@loadParent');

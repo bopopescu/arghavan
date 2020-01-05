@@ -221,10 +221,6 @@ window.v = new Vue({
             }
         },
 
-
-
-
-
         /**
          * Load Gate Groups list
          */
@@ -421,7 +417,7 @@ window.v = new Vue({
             setTimeout (() => {
                 this.loadRecords (this.page);
                 this.refreshResults ();
-            }, 1000);
+            }, 50000);
         },
         /**
          * Tab Search Record

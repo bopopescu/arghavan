@@ -22,8 +22,9 @@ window.v = new Vue({
         term: false,
         gateGroup: false,
         fingerprint: false,
-        modalMode: Enums.FormMode.normalModal,
+        gatePlan: false,
 
+        modalMode: Enums.FormMode.normalModal,
         formMode: Enums.FormMode.normal,
         grouptype: 0,
         page: 1,
@@ -120,6 +121,7 @@ window.v = new Vue({
         isRegisterMode: state => state.formMode == Enums.FormMode.register,
         isAssignGrouppermit: state => state.formMode == Enums.FormMode.assignGrouppermit,
         isAssignGateGroup: state => state.formMode == Enums.FormMode.assignGateGroup,
+        isAssignGatePlan: state => state.formMode == Enums.FormMode.assignGatePlan,
         isAssignTerm: state => state.formMode == Enums.FormMode.assignTerm,
         isAssignFingerPrint: state => state.formMode == Enums.FormMode.assignFingerPrint,
 
@@ -132,6 +134,7 @@ window.v = new Vue({
         isShowParent() { return this.parent; },
         isShowTerm() { return this.term; },
         isShowGateGroup() { return this.gateGroup; },
+        isShowGatePlan() { return this.gatePlan; },
         isShowFingerPrint() { return this.fingerprint; },
         /*
         User Info
@@ -154,6 +157,7 @@ window.v = new Vue({
         contracts: state => state.$store.getters.baseInformation.contracts,
         grouppermits: state => state.$store.getters.baseInformation.grouppermits,
         gategroups: state => state.$store.getters.baseInformation.gategroups,
+        gateplans: state => state.$store.getters.baseInformation.gateplans,
         cardtypes: state => state.$store.getters.baseInformation.cardtypes,
         terms: state => state.$store.getters.terms,
         /*
@@ -581,6 +585,7 @@ window.v = new Vue({
          */
         filterUsers(groupId) {
             this.fingerprint = true;
+            this.gatePlan = true;
             if (groupId == document.pageData.people.group_students) {
                 this.parent = true;
                 this.term = true;
@@ -1327,18 +1332,18 @@ window.v = new Vue({
                                 this.isLoading = false;
 
                                 if (res) {
-                                    demo.showNotification('ﺪﺷ ﻡﺎﺠﻧا ﺕیﻖﻓﻮﻣ ﺎﺑ ﺕﺎﻋﻼﻃا ﺖﺒﺛ', 'success');
+                                    demo.showNotification('ثبت اطلاعات با موفقیت انجام شد', 'success');
 
                                     this.registerCancel();
                                 } else {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'warning');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'warning');
                                 }
                             })
                             .catch(err => {
                                 this.isLoading = false;
 
                                 if (err.response.status) {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'danger');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'danger');
                                 } else {
                                     demo.showNotification(err.message, 'danger');
                                 }
@@ -1406,18 +1411,18 @@ window.v = new Vue({
                                 this.isLoading = false;
 
                                 if (res) {
-                                    demo.showNotification('ﺪﺷ ﻡﺎﺠﻧا ﺕیﻖﻓﻮﻣ ﺎﺑ ﺕﺎﻋﻼﻃا ﺖﺒﺛ', 'success');
+                                    demo.showNotification('ثبت اطلاعات با موفقیت انجام شد', 'success');
 
                                     this.registerCancel();
                                 } else {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'warning');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'warning');
                                 }
                             })
                             .catch(err => {
                                 this.isLoading = false;
 
                                 if (err.response.status) {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'danger');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'danger');
                                 } else {
                                     demo.showNotification(err.message, 'danger');
                                 }
@@ -1432,7 +1437,7 @@ window.v = new Vue({
         },
 
         /**
-         * Set Gat Group to record
+         * Set Gate Group to record
          */
         setGateGroup(record) {
             this.formMode = Enums.FormMode.assignGateGroup;
@@ -1461,8 +1466,42 @@ window.v = new Vue({
             });
         },
 
+         /**
+         * Set Gate Plan to record
+         */
+        setGatePlan(record) {
+            console.log("Set gatePlan: ", record);
+            this.formMode = Enums.FormMode.assignGatePlan;
+            console.log(" this.formMode: ",  this.formMode);
+
+            this.errors.clear();
+            this.tempRecord = $.extend(true, {}, this.emptyRecord);
+
+            this.tempRecord.user = {
+                id: record.id,
+                code: record.code,
+                email: record.email,
+                state: record.state,
+                group: {
+                    id: record.group.id,
+                    name: record.group.name
+                },
+            };
+
+            console.log("this.gateplans", this.gateplans);
+
+            // Update gateplans checked state
+            this.gateplans.forEach(gateplan => {
+                gateplan.checked = false;
+
+                let res = record.gateplans.filter(peopleGatePlan => peopleGatePlan.id == gateplan.id);
+
+                gateplan.checked = (res.length > 0);
+            });
+        },
+
         /**
-         * Save Group permit Record
+         * Save Gate Group  Record
          */
         saveGateGroupRecord(scope) {
             this.$validator.validateAll(scope)
@@ -1486,18 +1525,70 @@ window.v = new Vue({
                                 this.isLoading = false;
 
                                 if (res) {
-                                    demo.showNotification('ﺪﺷ ﻡﺎﺠﻧا ﺕیﻖﻓﻮﻣ ﺎﺑ ﺕﺎﻋﻼﻃا ﺖﺒﺛ', 'success');
+                                    demo.showNotification('ثبت اطلاعات با موفقیت انجام شد', 'success');
 
                                     this.registerCancel();
                                 } else {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'warning');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'warning');
                                 }
                             })
                             .catch(err => {
                                 this.isLoading = false;
 
                                 if (err.response.status) {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'danger');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'danger');
+                                } else {
+                                    demo.showNotification(err.message, 'danger');
+                                }
+                            });
+
+                        return;
+                    }
+                    let err = Helper.generateErrorString();
+
+                    demo.showNotification(err, 'warning');
+                });
+        },
+
+         /**
+         * Save Gate Plan Record
+         */
+        saveGatePlanRecord(scope) {
+            this.$validator.validateAll(scope)
+                .then(result => {
+                    if (result) {
+                        // Prepare data
+                        let data = {
+                            user_id: this.tempRecord.user.id,
+                            gateplans: []
+                        };
+
+                        console.log('data', data.user_id);
+
+                        data.gateplans = this.gateplans.filter(el => el.checked == true)
+                            .map(el => el.id);
+
+                        this.isLoading = true;
+
+                        // Try to save
+                        this.$store.dispatch('saveGatePlanRecord', data)
+                            .then(res => {
+
+                                this.isLoading = false;
+
+                                if (res) {
+                                    demo.showNotification('ثبت اطلاعات با موفقیت انجام شد', 'success');
+
+                                    this.registerCancel();
+                                } else {
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'warning');
+                                }
+                            })
+                            .catch(err => {
+                                this.isLoading = false;
+
+                                if (err.response.status) {
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'danger');
                                 } else {
                                     demo.showNotification(err.message, 'danger');
                                 }
@@ -1730,18 +1821,18 @@ window.v = new Vue({
 
                                 if (res) {
                                     this.loadParentRecords(data.people_id);
-                                    demo.showNotification('ﺪﺷ ﻡﺎﺠﻧا ﺕیﻖﻓﻮﻣ ﺎﺑ ﺕﺎﻋﻼﻃا ﺖﺒﺛ', 'success');
+                                    demo.showNotification('ثبت اطلاعات با موفقیت انجام شد', 'success');
 
                                     this.registerParentCancel();
                                 } else {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'warning');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'warning');
                                 }
                             })
                             .catch(err => {
                                 this.isLoading = false;
 
                                 if (err.response.status) {
-                                    demo.showNotification('ﺖﺳا ﻩﺪﺷ ﺖﺒﺛ ﻼﺒﻗ ﻡﺎﻧ ﻥیا', 'danger');
+                                    demo.showNotification('این نام قبلا ثبت شده است', 'danger');
                                 } else {
                                     demo.showNotification(err.message, 'danger');
                                 }
@@ -1764,10 +1855,10 @@ window.v = new Vue({
 
             this.$store.dispatch('uploadImageRecord')
                 .then(res => {
-                    demo.showNotification('ﺪﺷ یﺭاﺫگﺭﺎﺑ ﺕیﻖﻓﻮﻣ ﺎﺑ ﺭیﻭﺎﺼﺗ', 'success');
+                    demo.showNotification('upload با موفقیت انجام شد', 'success');
                 })
                 .catch(err => {
-                    demo.showNotification('ﺖﻓﺭگ ﺪﻫاﻮﺧ ﺭاﺮﻗ یﺱﺭﺮﺑ ﺩﺭﻮﻣ ﻭ ﺪﺷ ﻩﺭیﺥﺫ ﻪﻧﺎﻣﺎﺳ ﺭﺩ ﺎﻄﺧ ﻥیا !ﺭیﻭﺎﺼﺗ یﺭاﺫگﺭﺎﺑ ﺭﺩ ﺎﻄﺧ', 'danger');
+                    demo.showNotification('خطا در حذف رکورد! این خطا در سامانه ذخیره شد و مورد بررسی قرار خواهد گرفت', 'danger');
                 });
         },
 

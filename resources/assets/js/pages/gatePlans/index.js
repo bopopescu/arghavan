@@ -258,7 +258,6 @@ window.v = new Vue({
                             weekdays: [],
                             oldWeekdays: this.oldSchedule,
                         };
-                        console.log('index -> save record -> data', data);
 
                         data.weekdays = this.weekdays.filter(el => el.checked == true);
                         data.weekdays.forEach(weekday => {
@@ -267,7 +266,6 @@ window.v = new Vue({
                             weekday.id = (weekday.id == undefined) ? 0 : weekday.id;
                         });
 
-                        console.log('index -> save record -> weekdays', data.weekdays);
                         this.isLoading = true;
                         // Try to save
                         this.$store.dispatch('saveRecord', data)

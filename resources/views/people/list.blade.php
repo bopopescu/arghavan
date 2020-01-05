@@ -120,6 +120,14 @@
                                         </a>
                                     </div>
 
+                                    <div v-if="isShowGatePlan">
+                                         <a href="#" class="btn btn-round btn-info btn-just-icon pull-left" title="اختصاص برنامه تردد"
+                                            @click.prevent="setGatePlan(record)">
+                                            <i class="fa fa-calendar"></i>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </div>
+
                                 </td>
                             </tr>
                         </tbody>
@@ -188,6 +196,12 @@
                 @include('people.assign-finger-print.assign-finger-print')
             </div>
             <!-- /Assign Finger Print dialog -->
+
+            <!-- Assign Gate Plan dialog -->
+            <div v-show="isAssignGatePlan">
+                @include('people.assign-gate-plan.assign-gate-plan')
+            </div>
+            <!-- /Assign Gate Plan dialog -->
 
             <!-- Parent modal -->
             <div class="modal fade"

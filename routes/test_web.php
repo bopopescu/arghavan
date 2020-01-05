@@ -15,7 +15,7 @@ Route::get('test', function () {
 
         $card = \App\Card::leftjoin('card_user', 'card_id', 'cards.id')
                             ->where ('cdn', '1046343769')
-                            ->select([ 
+                            ->select([
                                 'card_user.card_id',
                                 'card_user.user_id',
                                 'cdn',
@@ -33,10 +33,10 @@ Route::get('test', function () {
                         ->leftjoin('cards', 'card_id', 'cards.id')
                         ->where('users.id', 3)
                         ->select([
-                                    'users.id as userId', 
-                                    'card_user.user_id', 
+                                    'users.id as userId',
+                                    'card_user.user_id',
                                     'card_user.card_id' ,
-                                    'cards.cdn', 
+                                    'cards.cdn',
                                     'cards.state',
                                     'cards.startDate',
                                     'cards.endDate',
@@ -45,8 +45,8 @@ Route::get('test', function () {
                         ->get()
                         ->first();
 
-      
-       
+
+
         return $res;
 
 
@@ -91,10 +91,75 @@ Route::get('test', function () {
                 ]);
             },
         ];
-       
 
 });
 
+Route::get('traffic', function(){
+
+    $id = null;
+   //  $raw_traffic_last_user= \DB::raw ("CALL sp_get_50_lasted_traffic;");
+   //  $res = \DB::select ($raw_traffic_last_user);
+   //  $allUsers = DB::select('CALL sp_get_50_lasted_traffic()', array(101));
+   // return $allUsers;
+
+     $relation = [
+            'user',
+            'user.people',
+            'gatedevice',
+            'gatepass',
+            'gatedirect',
+            'gatemessage',
+        ];
+
+   $items = \App\Gatetraffic::where(function($query) {
+                $query->where('gatetraffics.user_id', '2');
+                $query->orderBy('gatedate','DESC');
+                $query->take(2);
+            })
+            ->join('users', 'users.id', 'gatetraffics.user_id')
+
+            // ->join('users', 'users.id', 'gatetraffics.user_id')
+            // ->join('people', 'users.people_id', 'people.id')
+            // ->join('gatedevices', 'gatedevices.id', 'gatetraffics.gatedevice_id')
+            // ->join('gatepasses', 'gatepasses.id', 'gatetraffics.gatepass_id')
+            // ->join('gatedirects', 'gatedirects.id', 'gatetraffics.gatedirect_id')
+            // ->join('gatemessages', 'gatemessages.id', 'gatetraffics.gatemessage_id')
+            ->orderBy('gatedate','DESC')
+            ->limit(1)
+             ->select('gatetraffics.id', 'gatedate', 'user_id')
+             ->get();
+            // ->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
+
+            return $items;
+           // return $items;
+
+
+
+
+        $traffic = \App\Gatetraffic::with($relation);
+        $traffic->where('user_id', '3')
+                ->orderBy('gatedate','DESC')
+                ->limit(2)
+                ->get();
+        return $traffic->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
+
+        if((\Auth::user()->level_id) == 1)
+        {
+            $traffic = \App\Gatetraffic::with($relation);
+        }
+        elseif ((\Auth::user()->level_id) == 3) {
+            $traffic = \App\Gatetraffic::with($relation)
+                    ->where('user_id', \Auth::user()->id);
+        }
+
+        if (! is_null ($id))
+        {
+            $traffic->where('id', $id)
+                    ->with($relation);
+        }
+            $traffic->orderBy('gatedate','DESC')->limit(2)->get();
+            return $traffic->paginate(\App\Http\Controllers\Controller::C_PAGINATE_SIZE);
+});
 /* TEST */
 
 // Route::get('suprima', function(){

@@ -317,6 +317,10 @@ class RegistrationController extends Controller
                                         'name'])
                             ->get ();
 
+            $gateplans = \App\GatePlan::select (['id',
+                                                'name'])
+                            ->get ();
+
             $result = [
                        'groups'       => $groups,
                        'genders'      => $genders,
@@ -337,6 +341,7 @@ class RegistrationController extends Controller
                        'terms'           => $terms,
                        'gategroups'      => $gategroups,
                        'kintypes'        => $kintypes,
+                       'gateplans'       => $gateplans,
                    ];
 
             return $result;

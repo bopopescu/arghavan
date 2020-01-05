@@ -5,17 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\User;
-use App\Gender;
-use App\Situation;
-use App\Group;
-use App\City;
-use App\Melliat;
-use App\Province;
-use App\GroupPermit;
-use App\Gategroup;
-
-
 class People extends Model
 {
     use SoftDeletes;
@@ -100,7 +89,7 @@ class People extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(\App\User::class);
     }
 
     /**
@@ -108,7 +97,7 @@ class People extends Model
      */
     public function gender()
     {
-    	return $this->belongsTo(Gender::class);
+    	return $this->belongsTo(\App\Gender::class);
     }
 
     /**
@@ -116,7 +105,7 @@ class People extends Model
      */
     public function group()
     {
-    	return $this->belongsTo(Group::class);
+    	return $this->belongsTo(\App\Group::class);
     }
 
     /**
@@ -124,7 +113,7 @@ class People extends Model
      */
     public function situation()
     {
-    	return $this->belongsTo(Situation::class);
+    	return $this->belongsTo(\App\Situation::class);
     }
 
     /**
@@ -132,7 +121,7 @@ class People extends Model
      */
     public function city()
     {
-    	return $this->belongsTo(City::class);
+    	return $this->belongsTo(\App\City::class);
     }
 
     /**
@@ -140,7 +129,7 @@ class People extends Model
      */
     public function melliat()
     {
-    	return $this->belongsTo(Melliat::class);
+    	return $this->belongsTo(\App\Melliat::class);
     }
 
     /**
@@ -148,14 +137,14 @@ class People extends Model
      */
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(\App\Province::class);
     }
     /**
      * Get  Degree
      */
     public function degree()
     {
-        return $this->belongsTo(Degree::class);
+        return $this->belongsTo(\App\Degree::class);
     }
 
     /**
@@ -163,7 +152,7 @@ class People extends Model
      */
     public function field()
     {
-        return $this->belongsTo(Field::class);
+        return $this->belongsTo(\App\Field::class);
     }
 
     /**
@@ -171,7 +160,7 @@ class People extends Model
      */
     public function university()
     {
-        return $this->belongsTo(University::class);
+        return $this->belongsTo(\App\University::class);
     }
 
     /**

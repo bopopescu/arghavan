@@ -36,6 +36,7 @@ class PeopleController extends Controller
             'teacher',
             'grouppermits',
             'gategroups',
+            'gateplans',
             'terms',
             // 'fingerprints',
         ];
@@ -251,6 +252,26 @@ class PeopleController extends Controller
     }
 
      /**
+     * Set Gate Plan to User
+     */
+    public function setGatePlan(Request $request, User $user)
+    {
+        // dd([$request, $user]);
+        if ($request->ajax())
+        {
+            $gateplans = $request->gateplans;
+
+            $user->giveGatePlanTo($gateplans);
+            $user = static::loadPersonsData($user->id);
+
+            return [
+                'status'   => is_null($user) ? 1 : 0,
+                'user'     => $user
+            ];
+        }
+    }
+
+     /**
      * Load Persons data
      * @param  [type] $id [description]
      * @return [type]     [description]
@@ -326,7 +347,7 @@ class PeopleController extends Controller
                     'name'
                 ]);
             },
-           
+
             'terms.semester' => function ($query){
                 $query->select([
                     'id',
@@ -418,6 +439,13 @@ class PeopleController extends Controller
                 ]);
             },
             'gategroups' => function($query){
+                $query->select([
+                    'id',
+                    'name',
+                ]);
+            },
+
+            'gateplans' => function($query){
                 $query->select([
                     'id',
                     'name',
@@ -541,7 +569,7 @@ class PeopleController extends Controller
 
         return [
             'status'   => 0
-            
+
         ];
     }
 
