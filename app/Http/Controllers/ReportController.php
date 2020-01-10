@@ -9,7 +9,6 @@ use App\Http\Resources\SearchUserCollection;
 use App\Http\Resources\SearchEditUserCollection;
 use App\Http\Resources\ReportCollection;
 
-
 use App\User;
 use App\Group;
 use App\People;
@@ -29,6 +28,12 @@ class ReportController extends Controller
         $this->middleware('auth');
     }
 
+    public static function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (\Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof \Illuminate\Support\Collection ? $items : \Illuminate\Support\Collection::make($items);
+        return new \Illuminate\Pagination\LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
     /**
      * Show Search
      */
@@ -43,64 +48,72 @@ class ReportController extends Controller
      */
     public static function getTraffics (Request $request, $id = null)
     {
-        // $raw_traffic_last_user= \DB::raw ("CALL sp_get_50_lasted_traffic;");
-        // $res = \DB::select ($raw_traffic_last_user);
-        // return $res;
+        $LASTED_TOP_TRAFFIC = \Config::get('core.lasted_top_traffic'); // default = 50 row
+        $level = \Auth::user()->level_id;
 
-        $traffic = null;
-        $relation = [
-            'user',
-            'user.people',
-            'gatedevice',
-            'gatepass',
-            'gatedirect',
-            'gatemessage',
-        ];
+        $devs = DB::table("gatedevices")->select('gatedevices.id')
+            ->join('gatedevice_gategroup', 'gatedevice_gategroup.gatedevice_id', 'gatedevices.id')
+            ->join('gategroups', 'gategroups.id', 'gatedevice_gategroup.gategroup_id')
+            ->join('gategroup_user', 'gategroup_user.gategroup_id', 'gategroups.id')
+            ->join('users', 'users.id', 'gategroup_user.user_id')
+            ->where('users.id', \Auth::user()->id)
+            // ->whereIn('gatedevices.id',function($query){
+            //      $query->select('users.id')->from('users')
+            //             ->where('users.id', 2);
+            // })
+            ->get();
+        $plucked = $devs->pluck('id');
 
-        // $items = \App\Gatetraffic::join('users', 'users.id', 'gatetraffics.user_id')
-        //     ->orderBy('gatedate','DESC')
-        //     ->limit(2)
-        //     ->get();
-        // $items = new \Illuminate\Pagination\Paginator($items, $items->count(), 2);
-         // return $items;
+        $traffic = \App\Gatetraffic::join('users', function($query) use ($level) {
+                                        $query->on ('users.id', 'gatetraffics.user_id');
+                                        if ($level != 1 )
+                                            $query->where('user_id', \Auth::user()->id);
+                                        })
+                                        ->join('people', 'people.id', 'users.people_id')
+                                        ->join('gatedevices', 'gatedevices.id', 'gatetraffics.gatedevice_id')
+                                        ->join('gatepasses', 'gatepasses.id', 'gatetraffics.gatepass_id')
+                                        ->join('gatedirects', 'gatedirects.id', 'gatetraffics.gatedirect_id')
+                                        ->join('gatemessages', 'gatemessages.id', 'gatetraffics.gatemessage_id')
+                                        ->where(function($query) use ($id){
+                                                if (! is_null ($id)){
+                                                    $query->where('gatetraffics.user_id', $id);
+                                                }
+                                            })
+                                        ->orderBy('gatedate','DESC')
+                                        ->where(function($query) use ($id, $plucked){
+                                                $query->whereIn('gatetraffics.gatedevice_id', $plucked);
+                                                if (! is_null ($id)){
+                                                    $query->where('gatetraffics.user_id', $id);
+                                                }
+                                            })
+                                        ->limit($LASTED_TOP_TRAFFIC)
+                                        ->select([
+                                                'gatetraffics.id as gatetrafficsId',
+                                                'gatetraffics.gatedate as gatedate',
 
-        if((\Auth::user()->level_id) == 1)
-        {
-            $traffic = \App\Gatetraffic::with($relation);
-        }
-        elseif ((\Auth::user()->level_id) == 3) {
-            $traffic = \App\Gatetraffic::with($relation)
-                    ->where('user_id', \Auth::user()->id);
-        }
+                                                'users.id as user_id',
+                                                'users.code as user_code',
 
-        if (! is_null ($id))
-        {
-            $traffic->where('user_id', $id)
-                    ->with($relation);
-        }
+                                                'people.name as user_people_name',
+                                                'people.lastname as user_people_lastname',
+                                                'people.picture as user_people_picture',
 
-        $items = $traffic->orderBy('gatedate','DESC')
-                ->limit(20)
-                ->get();
+                                                'gatedevices.id as gatedevice_id',
+                                                'gatedevices.name as gatedevice_name',
+                                                'gatedevices.number as gatedevice_number',
 
-        $items = ReportController::paginate($items, 10);
-        // return $items;
+                                                'gatedirects.id as gatedirect_id',
+                                                'gatedirects.name as gatedirect_name',
 
-        // $items = $traffic->paginate(5);
+                                                'gatemessages.id as gatemessage_id',
+                                                'gatemessages.message as gatemessage_message',
+                                        ])
+                            ->get();
 
-        //TODO:  CREATE A RESOURCE COLLECTION
-         return new TrafficCollection($items);
+        $traffic = ReportController::paginate($traffic, Controller::C_PAGINATE_SIZE);
 
-        //return new SearchUserCollection($items);
+        return new TrafficCollection($traffic);
     }
-
-    public static function paginate($items, $perPage = 15, $page = null, $options = [])
-    {
-        $page = $page ?: (\Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1);
-        $items = $items instanceof \Illuminate\Support\Collection ? $items : \Illuminate\Support\Collection::make($items);
-        return new \Illuminate\Pagination\LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
-    }
-
     /**
      * Show 50 Last Tarffic
      */
@@ -325,7 +338,7 @@ class ReportController extends Controller
     /**
      * Search User By code or group_id or nationalid or name or lastname or serial card or date
      */
-     public function searchTraffic(Request $request)
+    public function searchTraffic(Request $request)
     {
         $dateRange = [
                           $request->startDate,

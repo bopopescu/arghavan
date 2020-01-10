@@ -176,7 +176,7 @@ class DashboardChartController extends Controller
    {
         // $page = $request->page;
         $page = 1;
-        $res = \DB::raw("CALL spPresentReport();");
+        $res = \DB::raw("CALL sp_present_report();");
         $mydata = \DB::select($res);
 
         $perPage = Controller::C_PAGINATE_SIZE;
@@ -197,7 +197,7 @@ class DashboardChartController extends Controller
     public function loadGateDeviceActiveReport()
     {
         $page = 1;
-        $res = \DB::raw("CALL spGateActiveReport();");
+        $res = \DB::raw("CALL sp_gate_active_report();");
         $mydata = \DB::select($res);
 
         $perPage = Controller::C_PAGINATE_SIZE;

@@ -13,7 +13,7 @@ class Gatedirect extends Model
 
     public $timestamps = false;
 
-     public function gatedevices()
+    public function gatedevices()
     {
     	return $this->hasMany(Gatedevice::class);
     }

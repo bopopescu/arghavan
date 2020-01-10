@@ -217,7 +217,7 @@ class CreateGateProcedure extends Migration
                 END";
 
         #geoip_region_by_name(Store Procedure Present Report)
-        $spPresentReport = "CREATE DEFINER=`root`@`localhost` PROCEDURE `spPresentReport`()
+        $sp_present_report = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_present_report`()
             BEGIN
                 SELECT
                     inputs.user_id,
@@ -275,7 +275,7 @@ class CreateGateProcedure extends Migration
             END";
 
         #geoip_region_by_name(Store Procedure Gate device Active)
-        $spGateActiveReport = "CREATE DEFINER=`root`@`localhost` PROCEDURE `spGateActiveReport`()
+        $sp_gate_active_report = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_gate_active_report`()
 
             BEGIN
                 SELECT
@@ -296,7 +296,7 @@ class CreateGateProcedure extends Migration
                 INNER JOIN zones on zones.id = gatedevices.zone_id
 
                 WHERE
-                    gatedevices.netState = 1 AND gatedevices.gate = 1 AND gatedevices.state = 1 AND gatedevices.type = 0;
+                    gatedevices.netState = 1  AND gatedevices.state = 1 AND gatedevices.type = 0;
             END";
 
             $sp_update_traffic = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_traffic`(IN `CDN` VARCHAR(191) CHARSET utf8, IN `GATEMESSAGE_ID` INT, IN `GATEDIRECT_ID` INT)
@@ -479,8 +479,8 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateResponseTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertLog');
         DB::unprepared('DROP PROCEDURE IF EXISTS spLoadGateDeviceById');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spPresentReport');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spGateActiveReport');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_present_report');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_gate_active_report');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_cdn');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_network_status_gateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_get_fp_attach_gatedevice');
@@ -497,8 +497,8 @@ class CreateGateProcedure extends Migration
         DB::unprepared($spLoadUser);
         DB::unprepared($spInsertLog);
         DB::unprepared($spLoadGateDeviceById);
-        DB::unprepared($spPresentReport);
-        DB::unprepared($spGateActiveReport);
+        DB::unprepared($sp_present_report);
+        DB::unprepared($sp_gate_active_report);
         DB::unprepared($sp_update_network_status_gateDevice);
         DB::unprepared($sp_update_traffic);
         DB::unprepared($sp_update_traffic_fingerprint);
@@ -524,8 +524,8 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateResponseTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertLog');
         DB::unprepared('DROP PROCEDURE IF EXISTS spLoadGateDeviceById');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spPresentReport');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spGateActiveReport');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_present_report');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_gate_active_report');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_cdn');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_network_status_gateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic');

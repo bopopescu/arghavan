@@ -1,12 +1,13 @@
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">گزارش پیامک های ارسالی</h5>
-                            <button type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-hidden="true">
-                                <i class="material-icons">close</i>
-                            </button>
+                            <h5 class="modal-title" id="myModalLabel">گزارش پیامک های ارسالی
+                                <button type="button"
+                                        class="close"
+                                        data-dismiss="modal"
+                                        aria-hidden="true">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </h5>
                         </div>
                         <!-- /Modal Header -->
 

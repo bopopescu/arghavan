@@ -283,24 +283,24 @@ class PivotTable extends Migration
          /**
          * Migrate gate plan and user
          */
-        Schema::create('gate_plan_user', function (Blueprint $table) {
-            $table->unsignedInteger('gate_plan_id');
-            $table->unsignedInteger('user_id');
+        // Schema::create('gate_plan_user', function (Blueprint $table) {
+        //     $table->unsignedInteger('gate_plan_id');
+        //     $table->unsignedInteger('user_id');
 
-            $table->foreign('gate_plan_id')
-                    ->references('id')
-                    ->on('gate_plans')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+        //     $table->foreign('gate_plan_id')
+        //             ->references('id')
+        //             ->on('gate_plans')
+        //             ->onDelete('cascade')
+        //             ->onUpdate('cascade');
 
-            $table->foreign('user_id')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+        //     $table->foreign('user_id')
+        //             ->references('id')
+        //             ->on('users')
+        //             ->onDelete('cascade')
+        //             ->onUpdate('cascade');
 
-            $table->primary(['gate_plan_id', 'user_id']);
-        });
+        //     $table->primary(['gate_plan_id', 'user_id']);
+        // });
     }
     /**
      * Reverse the migrations.
@@ -322,6 +322,6 @@ class PivotTable extends Migration
         Schema::dropIfExists('card_gatedevice');
         Schema::dropIfExists('fp_device_gatedevice');
         Schema::dropIfExists('gate_plan_schedule');
-        Schema::dropIfExists('gate_plan_user');
+        // Schema::dropIfExists('gate_plan_user');
     }
 }

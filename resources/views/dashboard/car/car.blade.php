@@ -5,7 +5,7 @@
 
 <div class="row" id="app">
     <h3>
-        <div class="panel-heading"> داشبورد خودرو</div>
+        <div class="panel-heading my-dashboard"> داشبورد خودرو</div>
     </h3>
 
     @include('dashboard.car.index')

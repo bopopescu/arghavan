@@ -57,9 +57,14 @@ class Gategroup extends Model
      * Get assigned Gatedevice
      * @return [type] [description]
      */
-    public function gatedevices()
+    // public function gatedevices()
+    // {
+    //     return $this->belongsToMany(\App\Gatedevice::class);
+    // }
+
+    public function users()
     {
-        return $this->belongsToMany (\App\Gatedevice::class);
+        return $this->belongsToMany (\App\User::class);
     }
 
     /**

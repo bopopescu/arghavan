@@ -15,7 +15,6 @@ class TrafficCollection extends ResourceCollection
     public function toArray($request)
     {
         $data = [];
-        // dd($this->collection);
         foreach ($this->collection as $record)
         {
             $data[] = [
@@ -24,18 +23,22 @@ class TrafficCollection extends ResourceCollection
                     'people' => [
                         'name' => $record->user_people_name,
                         'lastname' => $record->user_people_lastname,
-                        // 'pictureUrl' =>  \App\People::getPictureUrl($record->user_people_picture),
+                        'pictureUrl' =>  \App\People::getPictureUrl($record->user_people_picture),
+                        'pictureThumbUrl' => \App\People::getPictureUrl($record->user_people_picture),
                     ],
                 ],
                 'gatedirect' => [
-                    'name' => $record->gatedirect_name
+                    'name' => $record->gatedirect_name,
+                    'id' => $record->gatedirect_id
                 ],
                 'gatemessage' => [
                     'message' => $record->gatemessage_message,
                     'id' => $record->gatemessage_id
                 ],
                 'gatedevice' => [
-                    'name' => $record->gatedevice_name
+                    'name' => $record->gatedevice_name,
+                    'id' => $record->gatedevice_id,
+                    'number' => $record->gatedevice_number
                 ],
                 'gatedate' => $record->gatedate
             ];

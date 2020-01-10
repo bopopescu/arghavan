@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Gatedevice;
 use Illuminate\Http\Request;
 use App\Http\Requests\GatedeviceRequest;
+use Illuminate\Support\Facades\DB;
 
 class GatedeviceController extends Controller
 {
@@ -13,7 +14,7 @@ class GatedeviceController extends Controller
         'gategender',
         'zone',
         'gatepass',
-        'deviceType'
+        'deviceType',
     ];
 
     /**
@@ -23,14 +24,23 @@ class GatedeviceController extends Controller
      */
     public function index(Request $request)
     {
+        $devs = \DB::table("gatedevices")
+                    ->select('gatedevices.id')
+                    ->join('gatedevice_gategroup', 'gatedevice_gategroup.gatedevice_id', 'gatedevices.id')
+                    ->join('gategroups', 'gategroups.id', 'gatedevice_gategroup.gategroup_id')
+                    ->join('gategroup_user', 'gategroup_user.gategroup_id', 'gategroups.id')
+                    ->join('users', 'users.id', 'gategroup_user.user_id')
+                    ->where('users.id', \Auth::user()->id)
+                    ->get();
+        $plucked = $devs->pluck('id');
         if ($request->ajax())
         {
             $gatedevices = Gatedevice::with(self::$relation)
                                 ->where('type', '=', 0)
+                                ->whereIn('id', $plucked)
                                 ->paginate(Controller::C_PAGINATE_SIZE);
             return $gatedevices;
         }
-
         return view('gatedevices.index');
     }
 
@@ -46,7 +56,6 @@ class GatedeviceController extends Controller
 
             return $items;
         }
-
     }
     /**
      * Load Logical Device for manual traffic

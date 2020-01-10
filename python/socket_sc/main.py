@@ -2,6 +2,8 @@ import asyncio
 import websockets
 import classes.tcp_client as client
 
+#pip install websocket
+
 python_server_port = 20000;
 python_server_ip = '127.0.0.1';
 socket_server_ip = '127.0.0.1';

@@ -104,6 +104,11 @@ class Gatedevice extends Model
     {
         return $this->hasMany(\App\GateTraffic::class);
     }
+
+     public function gategroups()
+    {
+        return $this->belongsToMany(\App\Gategroup::class);
+    }
     /**
      * Get state value
      */

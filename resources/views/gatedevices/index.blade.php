@@ -13,7 +13,7 @@
                     <h3 class="card-title">
                         <div>
                             <i class="material-icons"></i>
-                            <span class="panel-heading">گیت ها</span>
+                            <span class="panel-heading my-dashboard">گیت ها</span>
                             @can('command_insert')
                                 <!-- Pc size -->
                                 <span class="pull-left pc" v-show="isNormalMode">

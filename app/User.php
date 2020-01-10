@@ -66,7 +66,6 @@ class User extends Authenticatable
         'deleted_at'
     ];
 
-
     /**
      * List of related sms
      */

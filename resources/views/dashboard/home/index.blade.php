@@ -55,14 +55,16 @@
     <br>
     <div class="row">
         <gate-widget class="col-md-3" v-for="item in gaterecords" :gate-data="item" @refresh-data="refreshGate">
-            <a href="#" @click.prevent="unlockInput(item)"
-                    color="white"
-                    title="ورود">
+            <a href="#"
+                @click.prevent="unlockInput(item)"
+                color="white"
+                title="ورود">
                 <i class="fas fa-unlock-alt icon-background-input fa-3x"></i>
             </a>
-            <a href="#" @click.prevent="unlockOutput(item)"
-                        color="black"
-                        title="خروج">
+            <a href="#"
+                @click.prevent="unlockOutput(item)"
+                color="black"
+                title="خروج">
                 <i class="fas fa-unlock-alt icon-background fa-3x"></i>
             </a>
         </gate-widget>

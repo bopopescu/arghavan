@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="content f-BYekan hidden" id="app">
         <div class="container-fluid">
 
@@ -12,9 +11,11 @@
 
                             <div class="page-categories">
                                 <h3 class="title text-center">اطلاعات پایه تحصیلی </h3>
-                                <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center" role="tablist">
+                                <br/>
+                                <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center"
+                                    role="tablist">
 
-                                    @can('menu_educational_term')
+                                    @can('educational_term')
                                         <li class="nav-item tabStyle active">
                                             <a class="nav-link" data-toggle="tab" href="#term" role="tablist">
                                                 <i class="material-icons">school</i> نیمسال تحصیلی
@@ -22,7 +23,7 @@
                                         </li>
                                     @endcan
 
-                                    @can('menu_educational_university')
+                                    @can('educational_university')
                                         <li class="nav-item tabStyle">
                                             <a class="nav-link" data-toggle="tab" href="#university" role="tablist">
                                                 <i class="fas fa-university fa-2x"></i> دانشکده تحصیلی
@@ -30,7 +31,7 @@
                                         </li>
                                     @endcan
 
-                                    @can('menu_educational_field')
+                                    @can('educational_field')
                                         <li class="nav-item tabStyle">
                                             <a class="nav-link" data-toggle="tab" href="#field" role="tablist">
                                                 <i class="material-icons">library_books</i>رشته تحصیلی
@@ -38,7 +39,7 @@
                                         </li>
                                     @endcan
 
-                                    @can('menu_educational_degree')
+                                    @can('educational_degree')
                                         <li class="nav-item tabStyle">
                                             <a class="nav-link" data-toggle="tab" href="#degree" role="tablist">
                                                 <i class="material-icons">announcement</i>مقطع تحصیلی
@@ -46,7 +47,7 @@
                                         </li>
                                     @endcan
 
-                                    @can('menu_educational_part')
+                                    @can('educational_part')
                                         <li class="nav-item tabStyle">
                                             <a class="nav-link" data-toggle="tab" href="#part" role="tablist">
                                                 <i class="material-icons">dns</i>دوره تحصیلی
@@ -54,7 +55,7 @@
                                         </li>
                                     @endcan
 
-                                    @can('menu_educational_situation')
+                                    @can('educational_situation')
                                         <li class="nav-item tabStyle">
                                             <a class="nav-link" data-toggle="tab" href="#situation" role="tablist">
                                                 <i class="material-icons">gavel</i>وضعیت تحصیلی
@@ -65,37 +66,37 @@
 
                                 <div class="tab-content tab-space tab-subcategories">
 
-                                    @can('menu_educational_term')
+                                    @can('educational_term')
                                         <div class="tab-pane active" id="term">
                                             @include('base-education.terms.index')
                                         </div>
                                     @endcan
 
-                                    @can('menu_educational_university')
+                                    @can('educational_university')
                                         <div class="tab-pane" id="university">
                                             @include('base-education.universities.index')
                                         </div>
                                     @endcan
 
-                                    @can('menu_educational_field')
+                                    @can('educational_field')
                                         <div class="tab-pane" id="field">
                                             @include('base-education.fields.index')
                                         </div>
                                     @endcan
 
-                                    @can('menu_educational_degree')
+                                    @can('educational_degree')
                                         <div class="tab-pane" id="degree">
                                             @include('base-education.degrees.index')
                                         </div>
                                     @endcan
 
-                                    @can('menu_educational_part')
+                                    @can('educational_part')
                                         <div class="tab-pane" id="part">
                                             @include('base-education.parts.index')
                                         </div>
                                     @endcan
 
-                                    @can('menu_educational_situation')
+                                    @can('educational_situation')
                                         <div class="tab-pane" id="situation">
                                             @include('base-education.situations.index')
                                         </div>
@@ -112,7 +113,7 @@
 @section('scripts')
 
     <script type="text/javascript">
-        document.pageData.base_education = {
+         document.pageData.base_education = {
             pageUrls: {
                 semesters_index: '{{ route('semesters.index', '') }}',
 
