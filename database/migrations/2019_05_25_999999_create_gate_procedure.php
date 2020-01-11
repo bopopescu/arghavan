@@ -110,7 +110,7 @@ class CreateGateProcedure extends Migration
 
        #geoip_region_by_name(Procedure Load GateDevice)
 
-        $spLoadGateDevice = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_gate_device_by_ip`(IN `IP` VARCHAR(191) CHARSET utf8)
+        $sp_load_gate_device_by_ip = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_gate_device_by_ip`(IN `IP` VARCHAR(191) CHARSET utf8)
             BEGIN
             SET @ip = IP;
 
@@ -142,7 +142,7 @@ class CreateGateProcedure extends Migration
             END";
 
         #geoip_region_by_name(Procedure Load GateDevice By Id)
-        $spLoadGateDeviceById = "CREATE DEFINER=`root`@`localhost` PROCEDURE `spLoadGateDeviceById`(IN `ID` INT)
+        $sp_load_gate_device_by_id = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_gate_device_by_id`(IN `ID` INT)
             BEGIN
             SET @id = ID;
 
@@ -469,8 +469,6 @@ class CreateGateProcedure extends Migration
             END";
 
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_register_traffic');
-        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_ip');
-        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic_fingerprint');
         DB::unprepared('DROP PROCEDURE IF EXISTS spDisconnectGateDevice');
@@ -478,7 +476,9 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertService');
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateResponseTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertLog');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spLoadGateDeviceById');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_ip');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_id');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_present_report');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_gate_active_report');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_cdn');
@@ -493,10 +493,11 @@ class CreateGateProcedure extends Migration
         DB::unprepared($spInsertService);
         DB::unprepared($spRegisterTraffic);
         DB::unprepared($spUpdateResponseTraffic);
-        DB::unprepared($spLoadGateDevice);
         DB::unprepared($spLoadUser);
         DB::unprepared($spInsertLog);
-        DB::unprepared($spLoadGateDeviceById);
+        DB::unprepared($sp_load_gate_device);
+        DB::unprepared($sp_load_gate_device_by_ip);
+        DB::unprepared($sp_load_gate_device_by_id);
         DB::unprepared($sp_present_report);
         DB::unprepared($sp_gate_active_report);
         DB::unprepared($sp_update_network_status_gateDevice);
@@ -516,14 +517,14 @@ class CreateGateProcedure extends Migration
     {
          //DB::unprepared('DROP PROCEDURE IF EXISTS spLogTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_register_traffic');
-        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_ip');
-        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device');
         DB::unprepared('DROP PROCEDURE IF EXISTS spDisconnectGateDevice');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGetUserGate');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertService');
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateResponseTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertLog');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spLoadGateDeviceById');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_ip');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_gate_device_by_id');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_present_report');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_gate_active_report');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_cdn');

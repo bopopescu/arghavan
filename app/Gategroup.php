@@ -24,6 +24,30 @@ class Gategroup extends Model
         'deleted_at'
     ];
 
+    /**
+     * Get assigned Gatedevice
+     */
+    public function gatedevices()
+    {
+        return $this->belongsToMany(\App\Gatedevice::class);
+    }
+    /*
+     * Get assign user
+     */
+
+    public function users()
+    {
+        return $this->belongsToMany (\App\User::class);
+    }
+
+    /**
+     * Give Gate device
+     */
+    public function giveGatedeviceTo($gatedevice)
+    {
+        $this->gatedevices()->sync($gatedevice);
+    }
+
      /**
      * Create new Gategroup
      *     but before create check conflicts
@@ -53,25 +77,5 @@ class Gategroup extends Model
         return null;
     }
 
-    /**
-     * Get assigned Gatedevice
-     * @return [type] [description]
-     */
-    // public function gatedevices()
-    // {
-    //     return $this->belongsToMany(\App\Gatedevice::class);
-    // }
-
-    public function users()
-    {
-        return $this->belongsToMany (\App\User::class);
-    }
-
-    /**
-     * Give Gate device
-     */
-    public function giveGatedeviceTo($gatedevice)
-    {
-        $this->gatedevices()->sync($gatedevice);
-    }
+  
 }

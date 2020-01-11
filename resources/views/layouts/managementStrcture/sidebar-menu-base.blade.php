@@ -22,7 +22,7 @@
                 @endcan
 
                 <!-- Base Eduaction  -->
-                <!-- @isUniversity -->
+                @isUniversity
                     @can('menu_educational')
                         <li>
                             <a href="{{ route('base.education') }}">
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                     @endcan
-                <!-- @endisUniversity -->
+                @endisUniversity
                 <!-- /Base Eduaction  -->
 
                 <!-- Base Dormitory  -->

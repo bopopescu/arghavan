@@ -417,7 +417,7 @@ window.v = new Vue({
             setTimeout (() => {
                 this.loadRecords (this.page);
                 this.refreshResults ();
-            }, 50000);
+            }, 1000);
         },
         /**
          * Tab Search Record

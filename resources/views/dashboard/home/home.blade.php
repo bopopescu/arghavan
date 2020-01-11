@@ -17,6 +17,7 @@
 @section('scripts')
 <script>
     document.pageData.webSocketServer = '{{ config('core.web_socket_server') }}';
+    document.pageData.webSocketServerPort = '{{ config('core.web_socket_server_port') }}';
 
     document.pageData.home = {
         count_daily_traffic_url: '{{ route('report.count.traffic.daily') }}',

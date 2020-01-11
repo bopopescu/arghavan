@@ -2,7 +2,13 @@ import asyncio
 import websockets
 import classes.tcp_client as client
 
-#pip install websocket
+#pip3.8.exe install requests
+#python -m pip install --upgrade pip
+#pip install websockets
+#pip install mysql
+#pip install mysql-connector-python
+
+
 
 python_server_port = 20000;
 python_server_ip = '127.0.0.1';

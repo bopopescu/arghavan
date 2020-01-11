@@ -1470,9 +1470,7 @@ window.v = new Vue({
          * Set Gate Plan to record
          */
         setGatePlan(record) {
-            console.log("Set gatePlan: ", record);
             this.formMode = Enums.FormMode.assignGatePlan;
-            console.log(" this.formMode: ",  this.formMode);
 
             this.errors.clear();
             this.tempRecord = $.extend(true, {}, this.emptyRecord);
@@ -1487,8 +1485,6 @@ window.v = new Vue({
                     name: record.group.name
                 },
             };
-
-            console.log("this.gateplans", this.gateplans);
 
             // Update gateplans checked state
             this.gateplans.forEach(gateplan => {
@@ -1562,8 +1558,6 @@ window.v = new Vue({
                             user_id: this.tempRecord.user.id,
                             gateplans: []
                         };
-
-                        console.log('data', data.user_id);
 
                         data.gateplans = this.gateplans.filter(el => el.checked == true)
                             .map(el => el.id);

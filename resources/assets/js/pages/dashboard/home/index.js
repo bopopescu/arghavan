@@ -252,28 +252,30 @@ window.x = new Vue({
          */
         unlockInput(item){
             SocketClient.socketOpened = () => {
-                let data = item.id + '[53011]';
+                let data = '['+ item.id +',53011]';
                 SocketClient.send (data);
                 SocketClient.disconnect();
             };
-            SocketClient.connect(document.pageData.webSocketServer, 20000,
+            SocketClient.connect(document.pageData.webSocketServer, 
+                                document.pageData.webSocketServerPort,
                                 (e) => {
                                     console.log (e);
                                 });
         },
 
         /**
-         * Unlocks the input.
+         * Unlocks the Output.
          *
          * @param      {<type>}  item    The item
          */
         unlockOutput(item){
             SocketClient.socketOpened = () => {
-                    let data = item.id + '[54011]';
+                    let data = '[' + item.id + ',54011]';
                     SocketClient.send (data);
                     SocketClient.disconnect();
                 };
-            SocketClient.connect(document.pageData.webSocketServer, 20000,
+            SocketClient.connect(document.pageData.webSocketServer, 
+                                document.pageData.webSocketServerPort,
                                 (e) => {
                                     console.log (e);
                                 });

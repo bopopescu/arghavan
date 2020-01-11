@@ -77,8 +77,6 @@ class Gatedevice extends Model
         return $this->belongsToMany(\App\Card::class);
     }
 
-
-
     /**
      * Get Zone
      */
@@ -86,11 +84,16 @@ class Gatedevice extends Model
     {
     	return $this->belongsTo(\App\Zone::class);
     }
+    /*
+     * Get device type
+     */
 
     public function deviceType()
     {
         return $this->belongsTo(\App\DeviceType::class);
     }
+
+
 
      public function fingerprintDevices()
     {
@@ -105,7 +108,10 @@ class Gatedevice extends Model
         return $this->hasMany(\App\GateTraffic::class);
     }
 
-     public function gategroups()
+    /**
+     * @brief       Get assign gategroup
+     */
+    public function gategroups()
     {
         return $this->belongsToMany(\App\Gategroup::class);
     }

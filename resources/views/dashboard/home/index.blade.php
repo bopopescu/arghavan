@@ -92,7 +92,8 @@
                     </chartist>
                 </div>
                 <div class="card-body row">
-                    <i class="fa fa-refresh fa-2x pd-right-05em pd-left-05em cursor-pointer" @click.prevent="refreshChart('traffic-daily')"></i>
+                    <i class="fa fa-refresh fa-2x pd-right-05em pd-left-05em cursor-pointer"
+                       @click.prevent="refreshChart('traffic-daily')"></i>
                     <h4 class="card-title inline-block">تردد های روازنه</h4>
                     <p class="card-category pd-right-05em">  {{App\Home::todayDashboard()}} </p>
                 </div>

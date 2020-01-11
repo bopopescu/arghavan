@@ -28,6 +28,13 @@ class ReportController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @brief       Paginate getTraffic output
+     * @param       $items    { parameter_description }
+     * @param       $perPage  { parameter_description }
+     * @param       $page     { parameter_description }
+     * @param       $options  { parameter_description }
+     * @return      { description_of_the_return_value } */
     public static function paginate($items, $perPage = 15, $page = null, $options = [])
     {
         $page = $page ?: (\Illuminate\Pagination\Paginator::resolveCurrentPage() ?: 1);

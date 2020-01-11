@@ -42,7 +42,7 @@
                          <div class="text-center">
                             <pagination :data="allData"
                                         v-on:pagination-change-page="showRecord"
-                                        :limit= {{ \App\Http\Controllers\Controller::C_PAGINATION_LIMIT }}
+                                        :limit= "{{ \App\Http\Controllers\Controller::C_PAGINATION_LIMIT }}"
                                         :show-disable= true>
                             </pagination>
                         </div>

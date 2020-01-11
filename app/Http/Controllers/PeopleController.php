@@ -256,7 +256,6 @@ class PeopleController extends Controller
      */
     public function setGatePlan(Request $request, User $user)
     {
-        // dd([$request, $user]);
         if ($request->ajax())
         {
             $gateplans = $request->gateplans;

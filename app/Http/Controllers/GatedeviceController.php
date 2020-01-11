@@ -33,6 +33,7 @@ class GatedeviceController extends Controller
                     ->where('users.id', \Auth::user()->id)
                     ->get();
         $plucked = $devs->pluck('id');
+        
         if ($request->ajax())
         {
             $gatedevices = Gatedevice::with(self::$relation)

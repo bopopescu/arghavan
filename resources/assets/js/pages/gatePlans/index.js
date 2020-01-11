@@ -214,7 +214,7 @@ window.v = new Vue({
                     weekday.checked = (res.length > 0);
                 }
             });
-            console.log('this.oldSchedule', this.oldSchedule);
+            // console.log('this.oldSchedule', this.oldSchedule);
             this.formMode = Enums.FormMode.register;
         },
 
@@ -246,7 +246,7 @@ window.v = new Vue({
          */
         saveRecord() {
 
-            console.log('index -> save record');
+            // console.log('index -> save record');
             this.$validator.validateAll()
                 .then(result => {
                     if (result) {
