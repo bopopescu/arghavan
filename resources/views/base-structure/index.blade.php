@@ -32,9 +32,7 @@
                         </a>
                       </li>
                     @endcan
-
                   @endisRoot
-
                   @can('base_contractor')
                     <li class="nav-item tabStyle">
                       <a class="nav-link" data-toggle="tab" href="#contractor" role="tablist">
@@ -181,7 +179,6 @@
                         @include('base-structure.cities.index')
                     </div>
                   @endcan
-
                 </div>
               </div>
             </div>

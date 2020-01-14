@@ -3,6 +3,9 @@ import socket
 import threading
 import requests
 #pip install mysql-connector-python
+#pip3.7.exe install requests
+#pip install mysql
+#pip install mysql-connector-python
 import mysql.connector
 
 session = requests.Session()
@@ -10,10 +13,17 @@ session.trust_env = False
 
 bind_ip = '0.0.0.0'
 bind_port = 1470
+bind_port_unlock = 50000
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((bind_ip, bind_port))
 
 server.listen(5)
+
+
+# Server Listen with port 10000 , get data from application
+server_unlock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_unlock.bind(('127.0.0.1', bind_port_unlock))
+server_unlock.listen(1)
 
 def handle_client_connection(client_socket,ip):
 #    try:
@@ -77,6 +87,15 @@ def handle_client_connection(client_socket,ip):
     
         client_socket.close()
 # insert data into temprory database
+
+def handle_client_unlock(client_socket,ip):
+        while True:
+                request =client_socket.recv(1024)
+                data=str(request)
+                
+                print(data)
+                print('ip', ip)
+        client_socket.close()
 
 
 def insertcart(cartid, ip):
@@ -162,9 +181,18 @@ def trafficlogupdate(cartid,gateip, command):
 while True: 
          
          client_sock, address = server.accept()
+         client_unlock, address_unlock = server_unlock.accept()
          print ('Accepted connection from {}:{}'.format(address[0], address[1]))
          client_handler = threading.Thread(
                 target=handle_client_connection,
                 args=(client_sock,address[0])  # without comma you'd get a... TypeError: handle_client_connection() argument after * must be a sequence, not _socketobject
          )
          client_handler.start()
+
+         
+         print ('Accepted connection from {}:{}'.format(address_unlock[0], address_unlock[1]))
+         client_unlock = threading.Thread(
+                target=handle_client_unlock,
+                args=(client_unlock,address_unlock[0])  # without comma you'd get a... TypeError: handle_client_connection() argument after * must be a sequence, not _socketobject
+         )
+         client_unlock.start()

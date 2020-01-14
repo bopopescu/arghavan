@@ -21,7 +21,8 @@ class CreateGateProcedure extends Migration
               SET @netstate = NETSTATE;
               SET @ip = IP  COLLATE utf8mb4_unicode_ci;
               UPDATE gatedevices
-              SET    gatedevices.netState = @netstate
+              SET    gatedevices.netState = @netstate,
+              		 gatedevices.updated_at = NOW()
               WHERE  (gatedevices.ip  = @ip ) AND
                      (gatedevices.state = 1);
             END";
@@ -29,11 +30,12 @@ class CreateGateProcedure extends Migration
 
 
         #geoip_region_by_name(Store Procedure Disconnect GateDevice)
-        $spDisconnectGateDevice = "CREATE DEFINER=`root`@`localhost` PROCEDURE `spDisconnectGateDevice`()
+        $sp_disconnect_gate_device = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_disconnect_gate_device`()
 
             BEGIN
                 UPDATE gatedevices
-                SET gatedevices.netState = 0
+                SET gatedevices.netState = 0,
+                 	gatedevices.updated_at = NOW()
                 WHERE gatedevices.state = 1;
             END";
 
@@ -65,9 +67,6 @@ class CreateGateProcedure extends Migration
                 (@username, @password, @name, @lastname, now());
             END";
 
-
-
-
         #geoip_region_by_name(Procedure Register Traffic)
         $spRegisterTraffic = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_register_traffic`(IN `USER_ID` INT, IN `GATEDEVICE_ID` INT, IN `GATEPASS_ID` INT, IN `GATEDIRECT_ID` INT, IN `GATEMESSAGE_ID` INT, IN `GATEOPERATOR_ID` INT)
              BEGIN
@@ -88,8 +87,6 @@ class CreateGateProcedure extends Migration
                      (@user_id, @gatedevice_id, @gatepass_id, @gatedirect_id, @gatemessage_id, @gateoperator_id, now(), now());
             END";
 
-
-
         #geoip_region_by_name(Procedure Update Responce Traffic)
         $spUpdateResponseTraffic = "CREATE DEFINER=`root`@`localhost` PROCEDURE `spUpdateResponseTraffic`(IN `GATEMESSAGE_ID` INT, IN `USER_ID` INT)
            BEGIN
@@ -109,7 +106,6 @@ class CreateGateProcedure extends Migration
 
 
        #geoip_region_by_name(Procedure Load GateDevice)
-
         $sp_load_gate_device_by_ip = "CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_load_gate_device_by_ip`(IN `IP` VARCHAR(191) CHARSET utf8)
             BEGIN
             SET @ip = IP;
@@ -286,7 +282,6 @@ class CreateGateProcedure extends Migration
                 gategenders.gender as gategender,
                 gatepasses.name as gatepass,
                 zones.name as gatezone
-
             FROM
                 gatedevices
 
@@ -426,7 +421,6 @@ class CreateGateProcedure extends Migration
                         port,
                         enabled,
                         gate_direct_id
-
                  FROM
                     fp_devices;
             END";
@@ -471,7 +465,7 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_register_traffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_update_traffic_fingerprint');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spDisconnectGateDevice');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_disconnect_gate_device');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGetUserGate');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertService');
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateResponseTraffic');
@@ -488,7 +482,7 @@ class CreateGateProcedure extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_load_user_by_fingerprint');
 
 
-        DB::unprepared($spDisconnectGateDevice);
+        DB::unprepared($sp_disconnect_gate_device);
         DB::unprepared($spGetUserGate);
         DB::unprepared($spInsertService);
         DB::unprepared($spRegisterTraffic);
@@ -517,7 +511,7 @@ class CreateGateProcedure extends Migration
     {
          //DB::unprepared('DROP PROCEDURE IF EXISTS spLogTraffic');
         DB::unprepared('DROP PROCEDURE IF EXISTS sp_register_traffic');
-        DB::unprepared('DROP PROCEDURE IF EXISTS spDisconnectGateDevice');
+        DB::unprepared('DROP PROCEDURE IF EXISTS sp_disconnect_gate_device');
         DB::unprepared('DROP PROCEDURE IF EXISTS spGetUserGate');
         DB::unprepared('DROP PROCEDURE IF EXISTS spInsertService');
         DB::unprepared('DROP PROCEDURE IF EXISTS spUpdateResponseTraffic');
